@@ -171,8 +171,8 @@ public class Main
         // 9. Declare a variable that holds the current
         // population in the world.
         // (search what the population is today)
-        Double currentWorldPopulation;
-        currentWorldPopulation = 7.951;
+        long currentWorldPopulation;
+        currentWorldPopulation = 7_951_000_000l;
 
         System.out.println("9) Current world population (in billions)");
         System.out.println("world population: " + currentWorldPopulation);
@@ -320,16 +320,18 @@ public class Main
 
         // What percentage of his shots did he make?
 
-        double lgShotsMade = 11;
+        int lgShotsMade = 11;
         double lgShotsMissed = 4;
         double totalShots17 = lgShotsMissed + lgShotsMade;
         double percentageTotalMade = lgShotsMade / totalShots17;
+
+
 
         System.out.println("17) Percentage of shots Pete made: ");
         System.out.println("Pete's shots made: " + lgShotsMade);
         System.out.println("Pete's shots missed: " + lgShotsMissed);
         System.out.println("Pete made a total shots of: " + totalShots17);
-        System.out.println("percentage shots made: " + percentageTotalMade * 100);
+        System.out.println("percentage shots made: " + percentageTotalMade * 100 + "%");
         System.out.println();
 
 
@@ -381,7 +383,17 @@ public class Main
         // Sean wants to divide the cookies evenly between
         // his students. How many cookies will each student
         // receive? (Students can only receive whole cookies)
+        int claresCookies = 12;
+        int seansClass = 14;
+        int cookieorder = claresCookies * 3;
+        int cookiePerStudent = cookieorder / seansClass;
+        int leftOverCookies = cookieorder - seansClass * cookiePerStudent;
 
+        System.out.println("How many of Claire's cookies will each student get: ");
+        System.out.println("Sean's Class size: " + seansClass);
+        System.out.println("Cookies ordered: " + cookieorder);
+        System.out.println("Each student will get: " + cookiePerStudent);
+        System.out.println("With a leftover cookie count of: " + leftOverCookies);
 
 
         // 20. Sean has 14 students in his class.
@@ -390,7 +402,8 @@ public class Main
         // Sean wants to divide the cookies evenly between
         // his students. After giving the students their
         // cookies, how many cookies will be left over?
-
+        System.out.println("How many cookies will be leftover from Sean's order: ");
+        System.out.println(" Total leftover cookie count of: " + leftOverCookies);
 
 
         // 21. Sean's class has earned a cookie party.
@@ -399,7 +412,12 @@ public class Main
         // does he need to buy from Claire's Cookies so that
         // each student can receive 3 cookies.
 
+        int desiredCookiePerStudent = 3;
+        int seansNeededOrder = seansClass * desiredCookiePerStudent;
 
+        System.out.println("Sean's needed order to ensure each student recieves 3 cookies: ");
+        System.out.println("Sean needs to order at least: " + seansNeededOrder);
+        System.out.println("Claire makes orders in the dozens so Sean needs to order: " + 4 );
 
         // 22. Sean's class has earned a cookie party. The number
         // of cookies that a student receives depends on
