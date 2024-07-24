@@ -1,5 +1,7 @@
 package com.niantic;
 
+
+
 public class Main
 {
     public static void main(String[] args)
@@ -50,26 +52,46 @@ public class Main
         // 1. Declare a new variable to hold your name.
         // Variable name: name
         // Data Type: string (names/words are strings)
+        String name= "Jessy";
 
+        System.out.println("1) Name: ");
+        System.out.println("name: " + name);
+        System.out.println();
 
 
         // 2. Declare a variable to hold your age.
         // Variable name: age
         // Data Type: int (age is a whole number)
+        int age;
+        age = 30;
+
+        System.out.println("2) Age:");
+        System.out.println("age: " + age);
+        System.out.println();
 
 
 
         // 3. Declare a variable that holds the first 5 digits of PI.
         // Variable name: pi
         // Data Type: double (pi is a number with decimal places)
+        Double pi;
+        pi = 3.1415;
 
+        System.out.println("3) Pi: ");
+        System.out.println("pi:" + pi);
+        System.out.println();
 
 
         // 4. Declare a variable holds the price of
         // an adult meal at the buffet.
         // Variable name: price
         // Data Type: double (price contains a dollar and cent value)
+        Double price;
+        price = 24.99;
 
+        System.out.println("4) Price");
+        System.out.println("price: " + price);
+        System.out.println();
         // NOTE: the decimal data type  is not automatically recognized
         // see lecture notes
     }
@@ -94,6 +116,13 @@ public class Main
 
         // 5. Declare a variable to store the name of your
         // favorite super hero.
+        String superHero;
+        superHero = "Wolverine";
+
+        System.out.println("5) Favorite super hero:");
+        System.out.println("Super hero: " + superHero);
+        System.out.println();
+
 
         // Hint: You cannot use the same variable name
         // as a variable that you have used before.
@@ -104,40 +133,85 @@ public class Main
         // value of a test score. The test has 100
         // questions and each question is worth 1 point.
         // (You can choose the score)
+        int testScore;
+        testScore =  89;
+        double totalScore;
+        totalScore = 100;
+        double actualScore;
+        actualScore = (testScore / totalScore) * 100;
 
+        System.out.println("6) Test Score: ");
+        System.out.println("your test score: " + testScore);
+        System.out.println("out of a total: " + totalScore);
+        System.out.println("Your total test score percentage: " + actualScore);
+        System.out.println();
 
 
         // 7. Declare a variable that holds the current
         // population in the United States.
         // (search what the population is today)
+        Double currentUsPopulationMillions;
+        currentUsPopulationMillions = 333.3;
 
+        System.out.println("7) Current US population (in millions): ");
+        System.out.println("population: " + currentUsPopulationMillions);
+        System.out.println();
 
 
         // 8. Declare a variable that holds the current
         // population in China.
         // (search what the population is today)
+        Float currentChinaPopulationBillions;
+        currentChinaPopulationBillions = 1.412F;
 
-
+        System.out.println("8) Current population in China (in billions): ");
+        System.out.println("population: " + currentChinaPopulationBillions);
+        System.out.println();
 
         // 9. Declare a variable that holds the current
         // population in the world.
         // (search what the population is today)
+        Double currentWorldPopulation;
+        currentWorldPopulation = 7.951;
 
+        System.out.println("9) Current world population (in billions)");
+        System.out.println("world population: " + currentWorldPopulation);
+        System.out.println();
 
 
         // 10. Declare a variable that specifies whether
         // or not your mouse is wireless.
+        Boolean isWireless = true;
 
+
+        System.out.println("10) Is your mouse wireless: ");
+        System.out.println("your mouse is wireless: " + isWireless);
+        System.out.println();
 
 
         // 11. Search what the Latitude and Longitude of your
         // home town are. Then declare 2 variables
         // to store the Latitude and Longitude.
+        Double hometownLatitude;
+        hometownLatitude = 47.1854;
+        Double hometownLongitude;
+        hometownLongitude = -122.292900;
 
-
+        System.out.println("11) Home town Latitude and Longitude:");
+        System.out.println("Latitude: " + hometownLatitude);
+        System.out.println("Longitude: " + hometownLongitude);
+        System.out.println();
 
         // 12. Create a variable that holds the current
         // Microsoft stock price.
+        Double currentMicrosoftStockPrice;
+        currentMicrosoftStockPrice = 444.85;
+
+        System.out.println("12) Current Microsoft Stock Price: ");
+        System.out.println("current stock price: " + currentMicrosoftStockPrice);
+        System.out.println();
+
+
     }
     
     public static void section03()
@@ -174,6 +248,18 @@ public class Main
         // but missed 3 of his shots.
 
         // How many shots did Pete take?
+        int totalShotsMade;
+        totalShotsMade = 7;
+        int totalShotsMissed;
+        totalShotsMissed = 3;
+        int totalShots;
+        totalShots = totalShotsMade + totalShotsMissed;
+
+        System.out.println("13) How many shots Pete took in the last game: ");
+        System.out.println("Pete made: " + totalShotsMade);
+        System.out.println("Pete missed: " + totalShotsMissed);
+        System.out.println("So Pete took a total shots of: " + totalShots);
+        System.out.println();
 
 
 
@@ -181,13 +267,34 @@ public class Main
         // He missed 6 shots, and he made 3 three point shots.
 
         // How many 2 point shots did Pete make?\
+        int previousTotalShots = 20;
+        double previousTotalShotsMissed = 6;
+        double previousThreePointersMade = 3;
+        double previousTotalTwoPointersMade = previousTotalShots - previousTotalShotsMissed - previousThreePointersMade;
 
-
+        System.out.println("14) Total 2 point shots Pete made in his previous game: ");
+        System.out.println("shots Pete took: " + previousTotalShots);
+        System.out.println("Pete's missed shots: " + previousTotalShotsMissed);
+        System.out.println("how many of those were 3 pointers: " + previousThreePointersMade);
+        System.out.println("Pete's total 2 pointers: " + previousTotalTwoPointersMade);
+        System.out.println();
 
         // 15. Pete and Pat are teammates. Pete made 6 shots.
         // Pat made twice as many shots as Pete.
 
         // How many total shots did they make?
+        String teammate1 = "Pete";
+        String teammate2 = "Pat";
+        int teammate1Shots = 6;
+        int teammate2Shots = teammate1Shots * 2;
+        int totalteamShots = teammate1Shots + teammate2Shots;
+
+        System.out.println("15) Total shots of teammates Pete and Pat: ");
+        System.out.println(teammate1 + " made " + teammate1Shots);
+        System.out.println(teammate2 + " made " + teammate2Shots);
+        System.out.println("So, both teammates made: " + totalteamShots);
+        System.out.println();
+
 
 
 
@@ -195,15 +302,35 @@ public class Main
         // If both Pete and Pat make 1 more shot each
         // before the game ends, how many total shots
         // did the Terrifying Twosome make in the game?
+        int peteshotsTT = 13;
+        int patshotsTT = 9;
+        int totalShotsTT = (peteshotsTT + 1)  + (patshotsTT+ 1);
 
 
+        System.out.println("16) The Terrifying Twosome made this many shots if both made 1 more shot before game ends: ");
+        System.out.println(teammate1 + " made: " + peteshotsTT);
+        peteshotsTT++;
+        System.out.println(teammate2 + " made: " + patshotsTT);
+        patshotsTT++;
+        System.out.println("Terrifying Twosome total shots if both made one more shot each: " + totalShotsTT);
+        System.out.println();
 
         // 17. In his last game Pete made 11 shots.
         // he missed 4 shots.
 
         // What percentage of his shots did he make?
 
+        double lgShotsMade = 11;
+        double lgShotsMissed = 4;
+        double totalShots17 = lgShotsMissed + lgShotsMade;
+        double percentageTotalMade = lgShotsMade / totalShots17;
 
+        System.out.println("17) Percentage of shots Pete made: ");
+        System.out.println("Pete's shots made: " + lgShotsMade);
+        System.out.println("Pete's shots missed: " + lgShotsMissed);
+        System.out.println("Pete made a total shots of: " + totalShots17);
+        System.out.println("percentage shots made: " + percentageTotalMade * 100);
+        System.out.println();
 
 
         // 18. Pete and Pat have decided to only take 3 point
@@ -214,6 +341,26 @@ public class Main
 
         // How many shots do Pete and Pat have to take to win
         // this game?
+        double percentage3ptmade = .70;
+        double oppTeamScore = 31;
+        double valuePerShot = 3;
+       // double totalShotsNeeded = totalPointsNeeded / 3;
+        //double totalNeededPercentageAllowance = totalShotsNeeded / percentage3ptmade;
+
+        System.out.println("18) Shots Pete and Pat need to take in order to win the game: ");
+        System.out.println("Points opposing team made: " + oppTeamScore);
+        //add one point to know how much Pete and Pat need to score to win
+        oppTeamScore++;
+        System.out.println("Total score Pat and Pete need to win: " + oppTeamScore);
+        // divide total needed to win by three (points) to learn how many 3 pointers are need to win
+        System.out.println("To win, 3 pointer shots needed: " + oppTeamScore / 3 );
+        System.out.println("Pete and Pat 3 point shot avg: " + percentage3ptmade);
+        // find out how many total shots are needed if only 70% of total are 'made'
+        System.out.println("Total shots needed to take with avg: " + (oppTeamScore/3) / percentage3ptmade);
+        System.out.println();
+
+
+
     }
     
     public static void clairesCookies()
