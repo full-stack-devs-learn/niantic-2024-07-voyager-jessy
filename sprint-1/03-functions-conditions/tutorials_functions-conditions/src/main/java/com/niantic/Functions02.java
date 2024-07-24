@@ -5,6 +5,12 @@ public class Functions02
     public static void main(String[] args)
     {
         // add your code here
+        displayTeamScores( rank: 1, teamName: "Georgia", q1:15, q2:12, q3:7:, q4:14);
+        displayTeamScores(rank);
+
+        //function signature
+        // displayTeamScores - name of the function
+        // void - return type
     }
     
     public static void displayTeamScores(int rank, String teamName, int q1, int q2, int q3, int q4)
