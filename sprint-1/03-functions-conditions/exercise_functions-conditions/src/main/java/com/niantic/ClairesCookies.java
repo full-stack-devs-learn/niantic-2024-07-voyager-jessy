@@ -1,9 +1,11 @@
 package com.niantic;
 
+import java.math.RoundingMode;
+
 public class ClairesCookies
 {
     @SuppressWarnings("unused") 
-    private final double TaxRate = .0575;
+    private final double TAX_RATE = .0575;
 
     /*
      * Claire's cookies cost $12.95 a dozen.
@@ -20,9 +22,13 @@ public class ClairesCookies
      * calculateSubtotal(5) -> 64.75
      */
     public double calculateSubtotal(int quantity)
-    {
-        return 0;
+    { double clairesCookieDozen = 12.95;
+      double subtotal = clairesCookieDozen * quantity;
+
+
+        return subtotal;
     }
+
 
     /*
      * Claire is required to charge her customers
@@ -34,7 +40,7 @@ public class ClairesCookies
      * of how many dozen cookies they want to order.
      *
      * The calculateTotal function should calculate
-     * the price of an order BEFORE the cost of tax
+     * the price of an order AFTER the cost of tax
      * is added.
      *
      * calculateTotal(1) -> 13.69
@@ -42,8 +48,14 @@ public class ClairesCookies
      * calculateTotal(5) -> 68.47
      */
     public double calculateTotal(int quantity)
-    {
-        return 0;
+    {   double clairesDozenCookies = 12.95;
+        double cookieOrderBT = clairesDozenCookies * quantity;
+        double cookieTax = cookieOrderBT * TAX_RATE;
+        double cookieOrderTotal = cookieTax + cookieOrderBT;
+
+
+
+        return cookieOrderTotal;
     }
 
     /*
@@ -74,10 +86,16 @@ public class ClairesCookies
      * calculateQuickOrder(2,0,2) -> 61.12
      */
     public double calculateQuickOrder(int snickerDozen, int chocolateDozen, int frostedDozen)
-    {
-        return 0;
-    }
+    {   double costOfSnickerDozen = 12.95 * snickerDozen;
+        double costOfChocolateDozen = 13.95 * chocolateDozen;
+        double costOfFrostedDozen = 15.95 * frostedDozen;
+        double orderTotal = costOfSnickerDozen + costOfFrostedDozen + costOfChocolateDozen;
+        double taxTotal = orderTotal * TAX_RATE;
+        double orderTotalTaxed = orderTotal + taxTotal;
 
+
+        return orderTotalTaxed;
+    }
 
     /*
      * Claire also allows customers to customize their
@@ -103,7 +121,29 @@ public class ClairesCookies
      */
     public double calculateCustomOrder (int quantity, boolean hasChocolateChips, boolean hasFrosting)
     {
-        return 0;
+        // create a double if condition statement to check hasChocolateChips
+        double  addedChocCharge;
+        if (hasChocolateChips){
+            addedChocCharge = 1.00 * quantity;}
+        else { addedChocCharge = 0;}
+
+        // create double if condition statement for hasFrosting
+        double addedFrostCharge;
+        if (hasFrosting){
+            addedFrostCharge = 2.00 * quantity;}
+        else { addedFrostCharge = 0;}
+
+
+        // start with identifying cookie order total (- customizations)
+        double cookieDozen = 12.95;
+        double costOfCookies = cookieDozen * quantity;
+       // account for customizations
+        double costOfCustomCookies = costOfCookies + (addedFrostCharge) + (addedChocCharge);
+
+        //calculate tax
+        double orderTotalTaxed = (costOfCustomCookies * TAX_RATE) + costOfCustomCookies;
+
+        return orderTotalTaxed;
     }
 
 }

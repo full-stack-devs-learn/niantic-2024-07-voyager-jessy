@@ -1,7 +1,8 @@
 package com.niantic;
 
-public class BackyardBasketball
-{
+import java.util.Scanner;
+
+public class BackyardBasketball {
     /*
      * Teams that play in the backyard league want to be able
      * to calculate their winning percentage.
@@ -22,11 +23,16 @@ public class BackyardBasketball
      * calculateWinningPercentage(5, 10) -> 33
      *
      */
-    public int calculateWinningPercentage(int gamesWon, int gamesLost)
-    {
-        return 0;
-    }
 
+
+    public int calculateWinningPercentage(int gamesWon, int gamesLost) {
+        int totalGames = gamesWon + gamesLost;
+        double percentageGamesWon = ((double) gamesWon / totalGames) * 100;
+        int data = (int) percentageGamesWon;
+
+
+        return data;
+    }
 
     /*
      * The calculatePointsScored function should calculate
@@ -41,9 +47,21 @@ public class BackyardBasketball
      * calculatePointsScored(67, 15, false) -> 20
      *
      */
-    public int calculatePointsScored(int shotPercentage, int shotsTaken, boolean isThree)
-    {
-        return 0;
+    public int calculatePointsScored(int shotPercentage, int shotsTaken, boolean isThree) {
+        int pointsPerShot;
+            if (isThree) {
+            pointsPerShot = 3;}
+            else {
+            pointsPerShot = 2;
+        }
+        double shotRealPercentage = (double)shotPercentage / 100;
+        double playerShots = shotsTaken * (double)shotRealPercentage;
+        double playerPoints = (playerShots * pointsPerShot) ;
+        int wholePlayerPoints = (int)playerPoints;
+
+
+
+        return wholePlayerPoints;
     }
 
 
@@ -67,8 +85,29 @@ public class BackyardBasketball
      * calculateShotsRequired(67, 24, false) -> 18     *
      *
      */
-    public int calculateShotsRequired(int shotPercentage, int desiredScore, boolean isThree)
-    {
-        return 0;
+    public int calculateShotsRequired(int shotPercentage, int desiredScore, boolean isThree) {
+        // the variable that I want to find in order to achieve each player's desired point value
+
+
+        //if statement that will help determine if boolean is true/ what value shots will be made
+        int pointsperShot;
+        if (isThree){
+            pointsperShot= 3;}
+        else {
+            pointsperShot  = 2;}
+
+        // need to calculate percentage of shots as decimal
+        double rShotPercentage = shotPercentage / 100;
+
+        double shotsForPoints = desiredScore / pointsperShot;
+        double shotsRequired = shotsForPoints / rShotPercentage;
+        int wholeShotsRequired = (int)shotsRequired;
+
+
+
+
+
+
+        return wholeShotsRequired;
     }
 }
