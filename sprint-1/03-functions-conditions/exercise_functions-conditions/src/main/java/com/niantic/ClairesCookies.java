@@ -6,7 +6,7 @@ public class ClairesCookies
 {
     @SuppressWarnings("unused") 
     private final double TAX_RATE = .0575;
-
+    private final double CLAIRES_COOKIE_DOZEN = 12.95;;
     /*
      * Claire's cookies cost $12.95 a dozen.
      *
@@ -22,8 +22,8 @@ public class ClairesCookies
      * calculateSubtotal(5) -> 64.75
      */
     public double calculateSubtotal(int quantity)
-    { double clairesCookieDozen = 12.95;
-      double subtotal = clairesCookieDozen * quantity;
+    {
+      double subtotal = (CLAIRES_COOKIE_DOZEN * quantity);
 
 
         return subtotal;
@@ -48,8 +48,8 @@ public class ClairesCookies
      * calculateTotal(5) -> 68.47
      */
     public double calculateTotal(int quantity)
-    {   double clairesDozenCookies = 12.95;
-        double cookieOrderBT = clairesDozenCookies * quantity;
+    {
+        double cookieOrderBT = CLAIRES_COOKIE_DOZEN * quantity;
         double cookieTax = cookieOrderBT * TAX_RATE;
         double cookieOrderTotal = cookieTax + cookieOrderBT;
 
@@ -135,8 +135,7 @@ public class ClairesCookies
 
 
         // start with identifying cookie order total (- customizations)
-        double cookieDozen = 12.95;
-        double costOfCookies = cookieDozen * quantity;
+        double costOfCookies = CLAIRES_COOKIE_DOZEN * quantity;
        // account for customizations
         double costOfCustomCookies = costOfCookies + (addedFrostCharge) + (addedChocCharge);
 
