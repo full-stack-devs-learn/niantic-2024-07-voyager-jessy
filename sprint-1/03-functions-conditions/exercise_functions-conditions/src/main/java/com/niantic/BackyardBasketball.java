@@ -90,17 +90,16 @@ public class BackyardBasketball {
 
 
         //if statement that will help determine if boolean is true/ what value shots will be made
-        int pointsperShot;
+        double pointsperShot;
         if (isThree){
             pointsperShot= 3;}
         else {
             pointsperShot  = 2;}
 
         // need to calculate percentage of shots as decimal
-        double rShotPercentage = shotPercentage / 100;
-
+        double wShotPercentage = shotPercentage / 100;
         double shotsForPoints = desiredScore / pointsperShot;
-        double shotsRequired = shotsForPoints / rShotPercentage;
+        double shotsRequired = (shotsForPoints / wShotPercentage) + shotsForPoints;
         int wholeShotsRequired = (int)shotsRequired;
 
 
