@@ -90,23 +90,23 @@ public class BackyardBasketball {
 
 
         //if statement that will help determine if boolean is true/ what value shots will be made
-        double pointsperShot;
+        double basketsNeeded;
+        int requiredShots;
+
         if (isThree){
-            pointsperShot= 3;}
+            basketsNeeded = desiredScore / 3.0;
+        }
         else {
-            pointsperShot  = 2;}
+            basketsNeeded  = desiredScore / 2.0;
+            }
 
-        // need to calculate percentage of shots as decimal
-        double wShotPercentage = shotPercentage / 100;
-        double shotsForPoints = desiredScore / pointsperShot;
-        double shotsRequired = (shotsForPoints / wShotPercentage) + shotsForPoints;
-        int wholeShotsRequired = (int)shotsRequired;
-
-
-
+        basketsNeeded =  Math.ceil(basketsNeeded);
+        // find baskets needed / percentage but kept as a whole number
+        double actualPercent = ((basketsNeeded * 100) / shotPercentage);
+        //convert these values to a integer AND make sure that it is rounding up here as well to get correct value
+        requiredShots = (int)Math.ceil(actualPercent);
 
 
-
-        return wholeShotsRequired;
+        return requiredShots;
     }
 }

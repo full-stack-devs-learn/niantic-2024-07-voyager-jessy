@@ -2,6 +2,8 @@ package com.niantic;
 
 public class ElliotsYardCare
 {
+    private double costDependOnTrim;
+
     /*
      * Elliot has gas and material costs to operate his business.
      *
@@ -19,9 +21,25 @@ public class ElliotsYardCare
      * calculateCost(100, 50, true) -> 15.00
      * calculateCost(75, 75, false) -> 16.88
      */
-    public double  calculateCost(int width, int length, boolean  isTrimming)
-    {
-        return 0;
+    public double  calculateCost(int width, int length, boolean  isTrimming) {
+        // set if conditional for isTrimming
+        double costDependOnTrim;
+        if (isTrimming){
+            costDependOnTrim = 3.00;
+        }
+        else {
+            costDependOnTrim = 2.50;
+        }
+
+        double yardSize = length * width;
+        // take yard size and divide it by 1000 to know how much to charge the isTrimming
+        double yardPer1000 = (double)yardSize / 1000;
+        double costPerYard = (yardPer1000 * costDependOnTrim);
+
+
+
+
+        return costPerYard;
     }
 
     /*
@@ -41,7 +59,23 @@ public class ElliotsYardCare
      */
     public double  calculateProfit(int width, int length, boolean  isTrimming, int amountCharged)
     {
-        return 0;
+        double costDependOnTrim;
+        if (isTrimming){
+            costDependOnTrim = 3.00;
+        }
+        else {
+            costDependOnTrim = 2.50;
+        }
+
+        double yardSize = length * width;
+        double yardPer1000 = yardSize / 1000;
+        double costPerYard = yardPer1000 * costDependOnTrim;
+        double profitPerYard = amountCharged - costPerYard;
+
+
+
+
+        return profitPerYard;
     }
 
     /*
@@ -62,7 +96,21 @@ public class ElliotsYardCare
      */
     public double calculateTime(int width, int length, boolean  isTrimming)
     {
-        return 0;
+        double timePerYard;
+        if (isTrimming){
+            timePerYard = 45;}
+        else{
+            timePerYard= 30;}
+
+        double yardSize = length * width;
+        double yardPer1000 = yardSize / 1000;
+        double minsPerYard = yardPer1000 * timePerYard;
+        double hoursPerYard = minsPerYard / 60;
+
+
+
+
+        return hoursPerYard;
     }
 
     /*
