@@ -394,7 +394,7 @@ public class Main
         System.out.println("Cookies ordered: " + cookieorder);
         System.out.println("Each student will get: " + cookiePerStudent);
         System.out.println("With a leftover cookie count of: " + leftOverCookies);
-
+        System.out.println();
 
         // 20. Sean has 14 students in his class.
         // He has bought 3 dozen cookies for his class.
@@ -404,7 +404,7 @@ public class Main
         // cookies, how many cookies will be left over?
         System.out.println("How many cookies will be leftover from Sean's order: ");
         System.out.println(" Total leftover cookie count of: " + leftOverCookies);
-
+        System.out.println();
 
         // 21. Sean's class has earned a cookie party.
 
@@ -418,7 +418,7 @@ public class Main
         System.out.println("Sean's needed order to ensure each student recieves 3 cookies: ");
         System.out.println("Sean needs to order at least: " + seansNeededOrder);
         System.out.println("Claire makes orders in the dozens so Sean needs to order: " + 4 );
-
+        System.out.println();
         // 22. Sean's class has earned a cookie party. The number
         // of cookies that a student receives depends on
         // the score that they received on the cookie test.
