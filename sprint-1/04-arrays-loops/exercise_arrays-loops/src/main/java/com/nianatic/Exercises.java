@@ -1,5 +1,7 @@
 package com.nianatic;
 
+import java.util.Arrays;
+
 public class Exercises
 {
     /*
@@ -11,8 +13,11 @@ public class Exercises
      */
     public String[] daysOfTheWeek()
     {
-        return null;
+        String[] daysOfTheWeek = new String[] {"Sunday","Monday", "Tuesday", "Wednesday", "Thursday","Friday","Saturday"};
+
+        return daysOfTheWeek;
     }
+
 
     /*
      * 2)
@@ -23,7 +28,10 @@ public class Exercises
      */
     public String[] monthsOfTheYear()
     {
-        return null;
+        String[] monthsOfTheYear;
+        monthsOfTheYear = new String[] {"January" , "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+        return monthsOfTheYear;
     }
 
     /*
@@ -38,7 +46,17 @@ public class Exercises
      */
     public int[] oneToFifty()
     {
-        return null;
+        int[] oneToFifty;
+        oneToFifty = new int[50];
+
+        //find numbers starting from 1 to 50 to list within the array with the set length of 50
+        for (int i = 0; i< oneToFifty.length; i++)
+        {
+            //the values found are added into the array in order from place value 0 - 49 to complete array length of 50
+            oneToFifty[i] = i +1;
+        }
+
+        return oneToFifty;
     }
 
     /*
@@ -51,9 +69,25 @@ public class Exercises
      *
      * [2, 4, 6, ... 200]
      */
-    public int[] evenNumbers()
-    {
-        return null;
+    public static int [] evenNumbers() {
+
+
+        int[] evenNumbers = new int[100];//cr8 array variable that notates we will have 100 variables withing the array
+        int index = 0; // cr8 index variable to dictate place value within array. 0 is the first value
+
+
+        for (int i = 2; i <= 200; i++) //create for loop to pull numbers starting from 2 and ending in 200 in order
+        {
+            if(i%2 == 0) //only adding even numbers (this LITERALLY means if num / 2 has no remainders (ie. even))
+            {
+                evenNumbers[index]= i;  //add those found values into array starting at the 1st place value (0 because arrays start with 0 duh)
+                index++; //continue on within array until length of 100 is filled
+
+            }
+
+        }
+
+        return evenNumbers; // return your new even array =]
     }
 
     /*
@@ -235,7 +269,7 @@ public class Exercises
     /*
      * 15)
      * Given an array of prices, return the
-     * lowest price that is greater than 0.
+     * lowest price.
      *
      * lowestPrice([-15.25, 15.25, 2.34, 3.50])                        =>  2.34
      * lowestPrice([12.75, -5.5, 10.25, 18.44, 4.23, -15.55, 9.20])    =>  -15.55
