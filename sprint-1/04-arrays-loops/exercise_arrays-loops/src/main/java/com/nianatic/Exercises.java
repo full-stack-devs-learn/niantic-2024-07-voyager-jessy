@@ -1,6 +1,6 @@
 package com.nianatic;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Exercises
 {
@@ -109,7 +109,8 @@ public class Exercises
      */
     public String firstDayOfWeek(String[] daysOfTheWeek)
     {
-        return null;
+
+        return daysOfTheWeek[0];
     }
 
     /*
@@ -131,7 +132,11 @@ public class Exercises
      */
     public String lastDayOfWeek(String[] daysOfTheWeek)
     {
-        return null;
+
+        String lastDayofWeek = daysOfTheWeek[daysOfTheWeek.length - 1];
+        // cr8 new variable to identify the item located at the length of the array [7] - 1 to get to the last index va;ue [ 6]
+
+        return lastDayofWeek;
     }
 
     /*
@@ -150,6 +155,9 @@ public class Exercises
      */
     public String monthName(String[] months, int monthNumber)
     {
+        int intput  = 0;
+
+
         return null;
     }
 
@@ -172,7 +180,11 @@ public class Exercises
      */
     public boolean hasName(String[] names, String nameToFind)
     {
-        return false;
+        String namelist;
+
+        {
+            return false;
+        }
     }
 
     /*
@@ -207,7 +219,12 @@ public class Exercises
      */
     public int sumNumbers(int[] numbers)
     {
-        return -1;
+        int sum = 0;
+        for(int value : numbers)
+        {
+            sum += value;
+        }
+        return sum;
     }
 
     /*
@@ -222,7 +239,16 @@ public class Exercises
      */
     public int doubleEvens(int[] numbers)
     {
-        return -1;
+        int sum = 0; // always declare aggregate
+        for(int value : numbers)
+        {
+            if(value % 2 == 0)
+            {
+                sum += value;
+            }
+        }
+
+        return sum *2 ;
     }
 
     /*
@@ -237,7 +263,13 @@ public class Exercises
      */
     public int sumEveryThird(int[] numbers)
     {
-        return -1;
+        int sum = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            if( i % 3 == 0)
+            sum += numbers[i];
+            ;
+        }
+        return sum;
     }
 
     /*
@@ -249,8 +281,13 @@ public class Exercises
      * averagePrice([15.25, 2.34, 3.5])        => sum / 3   =>  7.03
      */
     public double averagePrice(double[] prices)
-    {
-        return -1;
+    {   double sum = 0;
+        for(double price:prices){
+            sum += price;
+        }
+
+
+        return sum/prices.length;
     }
 
     /*
@@ -263,7 +300,20 @@ public class Exercises
      */
     public double highestValue(double[] prices)
     {
-        return -1;
+        double max = prices[0];
+
+        for(double i = 1; i< prices.length; i++)
+        {
+            if(prices[i] > max) //i has the element currently in space 1 of array [10.25] and if that is greater than the current max (12.75
+            {
+                max = prices[i]; // then that element becomes the new value of max
+            }
+        }
+
+
+
+
+        return max;
     }
 
     /*
@@ -276,7 +326,8 @@ public class Exercises
      */
     public double lowestValue(double[] prices)
     {
-        return -1;
+
+        return min;
     }
 
 }
