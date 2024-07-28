@@ -1,5 +1,7 @@
 package com.nianatic;
 
+import javax.swing.*;
+import java.security.cert.TrustAnchor;
 import java.util.*;
 
 public class Exercises
@@ -132,11 +134,11 @@ public class Exercises
      */
     public String lastDayOfWeek(String[] daysOfTheWeek)
     {
+        //there are two ways of doing this, 1: simply return the array, specifying last element by array[array.length - 1]
+        //OR 2: is as follows: create a new value that holds the specific value of that array element.
+        //String lastDayofWeek = daysOfTheWeek[daysOfTheWeek.length - 1]; and then return lastDayofWeek
 
-        String lastDayofWeek = daysOfTheWeek[daysOfTheWeek.length - 1];
-        // cr8 new variable to identify the item located at the length of the array [7] - 1 to get to the last index va;ue [ 6]
-
-        return lastDayofWeek;
+        return daysOfTheWeek[daysOfTheWeek.length - 1] ;
     }
 
     /*
@@ -155,10 +157,8 @@ public class Exercises
      */
     public String monthName(String[] months, int monthNumber)
     {
-        int intput  = 0;
 
-
-        return null;
+        return months[monthNumber - 1];
     }
 
     /*
@@ -180,11 +180,19 @@ public class Exercises
      */
     public boolean hasName(String[] names, String nameToFind)
     {
-        String namelist;
-
+        boolean trueOrFalse = true;
+        for(int i=0; i <names.length; i++)
         {
-            return false;
+            if(names[i] == nameToFind)
+                {trueOrFalse = true;}
+
+            else
+                { trueOrFalse = false;}
         }
+
+
+        return trueOrFalse;
+
     }
 
     /*
@@ -205,7 +213,15 @@ public class Exercises
      */
     public int countName(String[] names, String nameToFind)
     {
-        return -1;
+        int count = 0;
+        for (int i = 0; i <names.length; i++)
+        {
+            if(names[i] == namesToFind)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
     /*
@@ -302,18 +318,20 @@ public class Exercises
     {
         double max = prices[0];
 
-        for(double i = 1; i< prices.length; i++)
+        for(int i = 1; i< prices.length; i++)
         {
             if(prices[i] > max) //i has the element currently in space 1 of array [10.25] and if that is greater than the current max (12.75
             {
                 max = prices[i]; // then that element becomes the new value of max
+
+
             }
         }
-
-
-
-
         return max;
+
+// THIS IS NOT WORKING AND I THINK IT HAS TO DO WITH THE DATA TYPE.. BUT THERE ARE DECIMAL POINTS AND IF I CONVERT TO INT IT WILL ROUND AND I DONT WANT THAT TO HAPPEN
+
+
     }
 
     /*
@@ -326,6 +344,15 @@ public class Exercises
      */
     public double lowestValue(double[] prices)
     {
+
+        double min = prices[0]; // make a variable that will be the placeholder for the lowest price throughout my loop, starting at Array[0]
+        for(int i = 1; i< prices.length; i++) //for-i loop that starts with Array[1], goes through all elements in array until the end one by one.
+        {
+            if(min > prices[i]) //if the price at min is greater than the value held at current place holder in prices array,
+            {
+                min = prices[i];// min becomes that new, lower, value
+            }
+        }
 
         return min;
     }
