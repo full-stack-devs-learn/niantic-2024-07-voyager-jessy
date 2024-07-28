@@ -210,20 +210,21 @@ public class Exercises
      * Example Expectations:
      * Input                                                                  Output
      * countName(["Ron", "Michelle", "Lisa", "Kent", "Michelle"], "Ron")    =>  1
-     * countName(["Ron", "Michelle", "Lisa", "Kent", "Michelle"], "kent")   =>  2
+     * countName(["Ron", "Michelle", "Lisa", "Kent", "Michelle"], "michelle")   =>  2
      * countName(["Ron", "Michelle", "Lisa", "Kent", "Michelle"], "Jenny")  =>  0
      */
     public int countName(String[] names, String nameToFind)
     {
-       // int count = 0;
-       // for (int i = 0; i <names.length; i++)
-        //{
-          //  if(names[i] == namesToFind)
-            //{
-              //  count++;
-           // }
-        //}
-        return 0;
+       int count = 0;
+       for (int i=0; i < names.length; i++) {
+           if (names[i].equalsIgnoreCase(nameToFind)) {
+               count++;
+           }
+
+       }
+        return count
+
+                ;
     }
 
     /*
