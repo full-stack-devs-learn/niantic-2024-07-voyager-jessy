@@ -1,6 +1,7 @@
 package com.nianatic;
 
 import javax.swing.*;
+import java.lang.reflect.Array;
 import java.security.cert.TrustAnchor;
 import java.util.*;
 
@@ -180,19 +181,20 @@ public class Exercises
      */
     public boolean hasName(String[] names, String nameToFind)
     {
-        boolean trueOrFalse = true;
-        for(int i=0; i <names.length; i++)
+        boolean trueOrFalse = false;
+        for (int i = 0; i < names.length; i++)
         {
-            if(names[i] == nameToFind)
-                {trueOrFalse = true;}
+            if(names[i].equalsIgnoreCase(nameToFind)) {
+                trueOrFalse = true;
+            }
 
-            else
-                { trueOrFalse = false;}
         }
 
-
         return trueOrFalse;
-
+/*by setting boolean as false by default, it will only change if within the
+* for loop, at any index of the array the nameToFind is found, returning true. else false.
+*(if i kept boolean as true and added a return false at end it would loop once, then return false. and only last test would pass.
+ */
     }
 
     /*
@@ -213,15 +215,15 @@ public class Exercises
      */
     public int countName(String[] names, String nameToFind)
     {
-        int count = 0;
-        for (int i = 0; i <names.length; i++)
-        {
-            if(names[i] == namesToFind)
-            {
-                count++;
-            }
-        }
-        return count;
+       // int count = 0;
+       // for (int i = 0; i <names.length; i++)
+        //{
+          //  if(names[i] == namesToFind)
+            //{
+              //  count++;
+           // }
+        //}
+        return 0;
     }
 
     /*
@@ -283,7 +285,6 @@ public class Exercises
         for (int i = 0; i < numbers.length; i++) {
             if( i % 3 == 0)
             sum += numbers[i];
-            ;
         }
         return sum;
     }
