@@ -17,8 +17,15 @@ public class Exercises
      *
      */
     public String changeCase(String word, boolean toUpperCase)
-    {
-        return null;
+    {   String result; // this string will hoold the result of what comes from the boolean
+        if(toUpperCase) //if it is true, change word to all uppercase and that will then be the value held for string result
+        {
+            result = word.toUpperCase();
+        }
+        else{ //if false, word will be converted to lowercase
+            result = word.toLowerCase();
+        }
+        return result;
     }
 
     /*
@@ -49,7 +56,12 @@ public class Exercises
      */
     public String createHtml(String content, String elementName)
     {
-        return null;
+        String beginningElement = ("<"+elementName+">");
+        String endingElement = ("<"+"/"+elementName+">");
+        String htmlForUser = beginningElement + content+endingElement;
+
+
+        return htmlForUser;
     }
 
     /*
@@ -71,7 +83,22 @@ public class Exercises
      */
     public String moreHtml(String content, String elementName)
     {
-        return null;
+        String beginningElement = "<"+elementName+">";
+        String endingElement = "</"+ elementName + ">";
+        String userHTML= beginningElement+content+endingElement;
+        String withoutContent = "<" + elementName +" />";
+        String userHTMLPlus;
+
+        boolean ifContent = Boolean.parseBoolean(content);
+        if(ifContent) {
+            userHTMLPlus= beginningElement+content+endingElement;
+        }
+        else{
+            userHTMLPlus= "<" + elementName + " />";
+        }
+
+
+        return userHTMLPlus;
     }
 
     /*
@@ -94,7 +121,11 @@ public class Exercises
      */
     public String createXml(int id, String name)
     {
-        return  null;
+        String idSignifier = "<id>" + id + "</id>";
+        String nameSignifier = "<name>" + name + "</name>";
+        String customerSignifier = "<customer>" + idSignifier + nameSignifier + "</customer>";
+
+        return  customerSignifier;
     }
 
     /*
@@ -131,7 +162,12 @@ public class Exercises
      */
     public String formattedXml(int id, String name)
     {
-        return null;
+        String idSignifier = "  <id>" + id + "</id>\n";
+        String nameSignifier = "  <name>" + name + "</name>\n";
+        String customerSignifier = "<customer>\n" + idSignifier + nameSignifier + "</customer>";
+
+
+        return customerSignifier;
     }
 
     /*
@@ -155,7 +191,33 @@ public class Exercises
      */
     public String formatFullName(String firstName, String middleName, String lastName, String suffix)
     {
-        return  null;
+        //String firstNameFormat= firstName+" ";
+        //String suffixFormat = ", " + suffix;
+        //String[] nameString = {firstName,   middleName, lastName, suffixFormat};
+
+
+        String[] names = {firstName, middleName, lastName, suffix};
+
+        boolean ifMiddle= Boolean.parseBoolean(names[1]);
+        boolean ifSuffix = Boolean.parseBoolean(names[3]);
+        String nameFormatted = names[0];
+
+        for (int i = 1; i< names.length; i++) {
+            if (names[i].isEmpty()) {
+                continue;}
+            if(ifMiddle)
+            {
+                nameFormatted+= middleName;
+            }
+            else {
+                nameFormatted += " " + names[i];
+            }
+            if  (ifSuffix)
+            { nameFormatted+= ", "+suffix;}
+
+        }
+
+        return  nameFormatted;
     }
 
     /*
@@ -186,6 +248,39 @@ public class Exercises
      */
     public String createUserName(String fullName)
     {
+        //attempt 1
+        //String[] nameChunks = fullName.toLowerCase().split(" ");
+
+
+
+
+
+
+        //for (int i = 0; i<nameChunks.length; i++)
+        //{
+        //    if
+        //}
+
+        //atttempt 2
+        //int firstEndPosition = fullName.indexOf(' ');
+        //String firstName = fullName.substring(0,firstEndPosition);
+        //int lastEndPosition = fullName.lastIndexOf(' ');
+        //String lastName = fullName.substring(lastEndPosition);
+        //String simpleName = firstName.toLowerCase()+"."+lastName.toLowerCase();
+        //String middleName = fullName.substring(firstEndPosition,lastEndPosition);
+        //String middleInitial = middleName.toLowerCase();
+        //int suffixPosition = fullName.indexOf(',');
+        //String suffix = fullName.substring(suffixPosition);
+
+        //String userName;
+        //if(Character.isDefined(middleInitial))
+        //{
+        //    userName = firstName.toLowerCase() + "." + middleInitial.length()+"."+lastName.toLowerCase();
+        //}
+
+
+
+
         return null;
     }
 }
