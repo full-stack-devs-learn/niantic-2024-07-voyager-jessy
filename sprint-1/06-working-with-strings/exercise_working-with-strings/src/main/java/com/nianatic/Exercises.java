@@ -85,16 +85,15 @@ public class Exercises
     {
         String beginningElement = "<"+elementName+">";
         String endingElement = "</"+ elementName + ">";
-        String userHTML= beginningElement+content+endingElement;
+        String userHTML= beginningElement + content + endingElement;
         String withoutContent = "<" + elementName +" />";
-        String userHTMLPlus;
 
-        boolean ifContent = Boolean.parseBoolean(content);
-        if(ifContent) {
-            userHTMLPlus= beginningElement+content+endingElement;
-        }
-        else{
-            userHTMLPlus= "<" + elementName + " />";
+
+        String userHTMLPlus;
+        if (content.isEmpty()) {     //if content is "" then use the self closing format for element
+            userHTMLPlus= withoutContent;
+        } else {                    //else, if content has content/isn't empty, then use my predefined format for userHTML
+            userHTMLPlus= userHTML;
         }
 
 
@@ -191,32 +190,39 @@ public class Exercises
      */
     public String formatFullName(String firstName, String middleName, String lastName, String suffix)
     {
-        //String firstNameFormat= firstName+" ";
-        //String suffixFormat = ", " + suffix;
-        //String[] nameString = {firstName,   middleName, lastName, suffixFormat};
 
+            //first trial
+//        String suffixFormatted = ", "+ suffix;
+//
+//        String[] names = {firstName, middleName, lastName, suffix};
+//
+//        boolean ifMiddle= Boolean.parseBoolean(names[1]);
+//        boolean ifSuffix = Boolean.parseBoolean(names[3]);
+//        String nameFormatted = names[0];
+//
+//        for (int i = 1; i< names.length; i++) {
+//            if (names[i].isEmpty()) {
+//                continue;}
+//            if(ifMiddle)
+//            {
+//                nameFormatted+= middleName;
+//            }
+//
+//
+//            if  (ifSuffix) {
+//            nameFormatted+= suffixFormatted;
+//            }
+//            else {
+//            nameFormatted += " " + names[i];
+//            }
 
-        String[] names = {firstName, middleName, lastName, suffix};
-
-        boolean ifMiddle= Boolean.parseBoolean(names[1]);
-        boolean ifSuffix = Boolean.parseBoolean(names[3]);
-        String nameFormatted = names[0];
-
-        for (int i = 1; i< names.length; i++) {
-            if (names[i].isEmpty()) {
-                continue;}
-            if(ifMiddle)
-            {
-                nameFormatted+= middleName;
-            }
-            else {
-                nameFormatted += " " + names[i];
-            }
-            if  (ifSuffix)
-            { nameFormatted+= ", "+suffix;}
-
+        // second trial:
+        String finalName = firstName;
+        if(middleName.isEmpty())
+        {
+            finalName =+ lastName;
         }
-
+        else
         return  nameFormatted;
     }
 
@@ -248,39 +254,43 @@ public class Exercises
      */
     public String createUserName(String fullName)
     {
-        //attempt 1
-        //String[] nameChunks = fullName.toLowerCase().split(" ");
+        //step 1: change to lowercase. we added the .strip to make sure that if input had any whitespace, it would be deleted automatically
+        String fullNameLower = fullName.strip().toLowerCase();
+
+        // step 2. remove the suffix, by splitting it at the precusor (",")
+        String[] fullNameChunks = fullNameLower.split(",");
+        String withOutSuffix = fullNameChunks[0];                   //then selecting only the part of the string without the "," to continue forward with
+
+
+        // step 3. account for middle names
+        String[] nameChunks= withOutSuffix.split(" ");
+        String firstname = nameChunks[0];
+        String middleName= "";
+        String lastName= "";
+
+        if(nameChunks.length > 2) // step 4. middle name is present because there is a 0=name 1=middle, 2 = last name
+        {
+            middleName= nameChunks[1].substring(0,1); // making a substring of middle name so that it now only contains values 0 ending at 1 = only the first letter
+            lastName = nameChunks[2];
+        }
+        else{
+            lastName= nameChunks[1];
+        }
+
+        // step 5 .at this point we have all the parts needed and now we just need to test to see if there is a middle name, so then we can know how many periods are needed in the middle name
+        String userName = ""; // new variable that will hold username value dependent on if there is a middle name or not
+        if(middleName.isEmpty())
+        {
+            userName = firstname+ "." + lastName;
+        }
+        else{
+            userName = firstname + "." + middleName + "." + lastName;
+        }
 
 
 
 
 
-
-        //for (int i = 0; i<nameChunks.length; i++)
-        //{
-        //    if
-        //}
-
-        //atttempt 2
-        //int firstEndPosition = fullName.indexOf(' ');
-        //String firstName = fullName.substring(0,firstEndPosition);
-        //int lastEndPosition = fullName.lastIndexOf(' ');
-        //String lastName = fullName.substring(lastEndPosition);
-        //String simpleName = firstName.toLowerCase()+"."+lastName.toLowerCase();
-        //String middleName = fullName.substring(firstEndPosition,lastEndPosition);
-        //String middleInitial = middleName.toLowerCase();
-        //int suffixPosition = fullName.indexOf(',');
-        //String suffix = fullName.substring(suffixPosition);
-
-        //String userName;
-        //if(Character.isDefined(middleInitial))
-        //{
-        //    userName = firstName.toLowerCase() + "." + middleInitial.length()+"."+lastName.toLowerCase();
-        //}
-
-
-
-
-        return null;
+        return userName;
     }
 }
