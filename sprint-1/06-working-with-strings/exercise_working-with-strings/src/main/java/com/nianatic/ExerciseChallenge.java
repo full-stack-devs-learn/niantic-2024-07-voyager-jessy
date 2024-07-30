@@ -26,7 +26,21 @@ public class ExerciseChallenge
      */
     public String reformatName(String fullName)
     {
-        return null;
+        String [] nameChunks = fullName.split(" ");
+        String [] removeCommaLastName = nameChunks[1].split(",");
+        String lastName = removeCommaLastName[0];
+
+        String lastNameFirst = lastName + ", " + nameChunks[0];
+
+        if(nameChunks.length > 2)
+        {
+            lastNameFirst += ", " + nameChunks[2];
+        }
+        if(nameChunks.length >3) {
+            lastNameFirst += " " + nameChunks[3];
+        }
+
+        return lastNameFirst;
     }
 
     /*
@@ -50,7 +64,11 @@ public class ExerciseChallenge
      */
     public String createJSON(int id, String name)
     {
-        return  null;
+        String newId ="{ " + "\"id\": " + id + ", " ;
+        String nameInQuotes = "\"" + name + "\"";
+        String newName = "\"name\": " + nameInQuotes + " }";
+        String formattedJSON = newId+ newName;
+        return  formattedJSON;
     }
 
 }
