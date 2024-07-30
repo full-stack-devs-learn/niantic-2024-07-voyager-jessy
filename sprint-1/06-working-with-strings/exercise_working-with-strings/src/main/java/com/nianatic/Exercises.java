@@ -191,39 +191,24 @@ public class Exercises
     public String formatFullName(String firstName, String middleName, String lastName, String suffix)
     {
 
-            //first trial
-//        String suffixFormatted = ", "+ suffix;
-//
-//        String[] names = {firstName, middleName, lastName, suffix};
-//
-//        boolean ifMiddle= Boolean.parseBoolean(names[1]);
-//        boolean ifSuffix = Boolean.parseBoolean(names[3]);
-//        String nameFormatted = names[0];
-//
-//        for (int i = 1; i< names.length; i++) {
-//            if (names[i].isEmpty()) {
-//                continue;}
-//            if(ifMiddle)
-//            {
-//                nameFormatted+= middleName;
-//            }
-//
-//
-//            if  (ifSuffix) {
-//            nameFormatted+= suffixFormatted;
-//            }
-//            else {
-//            nameFormatted += " " + names[i];
-//            }
-
         // second trial:
-        String finalName = firstName;
+        String finalName = firstName + " ";
         if(middleName.isEmpty())
         {
-            finalName =+ lastName;
+            finalName += lastName;
         }
         else
-        return  nameFormatted;
+        {
+            finalName += middleName + " " + lastName;
+        }
+
+        if (suffix.isEmpty())
+        {
+        }
+            else{
+            finalName += ", " + suffix;
+        }
+        return  finalName;
     }
 
     /*
