@@ -45,3 +45,12 @@ OrderDetails: (Create 5 line items)
     Discount: 0
 */
 
+-- step one create customer and add them into database, create own CustomerID
+select *
+FROM customers;
+
+INSERT INTO customers
+(	customer_id
+	, customer;
+
+

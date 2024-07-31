@@ -11,3 +11,34 @@ USE northwind;
     -- home address
 -- leave all other fields null by default
 
+SELECT *
+FROM employees;
+
+INSERT INTO employees
+	(	first_name
+		, last_name
+        , title
+        , title_of_courtesy
+        , birth_date
+        , hire_date
+        , address
+        , city
+        , region
+        , postal_code
+        , country
+        , notes
+	)
+VALUES
+	( "Jessy"
+    , "Cesena"
+    ,"Sales Associate" 
+    ,"Mrs."
+    , "1993-09-03 00:00:00"
+    , "2024-7-31 00:00:00" 
+    , "555 No Way Jose Rd."
+    , "Puyallup"
+    , "WA"
+    , "98373"
+    , "USA"
+    , ""
+    );

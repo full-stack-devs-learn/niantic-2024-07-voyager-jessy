@@ -5,3 +5,6 @@ USE northwind;
 
 -- Expected: 69 Rows
 
+SELECT Distinct country
+	,  city
+FROM customers;

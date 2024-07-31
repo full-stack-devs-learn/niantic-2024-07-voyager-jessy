@@ -13,3 +13,16 @@ USE northwind;
 
 -- Expected: 12 Rows
 
+SELECT company_name
+	, order_date
+    , order_id
+    , product_name
+    , sales_price
+    , quantity
+    , discount
+	, concat((sales_price - sales_price * discount)* quantity) as line_total
+FROM customer_orders
+Where company_name = 'Alfreds Futterkiste';
+
+
+
