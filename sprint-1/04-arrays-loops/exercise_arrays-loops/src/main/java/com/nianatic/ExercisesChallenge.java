@@ -19,7 +19,32 @@ public class ExercisesChallenge
      */
     public int sumFirst2Numbers(int[] numbers)
     {
-        return -1;
+
+        //if(numbers.length>0)
+        //{
+        //    sum = numbers[0] + numbers[1];
+        //}
+        //else if (numbers.length<2) {
+        //    sum = numbers[0];
+        //}
+        //else{
+        //    sum = 0;
+        //}
+
+        int sum= 0;
+        if(numbers.length<1)
+        {
+            sum = 0;
+        }
+        if(numbers.length < 2)
+        {
+            sum = numbers[0];
+        }
+        else {
+            sum = numbers[0]+numbers[1];
+        }
+
+        return sum;
     }
 
     /*
@@ -32,7 +57,16 @@ public class ExercisesChallenge
      */
     public String[] reverseNames(String[] names)
     {
-        return null;
+        String names2 = "";
+        String[] namesReversed = new   String[4];
+        namesReversed = names2;
+
+        for(int i =names.length-1; i >=1; i--)
+        {
+            names2 += names[i] +", ";
+        }
+        namesReversed.split(" ");
+        return names2;
     }
 
 
