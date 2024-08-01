@@ -47,10 +47,76 @@ OrderDetails: (Create 5 line items)
 
 -- step one create customer and add them into database, create own CustomerID
 select *
-FROM customers;
+FROM customers
+WHERE customer_id = "SWAGG";
 
 INSERT INTO customers
 (	customer_id
-	, customer;
+	, company_name
+    , contact_name
+    , address
+    , city
+    , region
+    , postal_code
+    , country
+    )
+Values
+(	"SWAGG"
+	, "Sir Willy's"
+    , "Daniel Capilla"
+    , "1234 55th Ave Ct E"
+    , "Puyallup"
+    , "WA"
+    , "98373"
+	, "USA"
+);
+
+SET @new_order = LAST_INSERT_ID();
 
 
+
+
+
+
+-- now create a order to be added to the orders table for this customer 
+INSERT INTO orders
+	(	-- order_id -- auto generated
+		customer_id -- one i made
+        , order_date -- todays date
+        , ship_name -- contact name
+        , ship_address
+        , ship_city
+        , ship_region
+        , ship_postal_code
+        , ship_country
+        )
+VALUES
+	(	"SWAGG"
+		, "2024-07-31 00:00:00"
+        , "Daniel Capilla"
+        , "1234 55th Ave Ct E"
+        , "Puyallup"
+        , "WA"
+        , "98373"
+        , "USA"
+	);
+
+
+
+
+SET 
+-- now create five item for this customer to order        
+-- --- - OrderDetails: (Create 5 line items)
+--     Order Id: the one created above
+--     Product Id: use the product names to select/find the id of each product
+--     Unit Price: use the default list price of each product
+--     Quantity: you decide - between 1-10
+--     Discount: 0   
+    
+-- INSERT INTO order_details
+-- 	(	order_id  , product_id , list_price , quantity , discount)
+-- VALUES
+-- 	(	@new_order , )
+
+        
+        

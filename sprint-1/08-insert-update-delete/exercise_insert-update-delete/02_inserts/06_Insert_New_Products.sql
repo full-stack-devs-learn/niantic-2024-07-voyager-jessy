@@ -7,7 +7,7 @@ USE northwind;
 
 select * 
 from products
-WHERE category_id = ;
+WHERE category_id =  @new_id;
 
 
     INSERT INTO products
@@ -19,15 +19,15 @@ WHERE category_id = ;
         , reorder_level
 	)
 VALUES 
-	( "Nike Dri-FIT Ankle Socks - Mens" , @last_insert_id, 28.00, 20, 0, 10)
-    , ( "Nike Dri-FIT Ankle Socks - Womens", @last_insert_id, 28.00, 20, 0, 10)
-    , ( "Nike Dri-FIT Ankle Socks - Kids", @last_insert_id, 20.00, 20, 0, 10)
-    , ( "Easton Eye Black" , @last_insert_id, 7.99, 20, 0, 10)
-    , ( "isplack Clean Sweep Face Wipes (25 Pack)" , @last_insert_id, 11.99, 20, 0, 10)
-    , ( "DSG Girls' Momentum Sports Bra" , @last_insert_id, 15.00, 20, 0, 10)
-    , ( "Hiking Shoes" , @last_insert_id, 177.99, 20, 0, 10)
-    , ( "Mouth Guard" , @last_insert_id, 24.99, 20, 0, 10)
-    , ( "One Piece Swimsuit - Girls" , @last_insert_id, 12.99, 20, 0, 10)
-    ,(	"Stanley 30 Oz. Tumbler", @last_insert_id, 35.00, 20, 0, 10)
+	( "Nike Dri-FIT Ankle Socks - Mens" , @new_id, 28.00, 20, 0, 10)
+    , ( "Nike Dri-FIT Ankle Socks - Womens", @new_id, 28.00, 20, 0, 10)
+    , ( "Nike Dri-FIT Ankle Socks - Kids", @new_id, 20.00, 20, 0, 10)
+    , ( "Easton Eye Black" , @new_id, 7.99, 20, 0, 10)
+    , ( "isplack Clean Sweep Face Wipes (25 Pack)" , @new_id, 11.99, 20, 0, 10)
+    , ( "DSG Girls' Momentum Sports Bra" , @new_id, 15.00, 20, 0, 10)
+    , ( "Hiking Shoes" , @new_id, 177.99, 20, 0, 10)
+    , ( "Mouth Guard" , @new_id, 24.99, 20, 0, 10)
+    , ( "One Piece Swimsuit - Girls" , @new_id, 12.99, 20, 0, 10)
+    ,(	"Stanley 30 Oz. Tumbler", @new_id, 35.00, 20, 0, 10)
     
 	

@@ -20,4 +20,5 @@ VALUES
     
 
     
-        
+     --    select *
+--         from categories;
