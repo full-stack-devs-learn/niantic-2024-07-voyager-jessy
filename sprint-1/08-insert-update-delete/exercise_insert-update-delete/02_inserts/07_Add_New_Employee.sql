@@ -34,7 +34,7 @@ VALUES
     ,"Sales Associate" 
     ,"Mrs."
     , "1993-09-03 00:00:00"
-    , "2024-7-31 00:00:00" 
+    , current_date 
     , "555 No Way Jose Rd."
     , "Puyallup"
     , "WA"

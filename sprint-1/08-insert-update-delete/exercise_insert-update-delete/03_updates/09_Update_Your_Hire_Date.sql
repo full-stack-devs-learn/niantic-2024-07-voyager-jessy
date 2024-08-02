@@ -5,6 +5,9 @@ USE northwind;
 
 
 UPDATE employees
-SET hire_date = '2024-07-15 00:00:00'
-WHERE employee_id = '10';
+SET hire_date = date_sub(current_date, interval 17 day)
+WHERE employee_id = '11';
 
+
+delete from employees
+WHERE employee_id = 10;
