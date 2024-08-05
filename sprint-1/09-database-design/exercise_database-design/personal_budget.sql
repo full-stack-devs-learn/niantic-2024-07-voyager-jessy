@@ -136,7 +136,21 @@ VALUES
 ;
    
    
+-- build a script to enter data from here on out:
    
+   SET @transaction_date = current_date()
+   , @company_name = 'Regal South Hill'
+   , @subcategory_id = 5
+   , @amount = 32.54
+   , @member_id = 2
+   , @notes= 'new deadpool movie date'
+   ;
+   
+   
+   
+   Insert INTO transactions( transaction_date, company_name, subcategory_id, amount, member_id, notes)
+   VALUES (@transaction_date, @company_name, @subcategory_id, @amount, @member_id, @notes)
+   ;
    
    
    
