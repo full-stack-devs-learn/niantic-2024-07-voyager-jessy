@@ -80,7 +80,8 @@ public class Refrigerator
     {
         if(isDoorOpen() && capacity>= MIN_CAPACITY)
         {
-         availableCapacity= capacity - availableCapacity - removeCapacity;
+         availableCapacity =+ removeCapacity;
+         capacity=- removeCapacity;
         }
     }
 

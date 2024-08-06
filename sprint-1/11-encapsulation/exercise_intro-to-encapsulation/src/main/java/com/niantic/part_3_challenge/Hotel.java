@@ -33,4 +33,41 @@ public class Hotel
         this.bookedSuites = bookedSuites;
 
     }
+
+    public int getBookedRooms()
+    {
+        return bookedRooms;
+    }
+
+    public int getBookedSuites()
+    {
+        return bookedSuites;
+    }
+
+    public int getAvailableRooms()
+    {
+        return availableRooms;
+    }
+
+    public int getAvailableSuites()
+    {
+        return availableSuites;
+    }
+
+    public boolean makeReservation(int numberOfRooms, boolean isSuite)
+    {
+        if(isSuite  && bookedSuites < numberOfSuites  )
+        {
+            availableSuites--;
+            bookedSuites++;
+            return true;
+        }
+        if(bookedSuites == numberOfSuites && bookedRooms< numberOfRooms) {
+
+            availableRooms--;
+            bookedRooms++;
+            return true;
+        }
+        return false;
+    }
 }
