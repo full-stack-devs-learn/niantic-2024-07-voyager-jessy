@@ -1,4 +1,4 @@
-
+use personal_budget;
 -- create variable for month
 SET @month = MONTH(transaction_date) FROM transactions WHERE transaction_date = 7
 
@@ -14,3 +14,5 @@ FROM transactions
 WHERE category_name = 'Housing'	
 GROUP BY subcategory_name;
 
+select *
+from housing_expenses;

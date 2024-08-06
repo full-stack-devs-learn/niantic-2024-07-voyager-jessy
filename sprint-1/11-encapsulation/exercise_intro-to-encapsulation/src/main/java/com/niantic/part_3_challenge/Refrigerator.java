@@ -60,16 +60,15 @@ public class Refrigerator
         return addedItem;
     }
 
-    public void addItem(int capacity)
+    public boolean addItem(int capacity)
     {
         if (capacity < maxCapacity && isDoorOpen)
         {
             availableCapacity=+ addedItem;
+            return true;
         }
-        if (capacity>= maxCapacity && isDoorOpen)
-        {
-            availableCapacity = 0;
-        }  //questionable
+        return false;
+        //questionable
     }
 
     public int getRemoveCapacity()
