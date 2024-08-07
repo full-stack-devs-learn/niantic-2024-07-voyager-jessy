@@ -14,7 +14,14 @@ public class TestScores
      */
     public ArrayList<TestScore> getScoresByTest(ArrayList<TestScore> testScores, String testName)
     {
-        return null;
+        ArrayList<TestScore> scoresByTest = new ArrayList<>();
+        for(int i=0 ; i< testScores.size(); i++)
+            if(testScores.get(i).getTestName().equals(testName))
+            {
+                scoresByTest.add(testScores.get(i));
+            }
+
+        return scoresByTest;
     }
 
     /*
@@ -24,7 +31,16 @@ public class TestScores
      */
     public ArrayList<TestScore> getScoresByStudent(ArrayList<TestScore> testScores, String student)
     {
-        return null;
+        ArrayList<TestScore> scoreByStudent = new ArrayList<>();
+        for(int i = 0; i< testScores.size(); i++)
+        {
+            if(testScores.get(i).getStudentName().equals(student))
+            {
+                scoreByStudent.add(testScores.get(i));
+            }
+        }
+
+        return scoreByStudent;
     }
 
     /*
@@ -33,7 +49,15 @@ public class TestScores
      */
     public int getHighestScore(ArrayList<TestScore> testScores)
     {
-        return 0;
+        int highestScore = 0;
+        for(int i=0; i<testScores.size(); i++)
+        {
+            if(testScores.get(i).getScore() > highestScore)
+            {
+                highestScore = testScores.get(i).getScore();
+            }
+        }
+        return highestScore;
     }
 
     /*
@@ -42,7 +66,15 @@ public class TestScores
      */
     public int getLowestScore(ArrayList<TestScore> testScores)
     {
-        return 0;
+        int lowestScore = testScores.get(0).getScore();
+        for(int i = 0; i < testScores.size(); i++)
+        {
+            if(testScores.get(i).getScore() < lowestScore)
+            {
+                lowestScore = testScores.get(i).getScore();
+            }
+        }
+        return lowestScore;
     }
 
     /*
@@ -51,7 +83,22 @@ public class TestScores
      */
     public int getAverageScore(ArrayList<TestScore> testScores)
     {
-        return 0;
+        int sum = 0;
+        for(var test : testScores) // after : it needs to reference a list, no .gets are allowed here
+        {
+            sum += test.getScore();
+        }
+        int avg = sum/testScores.size();
+//        i understand for(i) loops... i need to start practicing for each loops ^^
+//        int sum = 0;
+//        for(int i = 0 ; i < testScores.size() ; i++)
+//            {
+//                sum += testScores.get(i).getScore();
+//            }
+//        int avg = sum/testScores.size();
+
+
+        return avg;
     }
 
     /*
@@ -60,7 +107,16 @@ public class TestScores
      */
     public int getHighestScoreByTest(ArrayList<TestScore> testScores, String testName)
     {
-        return 0;
+        int highestScoreByTest = 0;
+        for(int i = 0; i < testScores.size(); i++)
+        {
+            if(testScores.get(i).getTestName().equals(testName) && testScores.get(i).getScore()> highestScoreByTest)
+            {
+                highestScoreByTest = testScores.get(i).getScore();
+            }
+        }
+
+        return highestScoreByTest;
     }
 
     /*
@@ -69,7 +125,18 @@ public class TestScores
      */
     public int getLowestScoreByTest(ArrayList<TestScore> testScores, String testName)
     {
-        return 0;
+        int lowestScore = testScores.get(0).getScore();
+        for(int i = 1; i< testScores.size(); i++)
+        {
+            if( testScores.get(i).getTestName().equals(testName))
+            {
+                if(testScores.get(i).getScore() < lowestScore)
+                {
+                    lowestScore = testScores.get(i).getScore();
+                }
+            }
+        }
+        return lowestScore;
     }
 
     /*
@@ -78,7 +145,29 @@ public class TestScores
      */
     public int getAverageScoreByTest(ArrayList<TestScore> testScores, String testName)
     {
-        return 0;
+        ArrayList<Integer> scoresByTestName = new ArrayList<>();
+        int sumByTest = 0;
+        for(var test : testScores)
+        {
+            if(test.getTestName().equals(testName))
+            {
+                sumByTest += test.getScore();
+                scoresByTestName.add(test.getScore());
+            }
+        }
+        int avgByTest = sumByTest / scoresByTestName.size();
+
+
+//        for(int i = 0; i < testScores.size(); i++)
+//        {
+//            if(testScores.get(i).getTestName().equals(testName))
+//            {
+//                sumByTest += testScores.get(i).getScore();
+//            }
+//        }
+//        int avgByTest = sumByTest / testScores.size();
+
+        return avgByTest;
     }
 
     /*
@@ -87,7 +176,19 @@ public class TestScores
      */
     public int getHighestScoreByStudent(ArrayList<TestScore> testScores, String student)
     {
-        return 0;
+        int studentHighScore = 0;
+        for(int i = 0; i < testScores.size(); i++)
+        {
+            if(testScores.get(i).getStudentName().equals(student))
+            {
+                if (testScores.get(i).getScore() > studentHighScore)
+                {
+                    studentHighScore = testScores.get(i).getScore();
+                }
+
+            }
+        }
+        return studentHighScore;
     }
 
     /*
@@ -96,7 +197,20 @@ public class TestScores
      */
     public int getLowestScoreByStudent(ArrayList<TestScore> testScores, String student)
     {
-        return 0;
+        int studentLowScore = testScores.get(0).getScore();
+        for(int i = 0; i < testScores.size(); i++)
+        {
+            if(testScores.get(i).getStudentName().equals(student))
+            {
+                if (testScores.get(i).getScore() < studentLowScore)
+                {
+                    studentLowScore = testScores.get(i).getScore();
+                }
+
+            }
+        }
+
+        return studentLowScore;
     }
 
     /*
@@ -105,6 +219,28 @@ public class TestScores
      */
     public int getAverageScoreByStudent(ArrayList<TestScore> testScores, String student)
     {
-        return 0;
+        ArrayList<Integer> student1Tests = new ArrayList<>();
+        int sumPerStudent= 0;
+        for( var test: testScores)
+        {
+            if(test.getStudentName().equals(student))
+            {
+                sumPerStudent += test.getScore();
+                student1Tests.add(test.getScore());
+            }
+        }
+        int avgPerStudent = sumPerStudent/student1Tests.size();
+//
+        //here are two ways of solving this. for practice I have completed both a for:each loop and for:i loop to accomplish the task
+//        for(int i = 0; i < testScores.size(); i++)
+//        {
+//            if(testScores.get(i).getStudentName().equals(student))
+//            {
+//                sumPerStudent += testScores.get(i).getScore();
+//                student1Tests.add(testScores.get(i).getScore());
+//            }
+//        }
+//        int avgPerStudent = sumPerStudent /student1Tests.size()  ; // how do i get the number of tests per student?;
+        return avgPerStudent;
     }
 }

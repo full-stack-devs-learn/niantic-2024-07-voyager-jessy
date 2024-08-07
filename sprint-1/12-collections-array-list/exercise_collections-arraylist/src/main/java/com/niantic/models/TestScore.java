@@ -37,10 +37,7 @@ public class TestScore
         this.studentName = studentName;
     }
 
-    public int getScore()
-    {
-        return score;
-    }
+    public int getScore() {return score;}
 
     public void setScore(int score)
     {

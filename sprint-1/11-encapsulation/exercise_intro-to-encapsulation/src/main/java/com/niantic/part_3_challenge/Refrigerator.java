@@ -8,7 +8,6 @@ public class Refrigerator
     private int defaultTemperature = 32;
     private int capacity;
     private int availableCapacity;
-   private int removeCapacity;
    private int addedItem;
 
 
@@ -18,6 +17,7 @@ public class Refrigerator
     {
         this.currentTemperature = currentTemperature;
         this.maxCapacity = maxCapacity;
+        this.availableCapacity = maxCapacity;
     }
 
     public int getCurrentTemperature()
@@ -47,41 +47,35 @@ public class Refrigerator
 
     public int getCapacity()
     {
-        return  capacity;
+        return  maxCapacity;
     }
 
     public int getAvailableCapacity()
     {
-        return maxCapacity - capacity;
-    }
-
-    public int getAddedItem()
-    {
-        return addedItem;
+        return availableCapacity;
     }
 
     public boolean addItem(int capacity)
     {
-        if (capacity < maxCapacity && isDoorOpen)
+        if (capacity <=  availableCapacity && isDoorOpen)
         {
-            availableCapacity=+ addedItem;
+            availableCapacity -= capacity;
             return true;
         }
         return false;
         //questionable
     }
 
-    public int getRemoveCapacity()
-    {
-        return removeCapacity;
-    }
-
     public void removeItem(int capacity)
     {
-        if(isDoorOpen() && capacity>= MIN_CAPACITY)
+        if(isDoorOpen)
         {
-         availableCapacity =+ removeCapacity;
-         capacity=- removeCapacity;
+         availableCapacity += capacity;
+
+        }
+        if(availableCapacity> maxCapacity)
+        {
+            availableCapacity= maxCapacity;
         }
     }
 
