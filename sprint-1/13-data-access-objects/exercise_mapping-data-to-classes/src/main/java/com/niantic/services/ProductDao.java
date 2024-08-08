@@ -1,5 +1,6 @@
 package com.niantic.services;
 
+import com.niantic.models.Category;
 import com.niantic.models.Product;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,16 +29,76 @@ public class ProductDao
     /*
     Return a list of all Products with the specified categoryId
      */
-    public ArrayList<Product> getProductsByCategory(int categoryId)
+    public ArrayList<Product> getProductsByCategory(int searchId)
     {
-        return null;
+        var products = new ArrayList<Product>();
+        String sql = """
+                SELECT product_id
+                	, category_id
+                    , product_name
+                    , quantity_per_unit
+                    , unit_price
+                    , units_in_stock
+                    , units_on_order
+                    , reorder_level
+                FROM products
+                WHERE category_id = ?;
+                """;
+        var row = jdbcTemplate.queryForRowSet(sql, searchId);
+
+        while(row.next())
+        {
+            int productId = row.getInt("product_id");
+            int categoryID = row.getInt("product_id");
+            String productName = row.getString("product_name");
+            String quantityPerUnit = row.getString("quantity_per_unit");
+            double unitPrice = row.getDouble("unit_price");
+            int unitsInStock = row.getInt("units_in_stock");
+            int unitsOnOrder = row.getInt("units_on_order");
+            int reorderLevel = row.getInt("reorder_level");
+
+            var product = new Product(productId, categoryID, productName, quantityPerUnit, unitPrice, unitsInStock, unitsOnOrder, reorderLevel);
+            products.add(product);
+        }
+
+
+        return products;
     }
 
     /*
     Find and return a Product by Id
      */
-    public Product getProduct(int productId)
+    public Product getProduct(int productSearchId)
     {
+
+        String sql = """
+            SELECT product_id
+                , category_id
+                , product_name
+                , quantity_per_unit
+                , unit_price
+                , units_in_stock
+                , units_on_order
+                , reorder_level
+            FROM products
+            WHERE product_id = ?;
+                """;
+
+        var row = jdbcTemplate.queryForRowSet(sql, productSearchId);
+
+        while (row.next())
+        {
+            int productId = row.getInt("product_id");
+            int categoryID = row.getInt("product_id");
+            String productName = row.getString("product_name");
+            String quantityPerUnit = row.getString("quantity_per_unit");
+            double unitPrice = row.getDouble("unit_price");
+            int unitsInStock = row.getInt("units_in_stock");
+            int unitsOnOrder = row.getInt("units_on_order");
+            int reorderLevel = row.getInt("reorder_level");
+
+            return new Product(productId, categoryID, productName, quantityPerUnit, unitPrice, unitsInStock, unitsOnOrder, reorderLevel);
+        }
         return null;
     }
 
@@ -46,6 +107,32 @@ public class ProductDao
      */
     public void addProduct(Product product)
     {
+        String sql = """
+                INSERT INTO products ( category_id
+                                , product_name
+                                , quantity_per_unit
+                                , unit_price
+                                , units_in_stock
+                                , units_on_order
+                                , reorder_level)
+                VALUES (?
+                        ,?
+                        ,?
+                        ,?
+                        ,?
+                        ,?
+                        ,?
+                        );
+         
+                """;
+        jdbcTemplate.update(sql,
+                product.getCategoryId(),
+                product.getProductName(),
+                product.getQuantityPerUnit(),
+                product.getUnitPrice(),
+                product.getUnitsInStock(),
+                product.getUnitsOnOrder(),
+                product.getReorderLevel());
     }
 
     /*
@@ -53,6 +140,26 @@ public class ProductDao
      */
     public void updateProduct(Product product)
     {
+        String sql = """
+                UPDATE products
+                SET product_name = ?
+                   , quantity_per_unit
+                   , unit_price
+                   , units_in_stock
+                   , units_on_order
+                   , reorder_level
+                WHERE product_id = ?;
+                """;
+        jdbcTemplate.update(sql,
+                product.getProductName(),
+                product.getQuantityPerUnit(),
+                product.getUnitPrice(),
+                product.getUnitsInStock(),
+                product.getUnitsOnOrder(),
+                product.getReorderLevel()
+        );
+
+
     }
 
     /*
@@ -60,6 +167,12 @@ public class ProductDao
      */
     public void deleteProduct(int id)
     {
+        String sql = """
+                DELETE FROM products
+                WHERE product_id = ?
+                ;
+                """;
+        jdbcTemplate.update(sql, id);
     }
 
 }
