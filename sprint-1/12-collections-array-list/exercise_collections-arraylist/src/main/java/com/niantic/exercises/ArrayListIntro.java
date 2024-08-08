@@ -148,8 +148,8 @@ public class ArrayListIntro
 
         int num1 = 0;
         int num2 = 1;
-        for(int i = 2 ; i <= size; i++)
-        {
+        for(int i = 3 ; i <= size; i++)
+        { 
             if(size > 2)
             {
                 int num3 = num1 +num2;
@@ -157,21 +157,6 @@ public class ArrayListIntro
                 num1 = num2;
                 num2 = num3;
             }
-            return fibonacciSequence;
-//            if(size < 3)
-//            {
-//                fibonacciSequence.add(num1);
-//                fibonacciSequence.add(num2);
-//            }
-//            else
-//            {
-//                fibonacciSequence.add(num1);
-//                fibonacciSequence.add(num2);
-//                int num3 = num1 + num2;
-//                fibonacciSequence.add(num3);
-//                num1 = num2;
-//                num2 = num3;
-//            }
 
 
         }
