@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+body{
+    background-color: black;
+    color: white;
+}
+
+/* Style the header*/
+#header{
+background-color: rgba(0, 0, 0, 0.404);
+position: relative;
+width: fit-content;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.topcontainer{
+    position: sticky;
+
+}
+#header-content {
+    margin-bottom: 35px ;
+    display: flexbox;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+
+    /* text-align: center; */
+    po
+
+}
+nav{
+    position: sticky;
+}
+#nav-bar{
+    font-family: "Crimson Pro", 'serif';
+    font-weight: thick ;
+    font-size: x-large;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    
+    
+    
+   
+}
+
+
+#nav-bar :hover{
+    color: rgb(229, 191, 77);
+    cursor: pointer;
+    
+
+}
+
+
+.container {
+    width: 60vw;
+    margin: 0 auto auto;
+    display: inline block
+}
+
+
+h1{
+    color: rgb(54, 140, 62);
+}
+#google-photo{
+
+}
