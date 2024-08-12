@@ -21,6 +21,7 @@
     width: 100%;
     margin-top: 0;
     grid-area: header;
+    display: none;
     /* ^new */
 
 
@@ -61,17 +62,16 @@ a{
 
 /* index only page */
 
-.mainphoto{
+.main-photo{
     width: 100%;
     height:auto;
+    grid-area: photo ;
 }
 
- .main-photo{
-    grid-area: mainphoto;
-}
+
 
 .left1{
-    grid-area: left;
+    grid-area: left1;
 }
 
 .left2{
@@ -83,20 +83,28 @@ a{
 .calendar{
     grid-area: calendar;
 }
+#google-photo{
+    grid-area: google;
+}
 
 #body-center{
     display: grid;
-    grid-template-rows: 80%;
+    /* grid-template-rows: 80%; */
     border: pink;
-    /* margin-top: auto; */
+    margin-top: auto;
     /* grid-template-areas:  
-    "header header header header header header"
-        "photo photo photo photo photo photo"
-        "left1 space google google google space"
-        "left2 text text text text text"
-} 
+        'header header header header header header'
+        'photo photo photo photo photo photo'
+        'left1 space google google google space'
+        'left2 text text text text text' ; */
 
-
+    grid-template-areas:  
+    'header header header header header header'
+    'photo photo photo photo photo photo'
+    'left1 . google google google .'
+    'left2 text text text text text'
+    'calendar calendar calendar calendar calendar calendar' ;
+}
 
 
 /* order now css */
