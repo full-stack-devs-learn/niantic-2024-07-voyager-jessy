@@ -14,25 +14,32 @@
     width: 30%;
 }
 
-.banner-nav-bar {
-    padding-top: ;
+/* .banner-nav-bar {
     justify-content: center;
-    position: fixed;
-    width: 100%;
-    margin-top: 0;
-    grid-area: header;
-    /* ^new */
+    
+
+} */
 
 
-}
-a{
-    text-decoration: none;
-}
-
-
-#logo {
-    justify-content: center;
+/* .banner-logo {
     display: flex;
+    justify-content: center;
+} */
+
+/* #logo {
+    justify-content: center;
+    
+} */
+
+
+
+
+#nav-bar{
+    background: none;
+    /* overflow: hidden; */
+    display: flex;
+    align-items: center;
+    /* new^ */
 }
 
 #nav-bar li {
@@ -42,62 +49,45 @@ a{
     margin: 0;
     padding: 20px;
     display: inline-block;
-    text-decoration: none;
-
+    background:none;
+    
+   
+    /* new^ */
 }
 
 
 #nav-bar :hover {
     color: rgb(229, 191, 77);
     cursor: pointer;
+
+
 }
 
 .container {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    /* I want this to be sticky with the navbar */
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, .8);
+    
+
 }
 
+#google-photo {
+    align-items: ;
+
+}
 
 /* index only page */
-
-.mainphoto{
-    width: 100%;
-    height:auto;
+#mainphoto {
+    align-self: center;
+    width: max-content;
 }
-
- .main-photo{
-    grid-area: mainphoto;
-}
-
-.left1{
-    grid-area: left;
-}
-
-.left2{
-    grid-area: left2;
-}
-.text{
-    grid-area: text;
-}
-.calendar{
-    grid-area: calendar;
-}
-
-#body-center{
-    display: grid;
-    grid-template-rows: 80%;
-    border: pink;
-    /* margin-top: auto; */
-    /* grid-template-areas:  
-    "header header header header header header"
-        "photo photo photo photo photo photo"
-        "left1 space google google google space"
-        "left2 text text text text text"
-} 
-
-
-
 
 /* order now css */
 

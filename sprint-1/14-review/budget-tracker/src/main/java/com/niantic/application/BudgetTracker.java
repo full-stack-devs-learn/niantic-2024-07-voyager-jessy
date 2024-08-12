@@ -79,7 +79,7 @@ public class BudgetTracker
         return Integer.parseInt(userInput.nextLine());
     }
 
-    public void addTransaction()
+    private void addTransaction()
     {
         System.out.println();
         System.out.println("Add Transaction");
@@ -116,11 +116,12 @@ public class BudgetTracker
         {
             System.out.println(STR."\{transaction} could not be added to the database.");
         }
+
         waitForUser();
 
     }
 
-    public void addUser()
+    private void addUser()
     {
         System.out.println();
         System.out.println("Add User");
@@ -157,7 +158,7 @@ public class BudgetTracker
 
     }
 
-    public void addCategory()
+    private void addCategory()
     {
         System.out.println();
         System.out.println("Add Category");
@@ -190,7 +191,7 @@ public class BudgetTracker
 
     }
 
-    public void addSubcategory()
+    private void addSubcategory()
     {
         System.out.println();
         System.out.println("Add Sub Category");
@@ -260,7 +261,6 @@ public class BudgetTracker
 
 
 
-    //added all of these with gregor
     private void waitForUser()
     {
         System.out.println();
