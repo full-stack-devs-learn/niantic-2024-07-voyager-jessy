@@ -4,6 +4,8 @@ import com.niantic.models.Category;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -22,7 +24,6 @@ public class CategoryDao
             setUsername(userName);
             setPassword(password);
         }};
-
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
