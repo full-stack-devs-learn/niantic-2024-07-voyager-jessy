@@ -17,7 +17,7 @@ public class CategoriesController
 {
     private CategoryDao categoryDao = new CategoryDao();
 
-    // https://localhost:8080/category
+    // http://localhost:8080/category
     @GetMapping("/categories")
     public String getAllCategories(Model model)
     {
