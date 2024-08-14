@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    background-color: black;
+    color: #ffffff;
+
+
+}
+
+/* universal header css */
+
+.banner-nav-bar {
+    padding-top: 0 ;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    margin-top: 0;
+    grid-area: header;
+    /* display: none; */
+    /* ^new */
+ 
+}
+
+a {
+    text-decoration: none;
+}
+
+
+#logo {
+    justify-content: center;
+    display: flex;
+}
+
+#nav-bar li {
+    font-family: "Crimson Pro", 'serif';
+    font-weight: bolder;
+    font-size: larger;
+    margin: 0;
+    padding: 20px;
+    display: inline-block;
+    text-decoration: none;
+
+}
+
+
+#nav-bar :hover {
+    color: rgb(229, 191, 77);
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+
+#grid-container{
+    display: grid;
+    grid-template-areas:
+    'header header header header header header'
+    'a a b b c c'
+    'a a b b c c'
+    'foot foot foot foot foot foot';
+    height: 100%;
+}
+
+
+.checkboxes{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    padding-left: 10px;
+    padding-top: 30px;
+    padding-right: 10px;
+    /* border: 2pt #ff6900 solid; */
+}
+
+input> text{
+    height: 30px;
+}
+    
+.checkboxes> label{
+    text-align: center;
+    padding: 10px;
+}
+.userinput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.aptstefloor{
+    font-size: 12px;
+}
+
+
+#carryoutpage{
+    margin-top: 300px;
+    border:5px #ff6900 solid;
+    font-family: "Roboto+Condensed", sans-serif;
+    grid-column-start: 3;
+    grid-column-end: span 2;
+    margin-bottom: 200px;
+    
+}
+.submitbutton{
+    /* border: 1pt #ff6900 solid; */
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#carryout{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    height:100%;
+    margin-top: 25%;
+    
+
+}
+
+
+
+
+
+/* footer css code*/
+.footer{
+    grid-area: foot;
+}
+#footer {
+    margin-top: 50px;
+    height: 100px;
+    display: grid;
+    grid-template-areas:
+        'socials logo contactus';
+    justify-content: space-around;
+}
+
+/* .footer-container {
+
+    /* display: grid; */
+    grid-template-rows: auto;
+    /* width: 25%; */
+
+} */
+
+.footer-logo {
+    /* display: flex; */
+    grid-column: span 3/5;
+    justify-content: center;
+    height: 80px;
+    grid-area: logo;
+    background-color: none;
+}
+
+#footer-left image {
+    max-height: 20px;
+    grid-area: socials;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+#footer-left :hover {
+    cursor: pointer;
+}
+
+#footer-right {
+    grid-area: contactus;
+}
+
+#contactus {
+    list-style-type: none;
+    background-color: none;
+    grid-area: contactus;
+
+}
+
+
+@media screen and (max-width: 1500px) {
+    #gallery {
+        width: 1200px;
+        grid-template-areas:
+            "header"
+            "photo"
+            "left1 left2"
+            "text"
+            "foot";
+    }
+}
+*/ @media screen and (max-width: 1200px) {
+    #body-center {
+        grid-template-areas:
+            "header"
+            "photo"
+            "text"
+            "footer";
+    }
+
+    @media screen and (max-width: 900px) {
+        #body-center {
+            grid-template-areas:
+                "header"
+                "photo"
+                "text"
+                "footer";
+        }

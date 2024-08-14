@@ -1,66 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <!-- make it mobile friendly  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-   
-<!-- connect with style stylesheet    -->
-    <link rel="stylesheet" href="css/style2.css">
-</head>
-<body>
-    <header id="banner-header" class="banner-nav-bar">
-        <div id="logo" class="banner-logo">
-             <img src="images/FP logo.png">
-         </div>
-    <nav>
-         <div class="container">
-            <ul id="nav-bar">
-                <li><a href="checkout.html">Order Now</a></li>
-                <li>Locations</li>
-                <li><a href="ourMenu.html"> Menus</a></li> 
-                <li>Specials</li>
-                <li>FP App</li> 
-                <li>Employment</li> 
-                <li>About Us</li>
-                <li>Inquiries</li>
-            </ul>
-        </div>
-     </nav>
-</header>
 
-<!-- everythong below is just to see if i am able to get the header and nav bar sticky -->
-    <p>s;audohglreiugn,akeudhgvdfhlauiedgfhirksdjhvbmjdg
-        dagfre 
-        gsgbr
-        
-    </p>
-    <img src="images/FP_MainMenu_2024Q3_F-01.jpg" alt="Farrelli's Pizza Main Menu">
+    <!-- connect with style stylesheet    -->
+    <link rel="stylesheet" href="css/style3.css">
+</head>
+
+<body id="checkoutpage">
+    <div id="grid-container">
+        <header id="banner-header" class="banner-nav-bar">
+            <div id="logo" class="banner-logo">
+                <img src="images/FP logo.png">
+            </div>
+            <nav>
+                <div class="container">
+                    <ul id="nav-bar">
+                        <li><a href="checkout.html">Order Now</a></li>
+                        <li><a href="index.html"> Locations</a></li>
+                        <li><a href="menu.html"> Menus</a></li>
+                        <li>Specials</li>
+                        <li>FP App</li>
+                        <li>Employment</li>
+                        <li>About Us</li>
+                        <li>Inquiries</li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+
+
+        <div id="carryoutpage">
+
+            <form class="carryout">
+                <div class="checkboxes">
+                    <input type="checkbox" id="carry-out" name="carry-out" value="carry-out">
+                    <label for="carry-out"> CARRYOUT</label>
+                    <input type="checkbox" id="delivery" name="delivery" value="delivery">
+                    <label for='delivery'> DELIVERY</label>
+                </div>
+                <br><br>
+                <div class="userinput">
+                    <label for="fname"> First Name: </label><br>
+                    <input type="text" id="fname" name="fname" value="John"><br><br>
+                    <label for="lname"> Last Name: </label><br>
+                    <input type="text" id="lname" name="lname" value="Doe"><br><br>
+                    <label for="streetaddress">Street Address:</label><br>
+                    <input type="text" id="streetaddress" name="streetaddress" value="Street Address"><br> <br>
+                    <div class="aptstefloor">
+                        <label for="aptstefloor">Apt/Ste/Floor</label>
+                    </div>
+
+                    <select name="aptstefloor" id="aptstefloor">
+                        <option value="apt">Apt</option>
+                        <option value="ste">Suite</option>
+                        <option value="floor">Floor</option>
+                    </select>
+                    
+                    <input type="text" id="asfinput" name="asfinput"><br>
+
+                    <label for="zip"> Zip Code: </label><br>
+                    <input type="text" id="lname" name="lname" value="Zip Code"><br>
+                    <br>
+
+                    <div class="submitbutton">
+                    <input type="submit" value="Checkout">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
 </body>
 
 
 
-<footer class="footer">
-    <div id="socials-left" class="footer-container">
-        <a href="https:://www.facebook.com/Farrellispizza" target="_blank" rel="nofollow"><img src="images/facebook-logo-png-white-facebook-logo-png-white-facebook-icon-png-32.png" alt = "Farrelli's Facebook Page" style="width: 40px;"></a></li>
-        <a href="https:://www.instagram.com/Farrellis" target="_blank" rel="nofollow"><img src="images/instagram-white-icon.webp" alt="Farrellis Instagram Page" style="width: 30px;" ></a>
-        <a href="https:://www.youtube.com/user/FarrellisPizza" target="_blank" rel="nofollow"><img src="images/GOOD white youtube logo.webp" alt="Farrellis YouTube Page" style="width: 35px;"></a>
+<footer id="footer" class="footer">
+    <div id="footer-left" class="footer-container">
+        <a href="https:://www.facebook.com/Farrellispizza" target="_blank" rel="nofollow"><img
+                src="images/facebook-logo-png-white-facebook-logo-png-white-facebook-icon-png-32.png"
+                alt="Farrelli's Facebook Page" style="width: 40px;"></a></li>
+        <a href="https:://www.instagram.com/Farrellis" target="_blank" rel="nofollow"><img
+                src="images/instagram-white-icon.webp" alt="Farrellis Instagram Page" style="width: 30px;"></a>
+        <a href="https:://www.youtube.com/user/FarrellisPizza" target="_blank" rel="nofollow"><img
+                src="images/GOOD white youtube logo.webp" alt="Farrellis YouTube Page" style="width: 35px;"></a>
 
     </div>
-    <div id="footer-logo">
-        <img src="images/fp footer logo.png" >
+    <div class="footer-logo">
+        <img src="images/fp footer logo.png">
     </div>
-   <div id=" footer right" class="footer container">
-    <ul id="contactus">
-        <li> Contact Us!</li>
-        <li>(253) 655-5191</li>
-        <li> 5612 176th St E </li>
-        <li>Puyallup, WA 98375</li> 
-        <li>Store Hours</li>
-        <li> Sunday - Thursday: 11am - 10pm <br> Friday & Saturday: 11am - 12am</li>
-    </ul>
-   </div>
+    <div id=" footer-right">
+        <ul id="contactus">
+            <li> 5612 176th St E Puyallup, WA 98375</li>
+            <li>Store Hours</li>
+            <li> Sunday - Thursday: 11am - 10pm <br> Friday & Saturday: 11am - 12am</li>
+        </ul>
+    </div>
 </footer>
+
+</div>
+
 </html>
+
 </html>
