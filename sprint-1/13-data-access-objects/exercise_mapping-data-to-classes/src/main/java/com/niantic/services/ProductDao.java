@@ -143,11 +143,11 @@ public class ProductDao
         String sql = """
                 UPDATE products
                 SET product_name = ?
-                   , quantity_per_unit
-                   , unit_price
-                   , units_in_stock
-                   , units_on_order
-                   , reorder_level
+                   , quantity_per_unit = ?
+                   , unit_price = ?
+                   , units_in_stock = ?
+                   , units_on_order = ?
+                   , reorder_level = ?
                 WHERE product_id = ?;
                 """;
         jdbcTemplate.update(sql,
