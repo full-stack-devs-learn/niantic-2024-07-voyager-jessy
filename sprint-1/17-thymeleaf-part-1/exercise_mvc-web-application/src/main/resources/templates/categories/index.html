@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>All Categories</title>
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="css/styles.css">
 
@@ -14,25 +17,36 @@
 
 <div th:replace="fragments/header.html :: nav"></div>
 <main class="container mt-4">
+    <div>
+        <form action="categories" method="get" class="d-flex">
+            <input class="form-control mb-3" type="text" name="Name" placeholder="Category Name">
+            <input class="btn btn-dark mb-3" type="submit" value="Search">
+        </form>
+    </div>
 
 
     <h4>List All Categories</h4>
 
     <table>
-        <thead>
         <tr>
             <th>Id</th>
             <th>Category</th>
+            <th></th>
         </tr>
-        </thead>
 
-
-        <tbody>
-        <tr th:each="category:${category}" class="">
+        <tr th:each="category:${category}" class="dpurple">
             <td th:text="${category.categoryId}"></td>
-            <td th:text="${category.categoryName}"></td>
+            <td class="catName"><a th:href="@{|/categories/${category.categoryId}|}"
+                                   th:text="${category.categoryName}"></a></td>
+            <!--            <td th:text="${category.description}"></td>-->
+            <!--        not sure i want this here if category name is a link to get details-->
+
+            <td>
+                <a th:href="@{|/categories/${category.categoryId}/edit|}" class="btn btn-success" )>Edit</a>
+                <a th:href="@{|/categories/${category.categoryId}/delete|}" class="btn btn-danger">Delete</a>
+            </td>
         </tr>
-        </tbody>
+
     </table>
 </main>
 </body>

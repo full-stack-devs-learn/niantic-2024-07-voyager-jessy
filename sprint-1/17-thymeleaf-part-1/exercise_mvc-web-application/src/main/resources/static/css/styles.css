@@ -8,11 +8,26 @@
 
 }
 
+table{
+display: flex;
+justify-content: center;
+}
+
+.catName{
+padding-right: 200px;
+}
+
 
 body{
     font-family: Montserrat, 'sans-serif';
+    background-color: var(--puce);
 }
-
+a{
+color: var(--dpurple);
+}
+tr:nth-child(odd){
+background-color: white;
+}
 tr:nth-child(even){
 background-color: var(--orchid);
 }
@@ -22,6 +37,10 @@ table{
 td, th{
 padding:5px;
 border: dotted 5px var(--thulianpink);
+}
+
+table>th{
+color: var{--thulianpink}
 }
 
 tr:hover {
