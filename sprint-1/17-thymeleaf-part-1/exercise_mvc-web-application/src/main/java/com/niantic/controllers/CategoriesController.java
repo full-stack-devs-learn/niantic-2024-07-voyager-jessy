@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class CategoriesController {
     private CategoryDao categoryDao = new CategoryDao();
 
-    // http://localhost:8080/category
+    // http://localhost:8080/categories
     @GetMapping("/categories")
     public String getAllCategories(Model model)
     {
@@ -73,7 +73,6 @@ public class CategoriesController {
         model.addAttribute("category", category);
         model.addAttribute("action", "delete");
         return "categories/delete";
-
     }
 
     @PostMapping("/categories/{id}/delete")

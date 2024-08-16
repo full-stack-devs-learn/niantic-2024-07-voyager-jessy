@@ -1,0 +1,52 @@
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>All Categories</title>-->
+
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"-->
+<!--          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"-->
+<!--            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"-->
+<!--            crossorigin="anonymous"></script>-->
+
+<!--    <link rel="stylesheet" href="css/styles.css">-->
+
+<!--</head>-->
+<!--<body>-->
+
+<!--<div th:replace="fragments/header.html :: nav"></div>-->
+<!--<main class="container mt-4">-->
+<!--&lt;!&ndash;    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <form action="prodcuts" method="get" class="d-flex">&ndash;&gt;-->
+<!--&lt;!&ndash;            <input class="form-control mb-3" type="text" name="Name" placeholder="Category Name">&ndash;&gt;-->
+<!--&lt;!&ndash;            <input class="btn btn-dark mb-3" type="submit" value="Search">&ndash;&gt;-->
+<!--&lt;!&ndash;        </form>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+
+<!--    <h4 th:for="Product:*{products.getProductsByCategory}"</h4>-->
+
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <th>Id</th>-->
+<!--            <th>Product</th>-->
+<!--            <th>Price</th>-->
+<!--        </tr>-->
+
+<!--        <tr th:each="prouct:${category}" class="dpurple">-->
+<!--            <td th:text="${product.productId}"></td>-->
+<!--            <td class="prodName"><a th:href="@{|/categories/${category.categoryId}|}"-->
+<!--                                   th:text="${category.categoryName}"></a></td>-->
+<!--            &lt;!&ndash;            <td th:text="${category.description}"></td>&ndash;&gt;-->
+<!--            &lt;!&ndash;        not sure i want this here if category name is a link to get details&ndash;&gt;-->
+
+<!--            <td>-->
+<!--                <a th:href="@{|/categories/${category.categoryId}/edit|}" class="btn btn-success" )>Edit</a>-->
+<!--                <a th:href="@{|/categories/${category.categoryId}/delete|}" class="btn btn-danger">Delete</a>-->
+<!--            </td>-->
+<!--        </tr>-->
+
+<!--    </table>-->
+<!--</main>-->
+<!--</body>-->
+<!--</html>-->

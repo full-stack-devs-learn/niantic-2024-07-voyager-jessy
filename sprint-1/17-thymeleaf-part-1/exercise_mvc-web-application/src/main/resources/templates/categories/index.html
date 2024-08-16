@@ -17,12 +17,12 @@
 
 <div th:replace="fragments/header.html :: nav"></div>
 <main class="container mt-4">
-    <div>
-        <form action="categories" method="get" class="d-flex">
-            <input class="form-control mb-3" type="text" name="Name" placeholder="Category Name">
-            <input class="btn btn-dark mb-3" type="submit" value="Search">
-        </form>
-    </div>
+<!--    <div>-->
+<!--        <form action="@{|/categories/${category.categoryId}|}" method="get" class="d-flex">-->
+<!--            <input class="form-control mb-3" type="text" name="catid" placeholder="Category Id">-->
+<!--            <input class="btn btn-dark mb-3" type="submit" value="Search">-->
+<!--        </form>-->
+<!--    </div>-->
 
 
     <h4>List All Categories</h4>
@@ -38,7 +38,7 @@
             <td th:text="${category.categoryId}"></td>
             <td class="catName"><a th:href="@{|/categories/${category.categoryId}|}"
                                    th:text="${category.categoryName}"></a></td>
-            <!--            <td th:text="${category.description}"></td>-->
+<!--            <td th:text="${category.description}"></td>-->
             <!--        not sure i want this here if category name is a link to get details-->
 
             <td>
