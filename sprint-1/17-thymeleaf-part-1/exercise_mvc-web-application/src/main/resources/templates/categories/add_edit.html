@@ -21,10 +21,6 @@
     <h1 th:if="${action} =='edit'">Edit Category</h1>
 
     <form action="" th:object="${category}" method="post">
-<!--        <div class="form-floating mb-3">-->
-<!--            <label th:for="*{categoryName}"></label>-->
-<!--            <input class="form-control" type="text" th:field="*{categoryName}">-->
-<!--        </div>-->
         <div>
             <label class="col-form-label" th:for="*{categoryName}"></label>
             <input type="text" class="form-control" placeholder="Category Name" id="categoryName" th:field="*{categoryName}">
@@ -33,10 +29,6 @@
             <label class="col-form-label pb-3" th:for="*{description}"></label>
             <input type="text" class="form-control" th:field="*{description}" placeholder="Description" id="description">
         </div>
-<!--        <div class="form-floating mb-3">-->
-<!--            <label th:for="*{description}">Description</label>-->
-<!--            <input class="form-control" type="text" th:field="*{description}">-->
-<!--        </div>-->
         <input type="submit" value="Save" class="btn btn-dark mt-3">
 
 

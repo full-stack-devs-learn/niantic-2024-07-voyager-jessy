@@ -22,18 +22,19 @@ body{
     font-family: Montserrat, 'sans-serif';
     background-color: var(--puce);
 }
+
 a{
 color: var(--dpurple);
 }
+
 tr:nth-child(odd){
 background-color: white;
 }
+
 tr:nth-child(even){
 background-color: var(--orchid);
 }
-table{
 
-}
 td, th{
 padding:5px;
 border: dotted 5px var(--thulianpink);
