@@ -86,14 +86,15 @@ Class: Quiz
     Bug 2:
 
         Describe the bug/error:
-        math in get percentage was incorrect. PEMDAS would make it be possible points* 100 and
-        then divide score by that
+        no logic available to not allow for score to never be negative
 
 
         What test helped you find the bug?
+        when I added a negative number into my test it attempted to calculate it when I wanted it to return 0
 
 
         What did you do to fix the bug?
+        i added the logic into the getPercent so that it would need to go through that to not allow score to be negative, but also cover the logic for getLetterGrade
 
 
 *** Optional / Challenge ***
