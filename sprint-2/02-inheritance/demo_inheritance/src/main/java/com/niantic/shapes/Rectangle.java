@@ -2,8 +2,13 @@ package com.niantic.shapes;
 
 public class Rectangle
 {
-    private double height;
-    private double width;
+    private double height = 5;
+    private double width = 10;
+
+    public Rectangle(double height, double width) {
+        this.height = height;
+        this.width = width;
+    }
 
     public double getHeight()
     {

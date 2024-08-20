@@ -8,6 +8,8 @@ public class Character
     protected int health;
     protected int level;
     protected int experience;
+    //modifier that
+    //pi
 
 
     public boolean isDefeated()
