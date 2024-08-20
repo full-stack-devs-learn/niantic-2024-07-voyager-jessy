@@ -26,15 +26,21 @@ public class Quiz
         return studentName;
     }
 
-    public Quiz(int possiblePoints, String studentName)
+    public Quiz( int possiblePoints, String studentName)
     {
         this.possiblePoints = possiblePoints;
         this.studentName = studentName;
+
     }
 
     public int getPercent()
     {
-        return score / possiblePoints * 100;
+        if( score < 0 || possiblePoints < 0)
+        {
+            return 0;
+        }
+
+        return (score  * 100) / possiblePoints;
     }
 
     public String getLetterGrade()

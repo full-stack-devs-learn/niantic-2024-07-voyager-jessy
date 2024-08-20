@@ -5,32 +5,63 @@ Class: Rectangle
     Bug 1:
 
         Describe the bug/error:
+        there were no parameters in the area or perimeter method,
 
-        Where was the bug? (function, line number)
+        Where was the bug? (function, line number):
+        getArea line 40 and getPerimeter 49
 
         What test helped you find the bug?
+        just the java redline indicator, I couldn't call .getArea in
+        my first test with any arguments without creating a new getArea method
 
         What did you do to fix the bug?
+        I added both int height and int width as arguments to both
+        getArea and getPerimeter methods
 
     Bug 2:
 
         Describe the bug/error:
+         actual and expected differed by 10.
 
         Where was the bug? (function, line number)
+         the return value in getPerimeter was only adding width and height and not calculating the proper calculation for perimeter
+
 
         What test helped you find the bug?
+        rectangle_shouldReturn_perimeterOfRectangle()
 
         What did you do to fix the bug?
+        I changed the return value of getPerimeter
 
     Bug 3:
 
         Describe the bug/error:
+         getArea didn't return zero if either the width or height
+         was less than or equal to 0
 
         Where was the bug? (function, line number)
+         in the body of getArea (42-45)
 
         What test helped you find the bug?
+        rectangle_shouldReturn_areaOfRectangle
 
         What did you do to fix the bug?
+        I added logic to account for the desired return value of zero
+        if either width or hieght was 0 within the getArea method
+
+     Bug 4:
+
+            Describe the bug/error:
+             class variables were supposed to be private not public
+
+            Where was the bug? (function, line number)
+             5-6 on Rectangle
+
+            What test helped you find the bug?
+            jane :)
+
+            What did you do to fix the bug?
+            I changed them to private
 
 
 
@@ -40,20 +71,27 @@ Class: Quiz
     Bug 1:
 
         Describe the bug/error:
+        this one drove me crazy. I couldn't figure out why I kept returning 0 on quiz_shouldReturn_quizPercent() regardless of what I input or changed, turns out it was a error in the math on line 40 of getPercent
+
 
         Where was the bug? (function, line number)
+        line 40 of the getPercent method
 
         What test helped you find the bug?
+        quiz_shouldReturn_quizPercent() as I said before, I probably ran the debugger 50 times watching where it held values then lost everything with a return of actual = 0.
 
         What did you do to fix the bug?
+        I changed the return equation to be (score*100) / possiblePoints
 
     Bug 2:
 
         Describe the bug/error:
+        math in get percentage was incorrect. PEMDAS would make it be possible points* 100 and
+        then divide score by that
 
-        Where was the bug? (function, line number)
 
         What test helped you find the bug?
+
 
         What did you do to fix the bug?
 
