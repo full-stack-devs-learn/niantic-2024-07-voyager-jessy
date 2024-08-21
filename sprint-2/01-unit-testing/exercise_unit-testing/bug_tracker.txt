@@ -106,12 +106,16 @@ Class: GameCharacter
     Bug 1:
 
         Describe the bug/error:
-
+            energylevel was set to 0 therefore a new character would be "knocked out immediately" OR if logic wasnt set yet, the energyLevel would end up always being a negative number
         Where was the bug? (function, line number)
+            GameCharacter line 21
 
         What test helped you find the bug?
+            gameCharacter_shouldReturn_takeHitValueLessDamageAmount
+
 
         What did you do to fix the bug?
+            I changed the set variable for energyLevel to = maxEnergyLevel to start with.
 
     Bug 2:
 
