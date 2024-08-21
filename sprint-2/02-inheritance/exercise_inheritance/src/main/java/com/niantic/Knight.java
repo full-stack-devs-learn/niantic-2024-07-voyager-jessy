@@ -19,10 +19,11 @@ public class Knight extends Character
     @Override
     public void levelUp()
     {
-        super.levelUp();
-
         if (!isDefeated()) {
             armor += 5;
+            super.levelUp();
+            System.out.println(this.name + " now has armor of " + this.armor + "!");
+
         }
     }
 

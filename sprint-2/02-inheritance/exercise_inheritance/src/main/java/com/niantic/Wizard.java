@@ -26,7 +26,7 @@ public class Wizard extends Character
         System.out.println(this.name + "casts spell on" + target.getName());
         if(!isDefeated() && mana >= 10)
         {
-            target.takeDamage(attackDamage *2);
+            target.takeDamage(attackDamage * 2);
             this.mana -= 10;
 
         }
