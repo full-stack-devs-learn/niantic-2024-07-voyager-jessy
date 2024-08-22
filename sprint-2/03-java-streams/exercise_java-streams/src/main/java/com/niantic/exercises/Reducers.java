@@ -2,7 +2,11 @@ package com.niantic.exercises;
 
 import com.niantic.models.LineItem;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class Reducers
 {
@@ -16,7 +20,16 @@ public class Reducers
      */
     public double totalSales(List<LineItem> lineItems)
     {
-        return 0;
+        var totalAmount = lineItems.stream()
+                .map(LineItem::getLineTotal)
+                .reduce(0.0, Double::sum);
+        //this is the SAME code as below, but written with lambda expressions (java did it :] just to get familiar)
+
+//        var totalAmount = lineItems.stream()
+//                .map(lineItem -> lineItem.getLineTotal())
+//                .reduce(0.0,(temp, number) -> temp + number);
+
+        return totalAmount;
     }
 
     /*
@@ -26,7 +39,18 @@ public class Reducers
      */
     public double averageSalesPerLineItem(List<LineItem> lineItems)
     {
-        return 0;
+        var lineAmount = lineItems.stream()
+                .mapToDouble(LineItem::getLineTotal)
+                .reduce(0, (numb1, numb2) -> numb1+numb2);
+
+        var lineQuantity = lineItems.stream()
+                .map(lineItem -> lineItem.getQuantity())
+                .toList();
+
+        var avgSale = lineAmount/ lineQuantity.size();
+
+
+        return avgSale;
     }
 
     /*
@@ -40,6 +64,19 @@ public class Reducers
      */
     public double averageSalesPerItem(List<LineItem> lineItems)
     {
+//        var productTotal = lineItems.stream()
+//                .filter(lineItem -> Boolean.parseBoolean(lineItem.getProductName()))
+//                .mapToDouble(lineItem -> lineItem.getLineTotal())
+//                .reduce(0.0 , (numb1, numb2) -> numb1+numb2);
+//
+//        var productQuantity = lineItems.stream()
+//                .filter(lineItem -> Boolean.parseBoolean(lineItem.getProductName()))
+//                .mapToDouble(lineItem -> lineItem.getQuantity());
+////                .reduce(, (numb1, numb2) -> numb1+numb2);
+//
+//        var avgSalePerItem = productTotal /productQuantity;
+
+
         return 0;
     }
 
@@ -52,7 +89,12 @@ public class Reducers
      */
     public int totalItemCount(List<LineItem> lineItems)
     {
-        return 0;
+        var totalQuantity = lineItems.stream()
+                .map(lineItem -> lineItem.getQuantity())
+                .reduce(0, (num1, num2) -> num1+num2);
+
+
+        return totalQuantity;
     }
 
     /*
@@ -62,7 +104,13 @@ public class Reducers
      */
     public double averageItemCount(List<LineItem> lineItems)
     {
-        return 0;
+        var totalQuantityPerLineItem = lineItems.stream()
+                .map(lineItem -> lineItem.getQuantity())
+                .reduce(0, (num1, num2) -> num1+num2);
+
+         var avgPerLineItem = (totalQuantityPerLineItem.doubleValue()/lineItems.size());
+
+        return avgPerLineItem;
     }
 
     /*
@@ -71,7 +119,11 @@ public class Reducers
      */
     public double maxLineItem(List<LineItem> lineItems)
     {
-        return 0;
+        double mostExpensiveLineItem = lineItems.stream()
+                .mapToDouble(lineItem ->lineItem.getLineTotal())
+                .reduce(0, (numb1, numb2) -> numb1 > numb2 ? numb1:numb2);
+
+        return mostExpensiveLineItem;
     }
 
     /*
@@ -82,7 +134,23 @@ public class Reducers
      */
     public double minLineItem(List<LineItem> lineItems)
     {
-        return 0;
+
+        double mostExpensiveLineItem = lineItems.stream()
+                .mapToDouble(lineItem ->lineItem.getLineTotal())
+                .reduce(0, (numb1, numb2) -> numb1 > numb2 ? numb1:numb2);
+        //im calling this because I know that this is the HIGHEST value in line totals
+        // && I don't want my lowest to be 0, because with the identity, that's where it starts
+        // and rather than guessing a number that may or may not be the lowest in the long list,
+        // I'd rather start at a known high point and work my way down to find the lowest value of the list
+
+
+        double leastExpensiveLineItem = lineItems.stream()
+                .mapToDouble(lineItem -> lineItem.getLineTotal())
+                .reduce(mostExpensiveLineItem, (numb1, numb2) -> numb1 < numb2 ? numb1: numb2);
+
+
+
+        return leastExpensiveLineItem;
     }
 
 }
