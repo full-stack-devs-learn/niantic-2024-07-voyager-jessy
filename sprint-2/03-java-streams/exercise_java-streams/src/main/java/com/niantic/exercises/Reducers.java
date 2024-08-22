@@ -64,20 +64,19 @@ public class Reducers
      */
     public double averageSalesPerItem(List<LineItem> lineItems)
     {
-//        var productTotal = lineItems.stream()
-//                .filter(lineItem -> Boolean.parseBoolean(lineItem.getProductName()))
-//                .mapToDouble(lineItem -> lineItem.getLineTotal())
-//                .reduce(0.0 , (numb1, numb2) -> numb1+numb2);
-//
-//        var productQuantity = lineItems.stream()
-//                .filter(lineItem -> Boolean.parseBoolean(lineItem.getProductName()))
-//                .mapToDouble(lineItem -> lineItem.getQuantity());
-////                .reduce(, (numb1, numb2) -> numb1+numb2);
-//
-//        var avgSalePerItem = productTotal /productQuantity;
+        var totalAmount = lineItems.stream()
+                .map(LineItem::getLineTotal)
+                .reduce(0.0, Double::sum);
+
+        var itemTotal = lineItems.stream()
+                .map(lineItem -> lineItem.getQuantity())
+                .reduce(0, Integer::sum);;
+
+        var avgSalePerItem = totalAmount/itemTotal;
 
 
-        return 0;
+
+        return avgSalePerItem;
     }
 
     /*
