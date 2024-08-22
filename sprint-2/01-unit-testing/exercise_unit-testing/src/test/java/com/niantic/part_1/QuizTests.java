@@ -32,7 +32,7 @@ class QuizTests
     {
         //arrange
         Quiz quiz = new Quiz(100, "Willy");
-        quiz.setScore(86);
+        quiz.setScore(80);
         String expected = "B";
 
         //act
