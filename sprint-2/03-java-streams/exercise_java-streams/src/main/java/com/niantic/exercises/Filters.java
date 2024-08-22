@@ -4,6 +4,8 @@ import com.niantic.models.LineItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class Filters
 {
@@ -15,7 +17,16 @@ public class Filters
      */
     public List<LineItem> filterByCompanyName(List<LineItem> lineItems, String companyName)
     {
-        return new ArrayList<>();
+
+        String lowerCaseCompanyName = companyName.toLowerCase();
+
+
+        var companyItems = lineItems.stream()
+                .filter(lineItem -> lineItem.getCompanyName()
+                        .toLowerCase().contains(lowerCaseCompanyName))
+                .toList();
+
+        return companyItems;
     }
 
     /*
@@ -25,7 +36,17 @@ public class Filters
      */
     public List<LineItem> filterByCategory(List<LineItem> lineItems, String categoryName)
     {
-        return new ArrayList<>();
+        String upperCaseCategoryName = categoryName.toUpperCase();
+        // i just want to see if it will work the same way as long as the contains statement has the same case
+
+        var categoryItems = lineItems.stream()
+                .filter(lineItem -> lineItem.getCategoryName()
+                        .toUpperCase().contains(upperCaseCategoryName))
+                        .toList();
+
+        return categoryItems;
+//        return new ArrayList<>();
+
     }
 
     /*
@@ -35,7 +56,15 @@ public class Filters
      */
     public List<LineItem> filterByProduct(List<LineItem> lineItems, String productName)
     {
-        return new ArrayList<>();
+        String lowerCaseProductNames = productName.toLowerCase();
+
+        var lineItemByProductName = lineItems.stream()
+                .filter(lineItem -> lineItem.getProductName()
+                        .toLowerCase().contains(lowerCaseProductNames))
+                .toList();
+
+        return lineItemByProductName;
+
     }
 
     /*
@@ -44,7 +73,13 @@ public class Filters
      */
     public List<LineItem> filterByYear(List<LineItem> lineItems, int year)
     {
-        return new ArrayList<>();
+
+        var itemsByYear = lineItems.stream()
+                .filter(lineItem -> lineItem.getOrderDate().getYear() == year)
+                .toList();
+
+//        return new ArrayList<>();
+        return itemsByYear;
     }
 
 
@@ -54,6 +89,10 @@ public class Filters
      */
     public List<LineItem> filterByOrderId(List<LineItem> lineItems, int orderId)
     {
-        return new ArrayList<>();
+        var itemsByOrderId = lineItems.stream()
+                .filter(lineItem -> lineItem.getOrderId() == orderId)
+                .toList();
+
+        return itemsByOrderId;
     }
 }

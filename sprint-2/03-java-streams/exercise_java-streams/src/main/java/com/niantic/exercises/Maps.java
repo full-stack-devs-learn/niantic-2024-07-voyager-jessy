@@ -1,9 +1,11 @@
 package com.niantic.exercises;
 
+import ch.qos.logback.core.read.ListAppender;
 import com.niantic.models.LineItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Maps
 {
@@ -18,7 +20,13 @@ public class Maps
      */
     public List<String> mapCompanyNames(List<LineItem> lineItems)
     {
-        return new ArrayList<>();
+        var listOfCompanyNames = lineItems.stream()
+                .map(lineItem -> lineItem.getCompanyName())
+                .sorted()
+                .distinct()
+                .toList();
+
+        return listOfCompanyNames;
     }
 
     /*
@@ -31,7 +39,13 @@ public class Maps
      */
     public List<String> mapCategories(List<LineItem> lineItems)
     {
-        return new ArrayList<>();
+        var listOfCategoryNames = lineItems.stream()
+                .map( lineItem -> lineItem.getCategoryName())
+                .distinct()
+                .sorted()
+                .toList();
+
+        return listOfCategoryNames;
     }
 
     /*
@@ -44,7 +58,13 @@ public class Maps
      */
     public List<String> mapProducts(List<LineItem> lineItems)
     {
-        return new ArrayList<>();
+        var listOfProductNames = lineItems.stream()
+                .map(lineItem -> lineItem.getProductName())
+                .distinct()
+                .sorted()
+                .toList();
+
+        return listOfProductNames;
     }
 
     /*
@@ -57,7 +77,20 @@ public class Maps
      */
     public List<String> mapYears(List<LineItem> lineItems)
     {
-        return new ArrayList<>();
+        var listOfYears = lineItems.stream()
+                .map(lineItem -> lineItem.getOrderDate().getYear())
+                .distinct()
+                .sorted()
+                .toList();
+
+        List<String> yearList = new ArrayList<>();
+        for (Integer year : listOfYears) {
+            yearList.add(year.toString());
+            // I needed to convert the new List<Integer> into a String list becuase thats what this class classified as the return type
+        }
+
+
+        return yearList;
     }
 
     /*
@@ -70,6 +103,18 @@ public class Maps
      */
     public List<String> mapOrderIds(List<LineItem> lineItems)
     {
-        return new ArrayList<>();
+        var listOfOrderId = lineItems.stream()
+                .map(lineItem -> lineItem.getOrderId())
+                .distinct()
+                .sorted()
+                .toList();
+
+        List<String> orderIdList = new ArrayList<>();
+        for(Integer orderId : listOfOrderId)
+        {
+            orderIdList.add(orderId.toString());
+        }
+
+        return orderIdList;
     }
 }
