@@ -47,10 +47,10 @@ public class Quiz
     {
         int percent = getPercent();
 
-        if(percent > 90) return "A";
-        else if(percent > 80) return "B";
-        else if(percent > 70) return "C";
-        else if(percent > 50) return "D";
+        if(percent >= 90) return "A";
+        else if(percent >= 80) return "B";
+        else if(percent >= 70) return "C";
+        else if(percent >= 60) return "D";
         else return "F";
     }
 }

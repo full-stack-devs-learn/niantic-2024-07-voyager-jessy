@@ -71,7 +71,7 @@ Class: Quiz
     Bug 1:
 
         Describe the bug/error:
-        this one drove me crazy. I couldn't figure out why I kept returning 0 on quiz_shouldReturn_quizPercent() regardless of what I input or changed, turns out it was a error in the math on line 40 of getPercent
+        this one drove me crazy. I couldn't figure out why I kept returning 0 on quiz_shouldReturn_quizPercent() regardless of what I input or changed, turns out it was an error in the math on line 40 of getPercent
 
 
         Where was the bug? (function, line number)
