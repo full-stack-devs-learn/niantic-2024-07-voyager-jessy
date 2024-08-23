@@ -28,8 +28,10 @@ public class CardGameApplication {
     public void run()
     {
         System.out.println("-------------------------------------");
-        System.out.println("...do you want to play a game?");
-        System.out.println("Yes or No? (y/n)");
+        System.out.println("    Hello ... ");
+        System.out.println();
+        System.out.println("   ...do you want to play a game? \uD83D\uDE08");
+        System.out.println("        Yes or No? (y/n)");
         System.out.println("-------------------------------------");
         String response = input.nextLine()
                 .strip()
@@ -39,6 +41,8 @@ public class CardGameApplication {
 
             startGame();
 
+            welcomePlayers();
+
             playHand();
 
             declareWinner();
@@ -47,21 +51,22 @@ public class CardGameApplication {
             System.out.println("-------------------------------------");
             System.out.println("You lose every shot you never take.");
             System.out.println();
-            System.out.println("Goodbye.");
+            System.out.println(ColorCodes.RED + "        \uD83D\uDC80 Goodbye \uD83D\uDC80"+ ColorCodes.RESET);
             System.out.println("-------------------------------------");
 
         }
 
     }
 
-    public void startGame() {
+    public void startGame()
+    {
         addPlayers();
         dealCards();
     }
 
-    private void dealCards() {
+    private void dealCards()
+    {
         deck.shuffle();
-
         //this should give each player equal playing cards of 26
         while (!deck.isEmpty()) {
             for (Player player : players) {
@@ -72,18 +77,20 @@ public class CardGameApplication {
 
     }
 
-    private void addPlayers() {
+    private void addPlayers()
+    {
         players.add(player1);
         players.add(player2);
     }
 
-    public void playHand() {
+    public void playHand()
+    {
 
-        System.out.println("-------------------------------------");
-        System.out.println("Welcome to War, the Card Game!");
-        System.out.println("Press Enter to start the game...");
+        System.out.println("Welcome " + player1.getName() + " and " + player2.getName());
+        System.out.println("You both have been dealt " + player1.getHandsize() + " cards");
         System.out.println();
         System.out.println("-------------------------------------");
+        System.out.println("Press Enter to continue...");
         input.nextLine();
 
         while (player1.hasCards() && player2.hasCards()) {
@@ -91,6 +98,20 @@ public class CardGameApplication {
         }
 
 
+    }
+
+    public void welcomePlayers(){
+
+        System.out.println("-------------------------------------");
+        System.out.println();
+        System.out.println("   Welcome to War, the Card Game!");
+        System.out.println();
+        System.out.println("-------------------------------------");
+        System.out.println("Press Enter to start the game...");
+        input.nextLine();
+
+        //I double checked to make sure both players were dealt the same amount initially by printing both
+        //player1 and player2.getHandSize; they were the same at 26!
     }
 
     public void declareWinner() {
@@ -113,19 +134,28 @@ public class CardGameApplication {
     }
 
     public void playGame() {
+
         Card card1 = player1.playCard();
         Card card2 = player2.playCard();
 
-        System.out.println(player1.getName() + "plays: " + card1);
-        System.out.println(player2.getName() + "plays: " + card2);
+        System.out.println(player1.getName() + " plays: " + card1.getCardFaceValue());
+        System.out.println(player2.getName() + " plays: " + card2.getCardFaceValue());
+        System.out.println();
         System.out.println("-------------------------------------");
+        System.out.println("Press Enter to continue...");
+        input.nextLine();
+
 
         if (card1.getCardFaceValue() > card2.getCardFaceValue()) {
             System.out.println("-------------------------------------");
-            System.out.println(player1.getName() + " wins this round and takes both cards.");
+            System.out.println();
+            System.out.println(card1.getCardFaceValue() + " has the higher card value.");
+            System.out.println(player1.getName() + " wins this round and takes both cards!");
             player1.recieveCardFromWin(card1);
             player1.recieveCardFromWin(card2);
-            System.out.println(player1.getName() + " now has: " + player1.getHandsize() + " cards!");
+            System.out.println();
+            System.out.println("   " + player1.getName() + " now has: " + player1.getHandsize() + " cards!");
+            System.out.println();
             System.out.println("-------------------------------------");
             System.out.println("Press Enter to continue...");
             input.nextLine();
@@ -133,10 +163,14 @@ public class CardGameApplication {
         }
         else if (card2.getCardFaceValue() > card1.getCardFaceValue()) {
             System.out.println("-------------------------------------");
+            System.out.println();
+            System.out.println(card2.getCardFaceValue() + " has the higher card value.");
             System.out.println(player2.getName() + " wins this round and takes both cards.");
             player2.recieveCardFromWin(card1);
             player2.recieveCardFromWin(card2);
-            System.out.println(player2.getName() + " now has: " + player2.getHandsize() + " cards!");
+            System.out.println();
+            System.out.println("   " + player2.getName() + " now has: " + player2.getHandsize() + " cards!");
+            System.out.println();
             System.out.println("-------------------------------------");
             System.out.println("Press Enter to continue...");
             input.nextLine();
@@ -144,16 +178,18 @@ public class CardGameApplication {
         //first war match
         else if (card1.getCardFaceValue() == card2.getCardFaceValue()) {
             System.out.println("-------------------------------------");
-            System.out.println("The cards match...");
-            System.out.println(ColorCodes.BLACK_BACKGROUND + ColorCodes.RED + "A war has begun!" + ColorCodes.RESET);
+            System.out.println();
+            System.out.println("   The cards match...");
+            System.out.println("     " + ColorCodes.BLACK_BACKGROUND + ColorCodes.RED + "\uD83D\uDDE1 A war has begun! \uD83D\uDDE1" + ColorCodes.RESET);
+            System.out.println();
             System.out.println("-------------------------------------");
             System.out.println("Press Enter to start the war...");
             input.nextLine();
 
             Card card3 = player1.playCard();
             Card card4 = player2.playCard();
-            System.out.println(player1.getName() + "plays: " + card3);
-            System.out.println(player2.getName() + "plays: " + card4);
+            System.out.println(player1.getName() + " plays: " + card3.getCardFaceValue());
+            System.out.println(player2.getName() + " plays: " + card4.getCardFaceValue());
 
             if (card3.getCardFaceValue() > card4.getCardFaceValue()) {
                 System.out.println(player1.getName() + " wins this round and takes all cards.");
@@ -181,14 +217,14 @@ public class CardGameApplication {
             //second war match
             else if (card3.getCardFaceValue() == card4.getCardFaceValue()) {
                 System.out.println(ColorCodes.BLACK_BACKGROUND + ColorCodes.RED + "The cards match AGAIN..." + ColorCodes.RESET);
-                System.out.println("A war has thickened!");
+                System.out.println( "A war has thickened!");
                 System.out.println("-------------------------------------");
                 System.out.println("Press Enter to continue the war...");
 
                 Card card5 = player1.playCard();
                 Card card6 = player2.playCard();
-                System.out.println(player1.getName() + "plays: " + card5);
-                System.out.println(player2.getName() + "plays: " + card6);
+                System.out.println(player1.getName() + " plays: " + card5.getCardFaceValue());
+                System.out.println(player2.getName() + " plays: " + card6.getCardFaceValue());
 
                 if (card5.getCardFaceValue() > card6.getCardFaceValue()) {
                     System.out.println(player1.getName() + " wins this round and takes all cards.");
@@ -202,9 +238,8 @@ public class CardGameApplication {
                     System.out.println("-------------------------------------");
                     System.out.println("Press Enter to continue...");
                     input.nextLine();
-
-
                 }
+
                 else if (card6.getCardFaceValue() > card5.getCardFaceValue()) {
                     System.out.println(player2.getName() + " wins this round and takes all cards.");
                     player2.recieveCardFromWin(card1);
@@ -217,18 +252,19 @@ public class CardGameApplication {
                     System.out.println("-------------------------------------");
                     System.out.println("Press Enter to continue...");
                     input.nextLine();
-
                 }
+
                 //end of war matches if tied
                 else if (card3.getCardFaceValue() == card4.getCardFaceValue()) {
                     System.out.println(ColorCodes.BOLD + ColorCodes.RED_BACKGROUND + "Unbelievable! The cards match AGAIN!" + ColorCodes.RESET);
                     System.out.println();
                     System.out.println(player1.getName() + ", " + player2.getName() + " you fought valiantly");
+                    System.out.println();
                     System.out.println("As with all things in life, this war must too come to an end...");
                     System.out.println("-------------------------------------");
                     System.out.println("Press Enter to continue");
                     input.nextLine();
-
+//
                     System.out.println("and it ends with a TIE");
                     System.out.println(player1.getName() + " gets all their cards back: " + card1.getCardFaceValue() + card3.getCardFaceValue() + card5.getCardFaceValue());
                     player1.recieveCardFromWin(card1);
