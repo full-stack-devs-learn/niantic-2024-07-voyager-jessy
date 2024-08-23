@@ -18,12 +18,22 @@ public class Deck
         int[] value = {2,3,4,5,6,7,8,9,10,11,12,13,14};
 
 
+//when i changed the card constructore this no longer worked. Keeping this until i make sure that it still works
+//        for(String suit : suits)
+//        {
+//            for (int i = 0; i < faceValues.length; i++) {
+//
+//                Card card = new Card(faceValues[i], suit, value[i]);
+//                cards.add(card);
+//
+//            }
+//        }
 
         for(String suit : suits)
         {
             for (int i = 0; i < faceValues.length; i++) {
 
-                Card card = new Card(faceValues[i], suit, value[i]);
+                Card card = new Card(faceValues[i], suit);
                 cards.add(card);
 
             }
