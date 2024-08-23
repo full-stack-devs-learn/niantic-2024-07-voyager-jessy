@@ -24,7 +24,9 @@ public class CardGameApplication {
     Deck deck = new Deck();
     ArrayList<Player> players = new ArrayList<>();
 
-    public void run() {
+    //this is what will run on the Main
+    public void run()
+    {
         System.out.println("-------------------------------------");
         System.out.println("...do you want to play a game?");
         System.out.println("Yes or No? (y/n)");
