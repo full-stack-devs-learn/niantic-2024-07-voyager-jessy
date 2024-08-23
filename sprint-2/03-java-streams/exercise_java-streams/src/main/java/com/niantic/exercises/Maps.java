@@ -40,7 +40,7 @@ public class Maps
     public List<String> mapCategories(List<LineItem> lineItems)
     {
         var listOfCategoryNames = lineItems.stream()
-                .map( lineItem -> lineItem.getCategoryName())
+                .map(LineItem::getCategoryName)
                 .distinct()
                 .sorted()
                 .toList();
@@ -104,7 +104,7 @@ public class Maps
     public List<String> mapOrderIds(List<LineItem> lineItems)
     {
         var listOfOrderId = lineItems.stream()
-                .map(lineItem -> lineItem.getOrderId())
+                .map(LineItem::getOrderId)
                 .distinct()
                 .sorted()
                 .toList();

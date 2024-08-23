@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public class Reducers
-{
+public class Reducers {
 
     /*
     1) using one or more Java Stream functions calculate the total sales amount
@@ -18,8 +17,7 @@ public class Reducers
        hint: use the getLineTotal() method to calculate the sales total
 
      */
-    public double totalSales(List<LineItem> lineItems)
-    {
+    public double totalSales(List<LineItem> lineItems) {
         var totalAmount = lineItems.stream()
                 .map(LineItem::getLineTotal)
                 .reduce(0.0, Double::sum);
@@ -37,17 +35,16 @@ public class Reducers
        per line items in the given list.
 
      */
-    public double averageSalesPerLineItem(List<LineItem> lineItems)
-    {
+    public double averageSalesPerLineItem(List<LineItem> lineItems) {
         var lineAmount = lineItems.stream()
                 .mapToDouble(LineItem::getLineTotal)
-                .reduce(0, (numb1, numb2) -> numb1+numb2);
+                .reduce(0, (numb1, numb2) -> numb1 + numb2);
 
         var lineQuantity = lineItems.stream()
                 .map(lineItem -> lineItem.getQuantity())
                 .toList();
 
-        var avgSale = lineAmount/ lineQuantity.size();
+        var avgSale = lineAmount / lineQuantity.size();
 
 
         return avgSale;
@@ -62,18 +59,17 @@ public class Reducers
        of a single item)
 
      */
-    public double averageSalesPerItem(List<LineItem> lineItems)
-    {
+    public double averageSalesPerItem(List<LineItem> lineItems) {
         var totalAmount = lineItems.stream()
                 .map(LineItem::getLineTotal)
                 .reduce(0.0, Double::sum);
 
         var itemTotal = lineItems.stream()
                 .map(lineItem -> lineItem.getQuantity())
-                .reduce(0, Integer::sum);;
+                .reduce(0, Integer::sum);
+        ;
 
-        var avgSalePerItem = totalAmount/itemTotal;
-
+        var avgSalePerItem = totalAmount / itemTotal;
 
 
         return avgSalePerItem;
@@ -86,11 +82,10 @@ public class Reducers
        hint: line items can have multiple quantities of an item
 
      */
-    public int totalItemCount(List<LineItem> lineItems)
-    {
+    public int totalItemCount(List<LineItem> lineItems) {
         var totalQuantity = lineItems.stream()
                 .map(lineItem -> lineItem.getQuantity())
-                .reduce(0, (num1, num2) -> num1+num2);
+                .reduce(0, (num1, num2) -> num1 + num2);
 
 
         return totalQuantity;
@@ -101,13 +96,12 @@ public class Reducers
        of items that were purchased per line item.
 
      */
-    public double averageItemCount(List<LineItem> lineItems)
-    {
+    public double averageItemCount(List<LineItem> lineItems) {
         var totalQuantityPerLineItem = lineItems.stream()
-                .map(lineItem -> lineItem.getQuantity())
-                .reduce(0, (num1, num2) -> num1+num2);
+                .map(LineItem::getQuantity)
+                .reduce(0, (num1, num2) -> num1 + num2);
 
-         var avgPerLineItem = (totalQuantityPerLineItem.doubleValue()/lineItems.size());
+        var avgPerLineItem = (totalQuantityPerLineItem.doubleValue() / lineItems.size());
 
         return avgPerLineItem;
     }
@@ -116,11 +110,10 @@ public class Reducers
     6) using one or more Java Stream functions find the most expensive line item.
 
      */
-    public double maxLineItem(List<LineItem> lineItems)
-    {
+    public double maxLineItem(List<LineItem> lineItems) {
         double mostExpensiveLineItem = lineItems.stream()
-                .mapToDouble(lineItem ->lineItem.getLineTotal())
-                .reduce(0, (numb1, numb2) -> numb1 > numb2 ? numb1:numb2);
+                .mapToDouble(LineItem::getLineTotal)
+                .reduce(0, (numb1, numb2) -> numb1 > numb2 ? numb1 : numb2);
 
         return mostExpensiveLineItem;
     }
@@ -131,12 +124,11 @@ public class Reducers
         hint: the least expensive line item is not $0.00
 
      */
-    public double minLineItem(List<LineItem> lineItems)
-    {
+    public double minLineItem(List<LineItem> lineItems) {
 
         double mostExpensiveLineItem = lineItems.stream()
-                .mapToDouble(lineItem ->lineItem.getLineTotal())
-                .reduce(0, (numb1, numb2) -> numb1 > numb2 ? numb1:numb2);
+                .mapToDouble(lineItem -> lineItem.getLineTotal())
+                .reduce(0, (numb1, numb2) -> numb1 > numb2 ? numb1 : numb2);
         //im calling this because I know that this is the HIGHEST value in line totals
         // && I don't want my lowest to be 0, because with the identity, that's where it starts
         // and rather than guessing a number that may or may not be the lowest in the long list,
@@ -145,8 +137,7 @@ public class Reducers
 
         double leastExpensiveLineItem = lineItems.stream()
                 .mapToDouble(lineItem -> lineItem.getLineTotal())
-                .reduce(mostExpensiveLineItem, (numb1, numb2) -> numb1 < numb2 ? numb1: numb2);
-
+                .reduce(mostExpensiveLineItem, (numb1, numb2) -> numb1 < numb2 ? numb1 : numb2);
 
 
         return leastExpensiveLineItem;
