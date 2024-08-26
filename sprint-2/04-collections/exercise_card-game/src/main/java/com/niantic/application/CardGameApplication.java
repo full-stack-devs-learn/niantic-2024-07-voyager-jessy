@@ -264,7 +264,7 @@ public class CardGameApplication {
                     System.out.println("-------------------------------------");
                     System.out.println("Press Enter to continue");
                     input.nextLine();
-//
+
                     System.out.println("and it ends with a TIE");
                     System.out.println(player1.getName() + " gets all their cards back: " + card1.getCardFaceValue() + card3.getCardFaceValue() + card5.getCardFaceValue());
                     player1.recieveCardFromWin(card1);
