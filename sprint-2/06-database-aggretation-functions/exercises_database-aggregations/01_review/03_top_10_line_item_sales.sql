@@ -13,5 +13,18 @@
 -- Order the results by line_total, highest first.
 -- (10 rows)
 
+SELECT * 
+FROM customer_orders;
 
+SELECT DISTINCT product_name
+	, sales_price
+    , quantity
+    , (sales_price * quantity) AS sub_total
+    , (sales_price * quantity) * discount AS total_discount
+    , (sales_price * quantity) - ((sales_price * quantity) * discount) AS line_total
+FROM customer_orders
+ORDER BY sales_price DESC
+LIMIT 10
+;
+-- its not asking for distinct line items...?
 

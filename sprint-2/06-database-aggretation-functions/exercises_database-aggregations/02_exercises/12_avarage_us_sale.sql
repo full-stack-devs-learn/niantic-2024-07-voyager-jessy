@@ -5,4 +5,10 @@
 -- (1 row)
 
 
+SELECT *
+FROM customer_orders;
 
+
+SELECT AVG(sales_price * quantity) AS line_total
+FROM customer_orders
+WHERE country = 'USA';

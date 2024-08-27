@@ -4,6 +4,12 @@
 
 -- (1 row) - 371 orders
 
+SELECT *
+FROM customer_orders
+ORDER BY customer_id;
 
+SELECT COUNT(DISTINCT order_id)
+FROM customer_orders
+WHERE country in ('germany',  'switzerland' , 'france' , 'portugal', 'finland', 'poland', 'ireland', 'sweden', 'uk');
 
 

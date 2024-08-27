@@ -6,4 +6,20 @@
 -- (13 rows)
 
 
+SELECT *
+FROM customer_orders;
+
+SELECT *
+FROM customer_orders
+WHERE country = 'USA';
+
+SELECT company_name
+	, region
+    , SUM(sales_price * quantity) AS total_sales
+FROM customer_orders
+WHERE country = 'USA'
+GROUP BY company_name
+	, region
+ORDER BY region ASC
+	, total_sales DESC;
 

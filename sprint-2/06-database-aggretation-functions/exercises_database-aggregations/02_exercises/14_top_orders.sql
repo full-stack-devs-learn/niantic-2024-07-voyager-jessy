@@ -14,6 +14,19 @@
 
 -- (5 rows)
 
+SELECT *
+FROM customer_orders;
+
+SELECT company_name
+	, order_id
+	, country
+    , SUM(sales_price * quantity) AS order_total
+FROM customer_orders
+GROUP BY order_id
+	, company_name
+    , country
+ORDER BY SUM(sales_price * quantity) DESC
+LIMIT 5;
 
 
 

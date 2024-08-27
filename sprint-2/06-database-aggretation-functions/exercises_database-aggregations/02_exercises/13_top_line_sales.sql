@@ -13,5 +13,17 @@
 -- (1 row)
 
 
+SELECT *
+FROM customer_orders;
+
+SELECT company_name
+	, order_id
+    , country
+    , (sales_price * quantity) as total_sale_amount
+FROM customer_orders
+ORDER BY (sales_price * quantity) DESC
+LIMIT 5;
+
+-- not sure if you want one row or the expected rows ...?
 
 
