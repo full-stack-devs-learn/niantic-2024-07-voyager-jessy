@@ -15,6 +15,19 @@
 -- (3 rows)
 
 
+SELECT *
+FROM customer_orders;
+
+SELECT category_name
+	, SUM(quantity) AS quantity_purchased
+	, COUNT(DISTINCT order_id) AS orders_placed
+FROM customer_orders
+GROUP BY category_name
+ORDER BY SUM(quantity) DESC
+	, category_name
+LIMIT 3;
+
+
 
 
 

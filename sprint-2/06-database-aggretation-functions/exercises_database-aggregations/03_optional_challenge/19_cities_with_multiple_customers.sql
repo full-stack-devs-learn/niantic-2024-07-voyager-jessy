@@ -5,7 +5,15 @@
 
 -- (10 rows)
 
+SELECT *
+FROM customers;
 
+SELECT city
+	, count(city) as total_customer_count
+FROM customers
+GROUP BY city
+HAVING count(city) >= 2
+ORDER BY count(city) desc;
 
 
 

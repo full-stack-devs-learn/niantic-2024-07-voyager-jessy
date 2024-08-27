@@ -9,5 +9,16 @@
 
 
 
+SELECT *
+FROM customer_orders
+Where region = 'sp';
 
+
+SELECT  region
+-- 	, count(quantity)
+FROM customer_orders
+WHERE region IS NOT NULL
+GROUP BY region
+ORDER BY count(region) desc
+ ;
 

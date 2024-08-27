@@ -5,5 +5,11 @@
 -- (21 rows)
 
 
+SELECT *
+FROM customers;
 
+SELECT count(country) as total_customer_count
+	, country
+FROM customers
+Group BY country;
 
