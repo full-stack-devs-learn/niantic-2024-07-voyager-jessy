@@ -12,8 +12,8 @@ USE sakila;
 
 
 
-SELECT count(r.customer_id) AS total_rental
-	, f.title
+SELECT f.title
+	, count(r.customer_id) AS total_rental
 FROM film AS f
 INNER JOIN inventory AS i
 	ON f.film_id = i.film_id
