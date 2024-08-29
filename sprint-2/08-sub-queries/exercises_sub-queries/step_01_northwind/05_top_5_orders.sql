@@ -21,4 +21,32 @@
 
 USE northwind;
 
+SELECT *
+FROM orders;
+
+
+SELECT o.order_id
+    , (
+    SELECT c.company_name
+	FROM customers AS c
+    WHERE o.customer_id = c.customer_id
+    ) AS company_name
+    , (
+    SELECT SUM(od.unit_price * od.quantity * (1 - od.discount)) AS sales_total
+    FROM order_details AS od
+    WHERE o.order_id = od.order_id
+    ) AS sales_total
+FROM orders AS o
+ORDER BY sales_total DESC
+LIMIT 5;
+
+
+
+-- this sub-query will give me the sales_total
+SELECT (unit_price * quantity) * (1 - discount) as sales_total
+FROM order_details
+ORDER BY sales_total DESC;
+
+-- that returns too many rows for a subquery, so i need to aggregate that function using the SUM()
+
 
