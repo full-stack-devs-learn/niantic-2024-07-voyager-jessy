@@ -16,7 +16,10 @@
 
 function calculateOrderSubtotal(quantity)
 {
-	return 0;
+	const clairesCookiesCost = 12.95;
+	const customerOrder = ( clairesCookiesCost * quantity);
+	
+	return customerOrder;
 }
 
 
@@ -40,7 +43,22 @@ function calculateOrderSubtotal(quantity)
 
 function calculateTax(quantity)
 {
-	return 0;
+// original way I completed this exercise but I want to practice calling previous functions
+	// const taxRate = .0575;
+	// const clairesCookiesCost = 12.95;
+	// const customerOrder = clairesCookiesCost * quantity;
+	// const cookieTax = (customerOrder * taxRate);
+	// const roundedCookieTax = +cookieTax.toFixed(2);
+
+	// return roundedCookieTax;
+
+	const taxRate = .0575;
+	const subtotal = calculateOrderSubtotal(quantity);
+	const orderTax = subtotal * taxRate;
+	const roundedOrderTax = +orderTax.toFixed(2);
+
+	return roundedOrderTax;
+
 }
 
 
@@ -64,10 +82,32 @@ function calculateTax(quantity)
 */
 
 // create your function here
+function calculateOrderTotal(quantity)
+{
+//first working attempt, want to practice calling functions
+	// const taxRate = .0575;
+	// const clairesCookiesCost = 12.95;
+	// const customerOrder = clairesCookiesCost * quantity;
+	// const cookieTax = (customerOrder * taxRate);
+	// const orderTotalTaxed = customerOrder + cookieTax;
+	// const roundedOrderTotalTaxed = +orderTotalTaxed.toFixed(2);
+
+	// return roundedOrderTotalTaxed;
+
+	const taxRate = .0575;
+	const subtotal = calculateOrderSubtotal(quantity);
+	const orderTax = calculateTax(quantity);
+	const totalOrder = calculateOrderSubtotal(quantity) + orderTax;
+	const roundedTotalOrder = +totalOrder.toFixed(2);
+
+
+	return roundedTotalOrder;
+
+}
 
 
 /*
-3.	With each order Claire needs to generate 
+4.	With each order Claire needs to generate 
 	a receipt to print for the customer
 	and to store for her records.
 
@@ -106,6 +146,28 @@ function calculateTax(quantity)
 */
 
 // create your function here
+function placeOrder(customer, quantity)
+{
+	const taxRate = .0575;
+	const clairesCookiesCost = 12.95;
+	const customerOrder = clairesCookiesCost * quantity;
+	const cookieTax = (customerOrder * taxRate);
+	const tax = +cookieTax.toFixed(2)
+	const orderTotalTaxed = customerOrder + cookieTax;
+	const roundedOrderTotalTaxed = +orderTotalTaxed.toFixed(2);
+
+	const receipt = {
+						customer: customer,
+						quantity: quantity,
+						subtotal: customerOrder,
+						tax: tax, 
+						total: roundedOrderTotalTaxed,
+				
+	}
+
+	return receipt;
+
+}
 
 
 /*
@@ -128,3 +190,18 @@ function calculateTax(quantity)
 */
 
 // create your function here
+
+function calculateCookiesNeeded(aStudents, bStudents, others)
+{
+	const a = aStudents * 4;
+	const b = bStudents * 3;
+	const c = others * 2;
+
+	const totalCookies = a + b + c;
+	const cookieDozens = totalCookies / 12;
+	const roundedCookieDozens = Math.ceil(cookieDozens);
+
+	return roundedCookieDozens;
+
+
+}
