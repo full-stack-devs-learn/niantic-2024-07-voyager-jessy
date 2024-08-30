@@ -13,6 +13,28 @@
 
 */
 
+function getToppings(pizza)
+{
+	
+	const toppings = {
+		hawaiian: ["Ham", "Pineapple","Mushroom"],
+		cowboy: ["Pepperoni", "Sausage", "Beef"],
+		supreme: ["Pepperoni", "Sausage", "Pepper", "Onion", "Black Olives"],
+		vegetarian: ["Spinach", "Zucchini", "Mushroom", "Artichoke", "Tomato", "Onion"],
+		cheese: ["Cheese"]
+	
+	}
+
+	const newPizza = pizza.toLowerCase();
+
+
+	return toppings[newPizza] || [];
+
+
+
+	 
+}
+
 
 
 
@@ -29,6 +51,21 @@
 							}
 
 */
+
+function makePizza(pizza)
+{
+	const topping = getToppings();
+	const pizzaInfo = {
+						name: pizza,
+						toppings: topping
+						
+
+	};
+	
+
+	return pizzaInfo;
+
+}
 
 
 
