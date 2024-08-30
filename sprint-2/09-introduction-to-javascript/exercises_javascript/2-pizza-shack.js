@@ -13,16 +13,15 @@
 
 */
 
-function getToppings(pizza)
-{
-	
+function getToppings(pizza) {
+
 	const toppings = {
-		hawaiian: ["Ham", "Pineapple","Mushroom"],
+		hawaiian: ["Ham", "Pineapple", "Mushroom"],
 		cowboy: ["Pepperoni", "Sausage", "Beef"],
 		supreme: ["Pepperoni", "Sausage", "Pepper", "Onion", "Black Olives"],
 		vegetarian: ["Spinach", "Zucchini", "Mushroom", "Artichoke", "Tomato", "Onion"],
 		cheese: ["Cheese"]
-	
+
 	}
 
 	const newPizza = pizza.toLowerCase();
@@ -32,7 +31,7 @@ function getToppings(pizza)
 
 
 
-	 
+
 }
 
 
@@ -52,16 +51,14 @@ function getToppings(pizza)
 
 */
 
-function makePizza(pizza)
-{
-	const topping = getToppings();
+function makePizza(pizza) {
+	const toppings = getToppings(pizza)
 	const pizzaInfo = {
-						name: pizza,
-						toppings: topping
-						
+		name: pizza,
+		toppings
 
 	};
-	
+
 
 	return pizzaInfo;
 
@@ -99,7 +96,32 @@ function makePizza(pizza)
 	// an empty object
 	makeCustom() => {}
 
-*/
+// */
+
+// i need a nap
+
+
+function makeCustom(topping1, topping2, topping3) 
+{
+	const toppings= [];
+		toppings.push(topping1);
+// 		toppings.push(topping2);
+// 		toppings.push(topping3);
+		
+
+	const name = "Custom";
+	
+	const customPizza = {
+		name: name,
+		toppings: toppings
+
+	}
+	
+	
+
+
+	return makeCustom ;
+}
 
 
 
@@ -151,3 +173,4 @@ function makePizza(pizza)
 
 */
 
+function createOrder(){}
