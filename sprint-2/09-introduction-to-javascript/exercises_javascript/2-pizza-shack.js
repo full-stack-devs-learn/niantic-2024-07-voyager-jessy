@@ -103,13 +103,19 @@ function makePizza(pizza) {
 
 function makeCustom(topping1, topping2, topping3) 
 {
-	const toppings= {};
-		// toppings.push(topping1);
-		// toppings.push(topping2);
-		// toppings.push(topping3);
-		// if(topping1 !== undefined) toppings.topping1 = topping1;
-		// if(topping1 !== undefined) toppings.topping2 = topping2;
-		// if(topping1 !== undefined) toppings.topping3 = topping3;
+		const name = "Custom";
+		// const toppings= {};
+		// // toppings.push(topping1);
+		// // toppings.push(topping2);
+		// // toppings.push(topping3);
+		// // if(topping1 !== undefined) toppings.topping1 = topping1;
+		// // if(topping1 !== undefined) toppings.topping2 = topping2;
+		// // if(topping1 !== undefined) toppings.topping3 = topping3;
+		// const customPizza = {
+		// 	name: name,
+		// 	toppings: toppings
+	
+		// }
 
 		if(topping1 && topping2 && topping3)
 		{
@@ -132,20 +138,11 @@ function makeCustom(topping1, topping2, topping3)
 				toppings: [topping1]
 			}
 		}
-		return{}
-
-	const name = "Custom";
-	
-	const customPizza = {
-		name: name,
-		toppings: toppings
-
-	}
-	
+		return{};
 	
 
 
-	return customPizza ;
+	
 }
 
 
