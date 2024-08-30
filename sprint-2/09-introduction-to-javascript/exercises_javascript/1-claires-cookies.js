@@ -199,6 +199,7 @@ function calculateCookiesNeeded(aStudents, bStudents, others)
 
 	const totalCookies = a + b + c;
 	const cookieDozens = totalCookies / 12;
+	// we cannot have remainders because Claire only sells cookies by the dozens, so round up and Sean will have to munch away the leftovers
 	const roundedCookieDozens = Math.ceil(cookieDozens);
 
 	return roundedCookieDozens;
