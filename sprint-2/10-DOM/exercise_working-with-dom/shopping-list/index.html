@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shopping List</title>
+    <title>Jessy's Shopping List</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,16 +17,19 @@
 
 <body>
 
-    <div class="shopping-list">
-        <h1 id="title"></h1>
-        <ul id="groceries">
-            <!-- add groceries here -->
-        </ul>
+    <div class="container">
+        <h1 id="title">JESSY'S SHOPPING LIST</h1>
+        <div class="list-container">
+            <div class="shopping-list" id="groceries">
+            <!-- //all divs will go into this div -->
+            </div>
+            <button class="btn" onclick="markCompleted()">
+                Mark All Completed
+            </button>
+        </div>
     </div>
 
-    <a href="#" class="btn">
-        Mark All Completed
-    </a>
+    
 
     <script src="js/shopping-list.js"></script>
 </body>
