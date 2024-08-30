@@ -103,11 +103,36 @@ function makePizza(pizza) {
 
 function makeCustom(topping1, topping2, topping3) 
 {
-	const toppings= [];
-		toppings.push(topping1);
-// 		toppings.push(topping2);
-// 		toppings.push(topping3);
-		
+	const toppings= {};
+		// toppings.push(topping1);
+		// toppings.push(topping2);
+		// toppings.push(topping3);
+		// if(topping1 !== undefined) toppings.topping1 = topping1;
+		// if(topping1 !== undefined) toppings.topping2 = topping2;
+		// if(topping1 !== undefined) toppings.topping3 = topping3;
+
+		if(topping1 && topping2 && topping3)
+		{
+			return{
+				name: name, 
+				toppings: [topping1, topping2, topping3]
+			}
+		}
+		else if(topping1 && topping2)
+		{
+			return {
+				name: name,
+				toppings: [topping1, topping2]
+			}
+		}
+		else if(topping1)
+		{
+			return {
+				name: name,
+				toppings: [topping1]
+			}
+		}
+		return{}
 
 	const name = "Custom";
 	
@@ -120,7 +145,7 @@ function makeCustom(topping1, topping2, topping3)
 	
 
 
-	return makeCustom ;
+	return customPizza ;
 }
 
 
@@ -173,4 +198,4 @@ function makeCustom(topping1, topping2, topping3)
 
 */
 
-function createOrder(){}
+// function createOrder(){}
