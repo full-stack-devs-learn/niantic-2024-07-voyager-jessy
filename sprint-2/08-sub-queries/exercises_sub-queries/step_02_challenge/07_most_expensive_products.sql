@@ -23,4 +23,24 @@
 
 USE northwind;
 
+SELECT *
+FROM products;
+
+
+SELECT DISTINCT cat.category_name
+	, highest_price.product_name
+    , highest_price.highest_price
+FROM categories AS cat
+INNER JOIN ( 
+	SELECT p.product_name
+		, p.category_id
+		, MAX(p.unit_price) AS highest_price
+ 	FROM products AS p
+	GROUP BY p.product_name
+ 		, p.category_id
+     ) AS highest_price ON cat.category_id = highest_price.category_id
+ INNER JOIN products AS p ON highest_price.category_id = p.category_id 
+ ORDER BY highest_price.highest_price DESC;
+
+
 
