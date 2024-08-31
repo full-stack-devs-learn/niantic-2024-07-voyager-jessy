@@ -8,7 +8,7 @@ class ShoppingService {
         return [
             {
                 id: 1,
-                title: '5 lb sack of mixed baby potatoes',
+                title: 'Mixed baby potatoes - 5lbs',
                 quantity: 1,
                 isComplete: false
             },
@@ -32,7 +32,7 @@ class ShoppingService {
             },
             {
                 id: 5,
-                title: 'pint Half & Half',
+                title: 'Half & Half - pint',
                 quantity: 1,
                 isComplete: false
             },
@@ -68,7 +68,7 @@ class ShoppingService {
             },
             {
                 id: 11,
-                title: 'unbleached flour 1lb',
+                title: 'Unbleached flour 1lb',
                 quantity: 4,
                 isComplete: false
             }
