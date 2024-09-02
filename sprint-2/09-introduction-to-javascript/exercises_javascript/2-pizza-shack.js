@@ -52,17 +52,21 @@ function getToppings(pizza) {
 */
 
 function makePizza(pizza) {
-	const toppings = getToppings(pizza)
-	const pizzaInfo = {
-		name: pizza,
-		toppings
 
-	};
-
-
-	return pizzaInfo;
+	if(pizza)
+	{
+		const toppings = getToppings(pizza)
+		const pizzaInfo = {
+						name: pizza,
+						toppings
+		};
+		return  pizzaInfo;
+	}
+	return {};
+	
 
 }
+
 
 
 
@@ -98,51 +102,48 @@ function makePizza(pizza) {
 
 // */
 
-// i need a nap
 
 
 function makeCustom(topping1, topping2, topping3) 
 {
 		const name = "Custom";
-		// const toppings= {};
-		// // toppings.push(topping1);
-		// // toppings.push(topping2);
-		// // toppings.push(topping3);
-		// // if(topping1 !== undefined) toppings.topping1 = topping1;
-		// // if(topping1 !== undefined) toppings.topping2 = topping2;
-		// // if(topping1 !== undefined) toppings.topping3 = topping3;
-		// const customPizza = {
-		// 	name: name,
-		// 	toppings: toppings
-	
+		
+	//possible solve #1 for longer form
+		// if(topping1 && topping2 && topping3)
+		// {
+		// 	return{
+		// 		name: name, 
+		// 		toppings: [topping1, topping2, topping3]
+		// 	}
 		// }
-
-		if(topping1 && topping2 && topping3)
-		{
-			return{
-				name: name, 
-				toppings: [topping1, topping2, topping3]
-			}
-		}
-		else if(topping1 && topping2)
-		{
-			return {
-				name: name,
-				toppings: [topping1, topping2]
-			}
-		}
-		else if(topping1)
-		{
-			return {
-				name: name,
-				toppings: [topping1]
-			}
-		}
-		return{};
+		// else if(topping1 && topping2)
+		// {
+		// 	return {
+		// 		name: name,
+		// 		toppings: [topping1, topping2]
+		// 	}
+		// }
+		// else if(topping1)
+		// {
+		// 	return {
+		// 		name: name,
+		// 		toppings: [topping1]
+		// 	}
+		// }
+		// return{};
 	
 
+//solve for shorter form
+		if(arguments.length == 0)
+		{
+			return {}
 
-	
+		}
+		return {
+			name: "Custom",
+			toppings: [...arguments]
+		}
+		
 }
 
 
@@ -195,4 +196,58 @@ function makeCustom(topping1, topping2, topping3)
 
 */
 
-// function createOrder(){}
+function createOrder(customer, hawaiian, cowboy, supreme, vegetarian, cheese)
+{
+	// const pizzaOfferings = getToppings(pizza);
+	const customerOrder = {
+
+		customer: customer,
+		pizzas: []
+
+	};
+
+	if(hawaiian){
+		customerOrder.pizzas.push({
+			name: "Hawaiian",
+			toppings: getToppings("hawaiian")
+		})
+	};
+	if(cowboy){
+		customerOrder.pizzas.push({
+			name: "Cowboy",
+			toppings: getToppings("cowboy")
+		})
+	};
+	if(supreme){
+		customerOrder.pizzas.push({
+			name: "Supreme",
+			toppings: getToppings("supreme")
+		})
+	};
+	if(vegetarian){
+		customerOrder.pizzas.push({
+			name: "Vegetarian",
+			toppings: getToppings("vegetarian")
+		})
+	};
+	if(cheese){
+		customerOrder.pizzas.push({
+			name: "Cheese",
+			toppings: getToppings("cheese")
+		})
+	};
+	if(customerOrder.pizzas.length == 0){
+		return {};
+	}
+
+	
+
+	return customerOrder;
+
+
+
+
+
+
+
+}
