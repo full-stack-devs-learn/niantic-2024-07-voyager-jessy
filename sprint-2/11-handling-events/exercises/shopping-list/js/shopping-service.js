@@ -1,7 +1,7 @@
 class ShoppingService {
 
     getListName() {
-        return "My Shopping List"
+        return "Jessy\'s Shopping List"
     }
 
     getShoppingList() {
