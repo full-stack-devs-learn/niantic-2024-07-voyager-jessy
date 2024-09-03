@@ -39,7 +39,7 @@ INNER JOIN (
 	GROUP BY p.product_name
  		, p.category_id
      ) AS highest_price ON cat.category_id = highest_price.category_id
- INNER JOIN products AS p ON highest_price.category_id = p.category_id 
+ INNER JOIN products AS p ON highest_price.category_id = p.category_id AND highest_price.highest_price = p.unit_price
  ORDER BY highest_price.highest_price DESC;
 
 
