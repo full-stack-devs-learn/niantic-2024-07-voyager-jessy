@@ -35,24 +35,25 @@ function createListDiv(list, parent){
 
  
     const listDiv = document.createElement("div");
-    listDiv.classList.add("groceries");
+    listDiv.classList.add("list-item");
 
     parent.appendChild(listDiv);
 
     //add all the inner divs here 
-    buildItemTitle(list, parent);
+    buildItemTitle(list, listDiv);
+    buildItemQuantity(list, listDiv);
    
 
 }
 
 function buildItemTitle(list, parent){
     const titleDiv = document.createElement('div');
-    titleDiv.classList.add("list-item");
+    // titleDiv.classList.add("list-item");
     titleDiv.textContent = list.title;
 
     parent.appendChild(titleDiv);
 
-    buildItemQuantity(list, titleDiv);
+    
 
 
 }
