@@ -78,17 +78,6 @@ function buildItemQuantity(list, parent){
 
 }
 
-// function isListCompleted(list, parent){
-// const checkmark = list.isComplete
-
-// if(checkmark === true)
-// {
-//     checkmark.classList.add("complete")
-// }
-
-// parent.appendChild(checkmark);
-// }
-
 
 /**
  * This function will be called when the button is clicked. You will need to get a reference
