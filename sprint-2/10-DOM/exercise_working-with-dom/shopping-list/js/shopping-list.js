@@ -16,8 +16,7 @@ function displayListTitle() {
  * This function will loop over the array of groceries that was set above and add them to the DOM.
  */
 function displayGroceries() {
-    const lists = service.getShoppingList()
-                        // .sort((need,done) => !need.markCompleted - done.markCompleted);
+    const lists = service.getShoppingList();
 
     const listContainer = document.getElementById("groceries");
 
@@ -34,17 +33,15 @@ as soon as I am confident I can get this working
 */
 function createListDiv(list, parent){
 
-    //create new variable to rep the new line item we are making for each item on the shopping list
+ 
     const listDiv = document.createElement("div");
-
-    //add each item to this new class list
     listDiv.classList.add("groceries");
 
     parent.appendChild(listDiv);
 
     //add all the inner divs here 
     buildItemTitle(list, parent);
-    
+   
 
 }
 
@@ -56,6 +53,7 @@ function buildItemTitle(list, parent){
     parent.appendChild(titleDiv);
 
     buildItemQuantity(list, titleDiv);
+
 
 }
 
@@ -79,12 +77,32 @@ function buildItemQuantity(list, parent){
 
 }
 
+// function isListCompleted(list, parent){
+// const checkmark = list.isComplete
+
+// if(checkmark === true)
+// {
+//     checkmark.classList.add("complete")
+// }
+
+// parent.appendChild(checkmark);
+// }
+
 
 /**
  * This function will be called when the button is clicked. You will need to get a reference
  * to every list item and add the class completed to each one
  */
 function markCompleted() {
+//  const completed = document.querySelectorAll("list-item");
+//  completed.for(list => {
+
+//             listDiv.classList.add("complete")
+    
+        
+//  })
+
+   
 }
 
 document.addEventListener("DOMContentLoaded" , () => {
