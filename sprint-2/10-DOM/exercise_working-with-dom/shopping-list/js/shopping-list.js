@@ -26,11 +26,6 @@ function displayGroceries() {
 
 }
 
-/**
- * i added this one to create a new row for each line item, will go 
-/back to figure out how to do this within the display grogeries function 
-as soon as I am confident I can get this working
-*/
 function createListDiv(list, parent){
 
  
@@ -48,7 +43,6 @@ function createListDiv(list, parent){
 
 function buildItemTitle(list, parent){
     const titleDiv = document.createElement('div');
-    // titleDiv.classList.add("list-item");
     titleDiv.textContent = list.title;
 
     parent.appendChild(titleDiv);
@@ -84,21 +78,31 @@ function buildItemQuantity(list, parent){
  * to every list item and add the class completed to each one
  */
 function markCompleted() {
-//  const completed = document.querySelectorAll("list-item");
-//  completed.for(list => {
+ const completed = document.querySelectorAll(".list-item");
+ completed.forEach(list => {
 
-//             listDiv.classList.add("complete")
+            list.classList.add("complete")
     
         
-//  })
-
+ })
    
 }
+
+function markIncomplete(){
+    const incomplete = document.querySelectorAll(".list-item")
+    incomplete.forEach(list =>{
+        list.classList.toggle("complete")
+    });
+ }
 
 document.addEventListener("DOMContentLoaded" , () => {
 
     displayListTitle();
     displayGroceries();
+
+    const button = getElementById("completedbutton");
+    button.addEventListener("click", markCompleted);
+    button.addEventListener("dblclick", markIncomplete);
 
 
 
