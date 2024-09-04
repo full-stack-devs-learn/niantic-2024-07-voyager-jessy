@@ -1,7 +1,9 @@
 let service;
 let list = []
-// let itemName;
-// let itemQuantity;
+let itemName;
+let itemNameError;
+let itemQuantityError;
+let itemQuantity;
 
 let allItemsIncomplete = true;
 
@@ -37,21 +39,12 @@ function addListItem(item, parent)
 
 }
 
-function addItemTitle(item, parent, formInput = null)
+function addItemTitle(item, parent)
 {
     const div = document.createElement("div")
     div.textContent = item.title;
 
 
-    //code I am adding to account for what is incoming from the form 
-    // const itemName = document.getElementById('itemName');
-    // const itemQuantity =document.getElementById('quantity');
-    // if(formInput){
-    //     item = itemName;
-    // };
-
-
-//exisiting 
     parent.appendChild(div);
 }
 
@@ -85,12 +78,9 @@ function markCompleted() {
         }
         else {
             item.classList.toggle("complete");
-        }
-        
+        }    
        
         })
-        
-
 }
 
 //single line item marked complete
@@ -106,6 +96,51 @@ const item = event.target;
 //forgot we needed to have dblclick according to README but just so i know, this is another way to add the logic for removing complete class to list   
 }
 
+function displayAddedItem(item){
+    const parent = document.getElementById("shopping-list");
+
+    addListItem(item, parent);
+}
+
+function setUpValidation()
+{
+    nameInput = document.getElementById("itemName");
+    quantityInput = document.getElementById('quantity');
+}
+
+
+function submitItems(event){
+    event.preventDefault();
+
+    if(nameInput.validity.valid && quantityInput.validity.valid){
+
+        const name = document.getElementById('itemName').value;
+        const quantityInput = document.getElementById("quantity").value;
+
+        const item = {
+            title: name,
+            quantity: quantityInput
+        }
+//add it to the list
+        list.push(item);
+
+        // display it
+        const parent = document.getElementById("shopping-list");
+        addListItem(item, parent);
+
+
+        //clear the form 
+        clearForm();
+
+    }
+}
+
+function clearForm()
+{
+    document.getElementById("itemName").value = "";
+    document.getElementById("quantity").value = "";
+}
+
 
 // create the page load event here
 
@@ -115,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     displayListTitle();
     displayShoppingList();
+    setUpValidation();
 
     //mark all items complete
     const button = document.getElementById('allCompleteButton')
@@ -130,8 +166,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     //adding item from form input
-    // const form = document.getElementById('form-item');
-    // form.addEventListener('submit', submitItem)
+    const form = document.getElementById('form-item');
+    form.addEventListener('submit', submitItems)
 
 
 });
