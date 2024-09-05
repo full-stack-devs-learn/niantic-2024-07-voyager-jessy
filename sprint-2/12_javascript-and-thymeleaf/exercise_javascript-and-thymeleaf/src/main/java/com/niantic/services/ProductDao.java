@@ -64,6 +64,58 @@ public class ProductDao
         return products;
     }
 
+
+    // added 9.4.2024
+    public int getProductCount(int categoryId)
+    {
+        String sql = """
+                SELECT count(*) AS product_count
+                FROM products
+                WHERE category_id = ?;
+                
+                """;
+
+        var row = jdbcTemplate.queryForRowSet(sql, categoryId);
+
+        if(row.next())
+        {
+            return row.getInt("product_count");
+        }
+        return 0;
+
+    }
+    // added 9.4.2024
+    public ArrayList<Product> getProducts(int categoryId, int page){
+        int pageLimit = 10;
+        int skip = (page - 1) * pageLimit;
+
+        ArrayList<Product> products = new ArrayList<>();
+
+        String sql = """
+                SELECT *
+                FROM products
+                WHERE category_id = ?
+                LIMIT ?, ?;
+                """;
+
+        var row = jdbcTemplate.queryForRowSet(sql,categoryId, skip, pageLimit);
+        //loop through the rows to get all products at that category id
+        while(row.next()){
+            int productId = row.getInt("product_id");
+            String productName = row.getString("product_name");
+            String quantityPerUnit = row.getString("quantity_per_unit");
+            double unitPrice = row.getDouble("unit_price");
+            int unitsInStock = row.getInt("units_in_stock");
+            int unitsOnOrder = row.getInt("units_on_order");
+            int reorderLevel = row.getInt("reorder_level");
+
+            Product product = new Product(productId, categoryId,productName,quantityPerUnit, unitPrice, unitsInStock, unitsOnOrder, reorderLevel);
+            products.add(product);
+
+        }
+        return products;
+    }
+
     public Product getProduct(int productId)
     {
 

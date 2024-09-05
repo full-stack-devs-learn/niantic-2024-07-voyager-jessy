@@ -4,6 +4,7 @@ import com.niantic.models.Category;
 import com.niantic.models.Product;
 import com.niantic.services.CategoryDao;
 import com.niantic.services.ProductDao;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,17 +21,55 @@ public class ProductsController
     @GetMapping( "/products")
     public String products(Model model, @RequestParam(defaultValue = "1") int catId)
     {
-        var products = productDao.getProductsByCategory(catId);
+//        var products = productDao.getProductsByCategory(catId);
         var category = categoryDao.getCategoryById(catId);
         var categories = categoryDao.getCategories();
 
         model.addAttribute("categories", categories);
         model.addAttribute("currentCategory", category);
-        model.addAttribute("products", products);
+//        model.addAttribute("products", products);
         return "products/index";
     }
 
-    // details page
+    //added 9.4
+    @GetMapping ("/products/category/{categoryId}")
+    public String productsByCategory(Model model, @PathVariable int categoryId){
+        var products= productDao.getProductsByCategory(categoryId);
+
+        model.addAttribute("products", products);
+
+
+        return "products/fragments/product-list-table";
+
+    }
+
+    @GetMapping("products/category/{categoryId}/page/{page}")
+    public String getAllProducts(Model model,@PathVariable int categoryId, @PathVariable int page)
+    {
+        var products = productDao.getProducts(categoryId, page);
+
+
+        model.addAttribute("products", products);
+        return "products/fragments/product-list-table";
+
+
+    }
+
+    //im not sure exactly what this does but it was the only way to not get an error when trying to
+    //display the link to find out how many pages each categoryid should contain
+    @GetMapping("products/category/{categoryId}/pages")
+    public ResponseEntity<Integer> getProductPageCount(@PathVariable int categoryId)
+    {
+        int total = productDao.getProductCount(categoryId);
+        int pages = total/ 10;
+        if(total % 10 >0) pages++;
+
+        return ResponseEntity.ok(pages);
+        //after reading: this provides clear structure and control over response and handles edge cases and
+        //helps with api
+    }
+
+
     @GetMapping("/products/{id}")
     public String getProduct(Model model, @PathVariable int id)
     {
