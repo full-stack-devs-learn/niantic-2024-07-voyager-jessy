@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", () =>{
 
 loadPage();
+displayProduct();
 //changeCategory();
-fetch('/actor/pages').then(response => response.text()).then(data => {
+fetch(`/products/pages`).then(response => response.text()).then(data => {
 totalPages = +data});
 
 
@@ -13,12 +14,12 @@ totalPages = +data});
 
 function changeCategory()
 {
-const url = 'products/category/${catId}';
-const selectedCategory = document.getElementById("category").value;
-const productsView = document.getElementsById("products-container");
+const selectedCategory = document.getElementById("category");
+const productsView = document.getElementById("products-container");
 
-selectedCategory.addEventListener("change", =>{
-    const catId = document.getElementById("category").value
+selectedCategory.addEventListener("change", () => {
+    const catId = document.getElementById("category").value;
+    const url = `products/category/${catId}`;
 
     fetch(url)
         .then(response => response.json())
@@ -53,14 +54,14 @@ const editProduct = document.createElement('a');
 editProduct.classList.add('btn');
 editProduct.classList.add('btn-success');
 editProduct.textContent= "Edit";
-editProduct.href = '/products/${product.productId}/edit'
+editProduct.href = `/products/${product.productId}/edit`
 
 //create delete button
 const deleteProduct = document.createElement('a');
 deleteProduct.classList.add('btn');
 deleteProduct.classList.add('btn-danger');
 deleteProduct.textContent= "Delete";
-deleteProduct.href = '/products/${product.productId}/delete';
+deleteProduct.href = `/products/${product.productId}/delete`;
 
 //populate delete buttons into button variable
 buttons.appendChild(editProduct);
@@ -92,7 +93,7 @@ function loadPage()
     const container = document.getElementById("products-container");
     container.innerHTML = "";
 
-    const url = 'products/category/${catId}'
+    const url = 'products'
 
     //doing it asynchronous so that it does mutli things at once and not leave us hanging
     //for forever while it all loads one by one.
@@ -106,8 +107,8 @@ function loadPage()
         }).catch(error => {
                   console.log(error)
               })
-              ;;
-//        .catch(error => {});
+
+        .catch(error => {});
 
 
 
