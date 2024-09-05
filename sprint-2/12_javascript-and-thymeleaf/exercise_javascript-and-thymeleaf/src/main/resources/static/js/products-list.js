@@ -70,14 +70,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-
+    loadPage();
     fetch(`api/products/pages`)
         .then(response => response.text())
         .then(data => {
         totalPages = +data});
-        updatePageBtn();
+//        updatePageBtn();
 
-    loadPage();
+
 })
 
 function loadPage(){
@@ -100,7 +100,7 @@ function loadPage(){
             throw new Error(response);
                 }).then(data => {
                     container.innerHTML = data;
-                    updatePageBtn;
+//                    updatePageBtn;
                 }).catch(error => {
                     console.log("Error in fetching products:", error)
                 });
@@ -108,12 +108,12 @@ function loadPage(){
 
 }
 
-function updatePageBtn(){
-const buttons = document.querySelectorAll(".page-link");
-buttons.forEach(btn => btn.classList.remove("active"));
-//reset all pages to nonactive
-
-document.querySelector(`#page${pageNumber}`).classList.add("active");
-
-
-}
+//function updatePageBtn(){
+//const buttons = document.querySelectorAll(".page-link");
+//buttons.forEach(btn => btn.classList.remove("active"));
+////reset all pages to nonactive
+//
+//document.querySelector(`#page${pageNumber}`).classList.add("active");
+//
+//
+//}
