@@ -15,9 +15,9 @@ public class ProductsApiController {
     private ProductDao productDao = new ProductDao();
 
     @GetMapping("/api/products/pages")
-    public Integer getProductCountPerCategory(Integer categoryId)
+    public int getProductCountPerCategory(int catId)
     {
-        int totalCount = productDao.getProductCount(categoryId);
+        int totalCount = productDao.getProductCount(catId);
         int pages = totalCount/ 10;
         if(totalCount % 10 >0){
             pages++;
