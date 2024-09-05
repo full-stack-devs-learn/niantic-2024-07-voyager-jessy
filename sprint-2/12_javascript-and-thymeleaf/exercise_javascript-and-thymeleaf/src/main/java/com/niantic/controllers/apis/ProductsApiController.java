@@ -4,6 +4,7 @@ import com.niantic.models.Product;
 import com.niantic.services.CategoryDao;
 import com.niantic.services.ProductDao;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class ProductsApiController {
     private ProductDao productDao = new ProductDao();
 
     @GetMapping("/api/products/pages")
-    public int getProductCountPerCategory(int categoryId)
+    public Integer getProductCountPerCategory(Integer categoryId)
     {
         int totalCount = productDao.getProductCount(categoryId);
         int pages = totalCount/ 10;
