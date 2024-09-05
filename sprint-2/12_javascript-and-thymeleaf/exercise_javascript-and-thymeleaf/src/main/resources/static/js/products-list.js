@@ -4,95 +4,80 @@ let currentPage;
 
 
 
-document.addEventListener("DOMContentLoaded", () =>{
+document.addEventListener("DOMContentLoaded", () => {
 
+    const buttons = document.getElementById("pagination");
 //identify all my page buttons
-const buttons = document.getElementById("pagination");
-const first = document.getElementById("firstPage");
-const previous = document.getElementById("previous");
-const one = document.getElementById("page1");
-const two = document.getElementById("page2");
-const next = document.getElementById("next");
-const last = document.getElementById("lastPage");
+
+    const first = document.getElementById("firstPage");
+    const previous = document.getElementById("previous");
+    const one = document.getElementById("page1");
+    const two = document.getElementById("page2");
+    const next = document.getElementById("next");
+    const last = document.getElementById("lastPage");
 
 //add classes to buttons for beautification
-first.classList.add("page-link");
-previous.classList.add("page-link");
-one.classList.add("page-link");
-two.classList.add("page-link");
-next.classList.add("page-link");
-last.classList.add("page-link");
+    first.classList.add("page-link");
+    previous.classList.add("page-link");
+    one.classList.add("page-link");
+    two.classList.add("page-link");
+    next.classList.add("page-link");
+    last.classList.add("page-link");
 
 //button logic eventListener
-first.addEventListener("click", () => {
-    if(pageNumber > 1) {
-        pageNumber= 1
-        loadPage();
-    }
-
-})
-
-previous.addEventListener("click", () => {
-    if(pageNumber > 1) {
-        pageNumber--;
-        loadPage();
-
-    }
-
-})
-
-one.addEventListener("click", () =>{
-    if(pageNumber > 1) {
+    first.addEventListener("click", () => {
+        if(pageNumber > 1) {
             pageNumber= 1
             loadPage();
         }
-})
 
-two.addEventListener("click", () =>{
-    if(pageNumber !== 2) {
-    pageNumber = 2;
+    })
+
+    previous.addEventListener("click", () => {
+        if(pageNumber > 1) {
+            pageNumber--;
+            loadPage();
+
+        }
+
+    })
+
+    one.addEventListener("click", () =>{
+        if(pageNumber > 1) {
+                pageNumber= 1
+                loadPage();
+            }
+    })
+
+    two.addEventListener("click", () =>{
+        if(pageNumber !== 2) {
+        pageNumber = 2;
+        loadPage();
+        }
+    })
+
+    next.addEventListener("click", () =>{
+        if(pageNumber < totalPages) {
+            pageNumber++;
+            loadPage();
+        }
+    })
+
+    last.addEventListener("click", () =>{
+        if(pageNumber < totalPages) {
+            pageNumber = totalPages
+            loadPage();
+        }
+    })
+
+
+    fetch(`api/products/pages`)
+        .then(response => response.text())
+        .then(data => {
+        totalPages = +data});
+        updatePageBtn();
+
     loadPage();
-    }
-})
-
-next.addEventListener("click", () =>{
-    if(pageNumber < totalPages) {
-        pageNumber++;
-        loadPage();
-    }
-})
-
-last.addEventListener("click", () =>{
-    if(pageNumber < totalPages) {
-        pageNumber = totalPages
-        loadPage();
-    }
-})
-
-
-
-
-
-
-
-
-
-
-//if
-
-//add class active to the page that is currently being displayed
-
-
-
-
-
-fetch(`api/products/pages`)
-    .then(response => response.text())
-    .then(data => {
-    totalPages = +data});
-//    updatePageBtn();
-
-loadPage();
 })
 
 function loadPage(){
@@ -125,8 +110,10 @@ function loadPage(){
 
 function updatePageBtn(){
 const buttons = document.querySelectorAll(".page-link");
-buttons.forEach(btn => btn.classList.remove("active")
+buttons.forEach(btn => btn.classList.remove("active"));
 //reset all pages to nonactive
+
+document.querySelector(`#page${pageNumber}`).classList.add("active");
 
 
 }
