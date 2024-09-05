@@ -6,6 +6,18 @@ let currentPage;
 
 document.addEventListener("DOMContentLoaded", () => {
 
+const category = document.getElementById("category");
+
+////gregor first load
+//loadProducts(category.value)
+//
+////gregor upon choosing
+//category.addEventListener("input", () =>{
+//loadProducts(category.value)})
+
+
+loadProducts(category.value)
+
     const buttons = document.getElementById("pagination");
 //identify all my page buttons
 
@@ -80,6 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })
 
+function loadProducts(categoryId){
+
+}
+
+
 function loadPage(){
 
     const categoryOption = document.getElementById("category");
@@ -113,7 +130,7 @@ function loadPage(){
 //buttons.forEach(btn => btn.classList.remove("active"));
 ////reset all pages to nonactive
 //
-//document.querySelector(`#page${pageNumber}`).classList.add("active");
+//document.querySelector('${pageNumber}`).classList.add("active");
 //
 //
 //}

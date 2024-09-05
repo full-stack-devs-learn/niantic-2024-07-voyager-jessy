@@ -8,6 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+
+import org.springframework.validation.BindingResult;
+
+
 
 import java.util.ArrayList;
 
@@ -19,22 +24,22 @@ public class ProductsController
 
     // list all categories
     @GetMapping( "/products")
-    public String products(Model model, @RequestParam(defaultValue = "1") int catId)
+    public String products(Model model, @RequestParam(defaultValue = "1") Integer catId)
     {
-//        var products = productDao.getProductsByCategory(catId);
         var category = categoryDao.getCategoryById(catId);
         var categories = categoryDao.getCategories();
 
         model.addAttribute("categories", categories);
         model.addAttribute("currentCategory", category);
-//        model.addAttribute("products", products);
+
         return "products/index";
     }
 
     //added 9.4
-    @GetMapping ("/products/category/{categoryId}")
-    public String productsByCategory(Model model, @PathVariable int categoryId){
-        var products= productDao.getProductsByCategory(categoryId);
+    @GetMapping ("/products/category/{catId}")
+    public String productsByCategory(Model model, @PathVariable int catId){
+
+        var products= productDao.getProductsByCategory(catId);
 
         model.addAttribute("products", products);
 
@@ -58,7 +63,7 @@ public class ProductsController
     //im not sure exactly what this does but it was the only way to not get an error when trying to
     //display the link to find out how many pages each categoryid should contain
     @GetMapping("products/category/{categoryId}/pages")
-    public ResponseEntity<Integer> getProductPageCount(@PathVariable int categoryId)
+    public ResponseEntity<Integer> getProductPageCount(@PathVariable Integer categoryId)
     {
         int total = productDao.getProductCount(categoryId);
         int pages = total/ 10;
@@ -98,8 +103,16 @@ public class ProductsController
     }
 
     @PostMapping("/products/new")
-    public String saveProduct(@ModelAttribute("product") Product product)
+    public String saveProduct( Model model, @Valid @ModelAttribute("product") Product product, BindingResult result)
     {
+        if(result.hasErrors())
+        {
+            var categories = categoryDao.getCategories();
+            model.addAttribute("categories", categories);
+            model.addAttribute("product", product);
+            model.addAttribute("isInvalid", true);
+            return "products/add";
+        }
 
         productDao.addProduct(product);
         return "redirect:/products?catId=" + product.getCategoryId();
