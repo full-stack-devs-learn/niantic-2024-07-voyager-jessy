@@ -33,7 +33,7 @@ public class Sword extends Weapon {
             int newCharge = getPercentCharged() + 10;
             setPercentCharged(newCharge);
         }
-        if (this.percentCharged >= 50 && this.percentCharged <= 99) {
+        if (this.percentCharged >= 50 && this.percentCharged <= 90) {
             damageDealt = getDamage() * 2;
             setPercentCharged(getPercentCharged() - 50);
         }
