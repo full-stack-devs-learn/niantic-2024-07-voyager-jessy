@@ -1,24 +1,25 @@
 package com.niantic.models;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.relational.core.sql.In;
 
 public class Product
 {
 
     private int productId;
-    @NotEmpty(message="Please choose a category to add product to")
+    @NotNull(message="Please choose a category to add product to")
     private int categoryId;
     @NotEmpty(message="Product name is required" )
     private String productName;
     @NotEmpty(message = "quantity per unit is required")
     private String quantityPerUnit;
-    @NotEmpty(message="Please enter product price")
+    @NotNull(message="Please enter product price")
     private double unitPrice;
-    @NotEmpty(message = "Units in stock is required")
+    @NotNull(message = "Units in stock is required")
     private int unitsInStock;
     private int unitsOnOrder;
-    @NotEmpty(message = "Reorder level is required")
+    @NotNull(message = "Reorder level is required")
     private int reorderLevel;
 
     public Product(int productId, int categoryId, String productName, String quantityPerUnit, double unitPrice, int unitsInStock, Integer unitsOnOrder, int reorderLevel)
