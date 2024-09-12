@@ -1,7 +1,6 @@
 package com.niantic;
 
-public class Sword extends Weapon
-{
+public class Sword extends Weapon {
 
     public Sword(String name, int damage) {
         super(name, damage);
@@ -13,10 +12,9 @@ public class Sword extends Weapon
 
         int currentPercentCharged = this.getPercentCharged();
 
-        if(currentPercentCharged > 100){
-             currentPercentCharged = 100;
-        }
-        else{
+        if (currentPercentCharged > 100) {
+            currentPercentCharged = 100;
+        } else {
             currentPercentCharged += 10;
         }
 
@@ -28,18 +26,20 @@ public class Sword extends Weapon
 
     @Override
     public int powerAttack() {
-        int damageDealt;
+        int damageDealt = 0;
 
-        if(this.percentCharged < 50){
-           damageDealt =  getDamage();
+        if (this.percentCharged <= 49) {
+            damageDealt = getDamage();
+            int newCharge = getPercentCharged() + 10;
+            setPercentCharged(newCharge);
         }
-        else if(this.percentCharged > 51 && this.percentCharged <= 99){
+        if (this.percentCharged >= 50 && this.percentCharged <= 99) {
             damageDealt = getDamage() * 2;
             setPercentCharged(getPercentCharged() - 50);
         }
-        else{
+        if (this.percentCharged == 100) {
             damageDealt = getDamage() * 4;
-                    setPercentCharged(0);
+            setPercentCharged(0);
         }
         return damageDealt;
     }
