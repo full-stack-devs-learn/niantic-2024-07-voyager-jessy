@@ -2,165 +2,137 @@ package com.niantic;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-
-public class SwordTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-    private Sword sword;
+public class DaggerTest {
+
+
+    private Dagger dagger;
 
     @BeforeEach
-    public void setup() {
-        sword = new Sword("Oathkeeper", 10);
+    public void setup() { dagger = new Dagger("Mr. Pointy", 10);
     }
 
     @Test
-    public void newSword_shouldHaveDefaults() {
+    public void newDagger_shouldHaveDefaults() {
         //arrange
-        String expectedName = "Oathkeeper";
+        String expectedName = "Mr. Pointy";
         int damage = 10;
-        int expectedPercentCharged = 0;
 
         //act
-        String actualName = sword.getName();
-        int actualDamage = sword.getDamage();
-        int actualPercentCharged = sword.getPercentCharged();
+        String actualName = dagger.name;
+        int actualDamage = dagger.getDamage();
 
         //assert
-        assertEquals(expectedName, actualName, "Because the Sword name should be the same");
-        assertEquals(damage, actualDamage, "Because the Sword's damage should be " + damage);
-        assertEquals(expectedPercentCharged, actualPercentCharged, "Because the default should be 0");
+        assertEquals(expectedName, actualName, "Because the dagger name should be the same");
+        assertEquals(damage, actualDamage, "Because the dagger's damage should be " + damage);
 
     }
 
     @Test
-    public void sword_shouldReturn_damageDefaultAmountWhenAttacks() {
+    public void dagger_shouldReturn_damageDefaultAmountWhenAttacks() {
 
         //arrange
         int expectedDamage = 10;
 
         //act
-        sword.attack();
+        dagger.attack();
 
         //assert
-        int actualDamage = sword.getDamage();
-        assertEquals(expectedDamage, actualDamage, "Because Sword should deal the default damage when attacking");
+        int actualDamage = dagger.getDamage();
+        assertEquals(expectedDamage, actualDamage, "Because Dagger should deal the default damage when attacking");
     }
 
     @Test
-    public void sword_shouldIncrease_percentChargedWhenAttackingIfUnder100() {
+    public void dagger_shouldIncrease_percentChargedWhenAttackingIfDaggerCount() {
         //arrange
-        int expectedPercentReturned = 30;
+        int expectedPercentReturned = 40;
 
         //act
-        sword.attack();
-        sword.attack();
-        sword.attack();
-        int actualPercentCharged = sword.getPercentCharged();
+        dagger.attack();
+        dagger.attack();
+        int actualPercentCharged = dagger.getPercentCharged();
 
         //assert
-        assertEquals(expectedPercentReturned, actualPercentCharged, "Because each attack should add 10% if the chargePercent is under 100");
+        assertEquals(expectedPercentReturned, actualPercentCharged, "Because each attack should add 20% if there are daggers in the bag");
     }
 
     @Test
-    public void sword_shouldNotIncrease_percentWhenReaches100() {
+    public void dagger_shouldNotDecrease_daggerCountWhenAttacking() {
         //arrange
-        int expectedPercent = 100;
+        int daggerCount = 1;
 
         //act
-        for (int i = 0; i < 12; i++) {
-            sword.attack();
-        }
-        int actualPercent = sword.getPercentCharged();
+        int actualtDaggers = dagger.getDaggerCount();
+        dagger.attack();
+        dagger.attack();
 
-        assertEquals(expectedPercent, actualPercent, "Because percent charged should never exceed 100");
+        //assert
+        assertEquals(daggerCount, actualtDaggers, "Because we cannot lose our dagger through a simple attack" );
     }
 
     @Test
-    public void sword_getRange_shouldReturn1() {
-        int expected = 1;
-
-        int actual = sword.getRange();
-
-        assertEquals(expected, actual, "Because a sword should only have a range of 1");
-    }
-
-    @Test
-    public void sword_powerAttackShouldReturn_defaultDamageIfLessThan50() {
+    public void dagger_shouldIncreaseDaggerCount_whenDaggerAdded(){
         //arrange
-        int expectedDamage = 10;
+        int expectedDaggerCount = 3;
 
         //act
-        int actualDamage = sword.powerAttack();
+        dagger.addDagger();
+        dagger.addDagger();
+        int actualDaggerCount = dagger.getDaggerCount();
 
         //assert
-        assertEquals(expectedDamage, actualDamage, "Because a power attack with a charge under 50 should just return basic damage.");
+        assertEquals(expectedDaggerCount, actualDaggerCount, "Because each dagger increase should add one dagger");
     }
 
     @Test
-    public void sword_powerAttackShouldReturn_increasedChargeIfLessThan50() {
-        int expectedCharge = 20;
+    public void dagger_shouldReturn_getRangeOf10(){
+        //arrange
+        int expectedRange = 10;
+
+        int actualRange = dagger.getRange();
+
+        assertEquals(expectedRange, actualRange, "Because a dagger can be thrown");
+    }
+
+    @Test
+    public void dagger_shouldNot_damageIfLessThan100(){
+        //arrange
+        int expectedDamage = 0;
 
         //act
-        sword.setPercentCharged(10);
-        int actualDamage = sword.powerAttack();
-        int actualCharge = sword.getPercentCharged();
+        dagger.setPercentCharged(78);
+        int actualDamage = dagger.powerAttack();
 
         //assert
-        assertEquals(expectedCharge, actualCharge, "Because it is a regular attack, the powerCharge should increase by 10");
+        assertEquals(expectedDamage, actualDamage,"Becuase if charged is less than 100, it is impossible to use attack");
+    }
 
+
+    @Test
+    public void dagger_shouldReturn_increasedDamageWhenCharge100(){
+        int expectedDamage = 30;
+
+        //act
+        dagger.setPercentCharged(100);
+        int actualDamage = dagger.powerAttack();
+
+        //assert
+        assertEquals(expectedDamage, actualDamage, "Because a power attack should return 3x the damage");
     }
 
     @Test
-    public void sword_powerAttackShouldReturn_doubleDamageIfBetween50and99() {
+    public void dagger_shouldReturn_degreaseInDaggerCountAfterPowerAttack(){
+        int expectedCount = 0;
 
-        int expectedDamage = 20;
+        dagger.setPercentCharged(100);
+        dagger.powerAttack();
+        int actualCount = dagger.getDaggerCount();
 
-        sword.setPercentCharged(55);
-        int actualDamage = sword.powerAttack();
-
-        assertEquals(expectedDamage, actualDamage, "Because the damage should be double");
-
-    }
-
-    @Test
-    public void sword_powerAttackShouldReturn_decreasePowerChargeIfBetween50and99() {
-
-        int expectedPowerCharge = 5;
-
-        sword.setPercentCharged(55);
-        sword.powerAttack();
-        int actualPowerCharge = sword.getPercentCharged();
-
-        assertEquals(expectedPowerCharge, actualPowerCharge, "Because the powerCharge should be decreased by 50");
-
-    }
-
-    @Test
-    public void sword_powerAttackShouldReturn_quadrupleDamageIf100() {
-
-        int expectedDamage = 40;
-
-        sword.setPercentCharged(100);
-        int actualDamage = sword.powerAttack();
-
-        assertEquals(expectedDamage, actualDamage, "Because the damage should be quadruple");
-
-    }
-
-    @Test
-    public void sword_powerAttackShouldReturn_zerpChargeWhen100() {
-
-        int expectedCharge = 0;
-
-        sword.setPercentCharged(100);
-        sword.powerAttack();
-        int actualCharge = sword.getPercentCharged();
-
-        assertEquals(expectedCharge, actualCharge, "Because the powerCharge should be reduced to zero");
-
+        assertEquals(expectedCount, actualCount,"Because you lose a dagger each time you use a power attack");
     }
 
 
