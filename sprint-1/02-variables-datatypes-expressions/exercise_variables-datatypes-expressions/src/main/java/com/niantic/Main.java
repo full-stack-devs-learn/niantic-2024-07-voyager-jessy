@@ -436,13 +436,24 @@ public class Main
         // below 90.
 
         // How many dozen cookies does Sean need to buy.
+        int perfectScoreCookies = 2 * 4;
+        int secondPlaceCookies = 4 * 3;
+        int everyoneElse = 8 * 2;
+        int totalCookies = perfectScoreCookies + secondPlaceCookies + everyoneElse;
+        double orderDozen = (totalCookies / 12);
+
+        System.out.println("Sean will need a total of " + orderDozen + " cookies for his class.");
+        System.out.println("This will leave him with no extra cookies!");
 
 
 
         // 23. If Claire's Cookies sells each dozen cookies for 12.99,
         // how much will it cost Sean to buy 4 dozen cookies.
+        double clairesDozenCost = 12.99;
+        int seanOrder = 4;
+        double orderTotal = clairesDozenCost * seanOrder;
 
-
+        System.out.print("Sean would spend " + orderTotal + " for 4 dozen cookies.");
 
         // (Use this information for the next several questions)
         // Claire now charges different prices for different
