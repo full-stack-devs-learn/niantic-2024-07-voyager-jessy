@@ -13,7 +13,7 @@ public class DaggerTest {
     private Dagger dagger;
 
     @BeforeEach
-    public void setup() { dagger = new Dagger("Mr. Pointy", 10);
+    public void setup() { dagger = new Dagger("Mr. Pointy", 10, 1);
     }
 
     @Test
