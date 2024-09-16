@@ -27,9 +27,8 @@ public class GradesFileService implements GradesService
     @Override
     public List<Assignment> getAssignments(String fileName)
     {
-        File file = new File("files/" + fileName);
-
         List<Assignment> assignments = new ArrayList<>();
+        File file = new File("files/" + fileName);
 
         try(Scanner reader = new Scanner(file))
         {
@@ -38,7 +37,7 @@ public class GradesFileService implements GradesService
             {
                 var line = reader.nextLine();
                 var columns = line.split(",");
-
+            if(columns.length == 5){
                 int assignmentNumber = Integer.parseInt(columns[0]);
                 String firstName = columns[1];
                 String lastName = columns[2];
@@ -46,11 +45,15 @@ public class GradesFileService implements GradesService
                 int score = Integer.parseInt(columns[4]);
 
                 var assignment = new Assignment(assignmentNumber, firstName, lastName, assignmentName, score);
+                assignments.add(assignment);
             }
-        }
+            else{
+            System.out.println("Invalid Line Format: " + line); //debug
+            }
+        }}
         catch(Exception e)
         {
-            System.out.println(e.getMessage());
+            System.out.println("Error Reading file: " + e.getMessage());
         }
 
         return assignments;

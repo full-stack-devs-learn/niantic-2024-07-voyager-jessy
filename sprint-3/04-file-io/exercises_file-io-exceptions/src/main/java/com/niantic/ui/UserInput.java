@@ -35,4 +35,28 @@ public class UserInput
         System.out.println();
         System.out.println(message);
     }
+
+    public static void continueMessage()
+    {
+        System.out.println();
+        System.out.println("Press ENTER to continue");
+        in.nextLine();
+    }
+
+    public static int chooseFile()
+    {
+        System.out.println();
+        System.out.println("Please choose the number of the file you want to work with: ");
+        var choice = Integer.parseInt(in.nextLine());
+
+        return choice;
+    }
+
+    public static void returnToDirectory(){
+        System.out.println();
+        System.out.println("Press ENTER to return to files menu");
+        in.nextLine();
+
+
+    }
 }

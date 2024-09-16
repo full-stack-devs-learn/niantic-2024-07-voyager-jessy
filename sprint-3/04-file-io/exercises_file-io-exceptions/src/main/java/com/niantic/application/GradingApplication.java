@@ -5,13 +5,12 @@ import com.niantic.services.GradesFileService;
 import com.niantic.services.GradesService;
 import com.niantic.ui.UserInput;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class GradingApplication implements Runnable
 {
-    Scanner input = new Scanner(System.in);
     private GradesService gradesService = new GradesFileService();
 
     public void run()
@@ -23,8 +22,11 @@ public class GradingApplication implements Runnable
             {
                 case 1:
                     displayAllFiles();
+                    UserInput.continueMessage();
                     break;
                 case 2:
+                    displayFileScores();
+                    UserInput.returnToDirectory();
                     displayFileScores();
                     break;
                 case 3:
@@ -49,6 +51,7 @@ public class GradingApplication implements Runnable
     {
         // todo: 1 - get and display all student file names
         String[] files =  gradesService.getFileNames();
+        AtomicInteger counter = new AtomicInteger(1);
 
         System.out.println();
         System.out.println("File Names: ");
@@ -56,10 +59,8 @@ public class GradingApplication implements Runnable
         Arrays.stream(files)
                 .sorted()
                 .forEach(file ->{
-                System.out.println(file);
+                System.out.println(counter.getAndIncrement() + ". " + file);
                 });
-        System.out.println("Press ENTER to continue");
-        input
 
     }
 
@@ -67,9 +68,38 @@ public class GradingApplication implements Runnable
     {
         // todo: 2 - allow the user to select a file name
         // load all student assignment scores from the file - display all files
-        System.out.println();
-        System.out.println("File: ");
+        displayAllFiles();
         System.out.println("-".repeat(30));
+
+        int choice = UserInput.chooseFile();
+        String[] files =  gradesService.getFileNames();
+        Arrays.sort(files);
+
+        if(choice > 0 && choice <= files.length){
+            var choiceFile = files[choice - 1];
+            System.out.println("User Selected: " + choiceFile);//debug
+            System.out.println();
+            var showFile = gradesService.getAssignments(choiceFile);
+            System.out.println("Assignments for : " + showFile.getFirst().getFirstName().toUpperCase() + " " + showFile.getLast().getLastName().toUpperCase()); //debug
+            showFile.forEach(assignment -> {
+                System.out.println(assignment);
+            });
+//            System.out.println(showFile);
+        }
+
+
+
+//        switch(choice)
+//        {
+//            case 1:
+//                List<Assignment> assignments =  gradesService.getAssignments("files/student_1_anna_williams.csv");
+//                System.out.println(assignments);
+//                System.out.println("-".repeat(30));
+//                UserInput.returnToDirectory();
+//                break;
+//        }
+
+
 //        List<Assignment> assignments = gradesService.getAssignments(fileName);
     }
 
