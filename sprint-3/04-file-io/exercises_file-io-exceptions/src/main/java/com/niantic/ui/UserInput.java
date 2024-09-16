@@ -52,11 +52,11 @@ public class UserInput
         return choice;
     }
 
-    public static void returnToDirectory(){
+    public static String returnToDirectory(){
         System.out.println();
-        System.out.println("Press ENTER to return to files menu");
-        in.nextLine();
+        System.out.println("Press 'y' to return to files menu");
+        System.out.println("Press 'n' to return to home");
 
-
+        return in.nextLine();
     }
 }

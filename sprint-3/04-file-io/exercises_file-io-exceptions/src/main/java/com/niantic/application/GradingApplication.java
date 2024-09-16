@@ -26,7 +26,7 @@ public class GradingApplication implements Runnable
                     break;
                 case 2:
                     displayFileScores();
-                    UserInput.returnToDirectory();
+
                     displayFileScores();
                     break;
                 case 3:
@@ -68,23 +68,38 @@ public class GradingApplication implements Runnable
     {
         // todo: 2 - allow the user to select a file name
         // load all student assignment scores from the file - display all files
-        displayAllFiles();
-        System.out.println("-".repeat(30));
+        boolean viewing = true;
 
-        int choice = UserInput.chooseFile();
-        String[] files =  gradesService.getFileNames();
-        Arrays.sort(files);
+        while(viewing) {
+            displayAllFiles();
+            System.out.println("-".repeat(30));
 
-        if(choice > 0 && choice <= files.length){
-            var choiceFile = files[choice - 1];
-            System.out.println("User Selected: " + choiceFile);//debug
-            System.out.println();
-            var showFile = gradesService.getAssignments(choiceFile);
-            System.out.println("Assignments for : " + showFile.getFirst().getFirstName().toUpperCase() + " " + showFile.getLast().getLastName().toUpperCase()); //debug
-            showFile.forEach(assignment -> {
-                System.out.println(assignment);
-            });
-//            System.out.println(showFile);
+            int choice = UserInput.chooseFile();
+            String[] files = gradesService.getFileNames();
+            Arrays.sort(files);
+
+            if (choice > 0 && choice <= files.length) {
+                var choiceFile = files[choice - 1];
+                System.out.println("User Selected: " + choiceFile);
+                System.out.println();
+                var showFile = gradesService.getAssignments(choiceFile);
+                System.out.println("Assignments for : " + showFile.getFirst().getFirstName().toUpperCase() + " " + showFile.getLast().getLastName().toUpperCase()); //debug
+                showFile.forEach(assignment -> {
+                    System.out.println(assignment);
+                });
+
+                String userResponse = UserInput.returnToDirectory();
+
+                if(userResponse.equalsIgnoreCase("n")){
+                    viewing = false;
+
+                }
+
+            }
+
+            else{
+                System.out.println("Invalid choice. Please select a valid file.");
+            }
         }
 
 
