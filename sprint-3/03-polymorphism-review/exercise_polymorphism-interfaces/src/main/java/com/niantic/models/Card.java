@@ -59,10 +59,26 @@ public class Card implements Comparable<Card>
         put("2", 2);
     }};
 
+    public enum suit{
+        SPADES, HEARTS, DIAMONDS, CLUBS
+    }
+
+
     @Override
-    public int compareTo(Card o)
-    {
+    public int compareTo(Card other) {
+//        return 0;
         // todo: Exercise 1: implement Comparable<Card>
-        return 0;
+//        int suits = this.suit.compareTo(other.suit);
+//        if (suits != 0) {
+//            return suits;
+//        } else {
+//            return Integer.compare(this.getPointValue(), other.getPointValue());
+//
+//        }
+        if(this.getPointValue() > other.getPointValue()){return 1;}
+        else if (this.getPointValue() == other.getPointValue()) {return 0;
+
+        }
+
     }
 }
