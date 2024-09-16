@@ -59,26 +59,58 @@ public class Card implements Comparable<Card>
         put("2", 2);
     }};
 
-    public enum suit{
-        SPADES, HEARTS, DIAMONDS, CLUBS
-    }
+   private static final Map<String, Integer> suitsValues = new HashMap<>()
+   {{
+       put("spades", 1);
+       put("hearts", 2);
+       put("diamonds",3);
+       put("clubs",4);
+   }};
 
+   private static final Map<String , Integer> allCardOrder = new HashMap<>()
+   {{
+
+       put("2", 1);
+       put("3", 2);
+       put("4", 3);
+       put("5", 4);
+       put("6", 5);
+       put("7", 6);
+       put("8", 7);
+       put("9", 8);
+       put("10", 9);
+       put("J", 10);
+       put("Q", 11);
+       put("K", 12);
+       put("A", 13);
+
+   }};
+
+    //this needs to be outside compareTo inorder to properly sort by facevalue
+   public int faceOrderComparison(String card1, String otherCard){
+       var card1Value = allCardOrder.get(card1);
+       var otherCardValue = allCardOrder.get(otherCard);
+
+       return Integer.compare(card1Value, otherCardValue);
+   }
 
     @Override
     public int compareTo(Card other) {
-//        return 0;
+
         // todo: Exercise 1: implement Comparable<Card>
-//        int suits = this.suit.compareTo(other.suit);
-//        if (suits != 0) {
-//            return suits;
-//        } else {
-//            return Integer.compare(this.getPointValue(), other.getPointValue());
-//
-//        }
-        if(this.getPointValue() > other.getPointValue()){return 1;}
-        else if (this.getPointValue() == other.getPointValue()) {return 0;
+        var card1 = this.suit.toLowerCase();
+        var otherCard = other.suit.toLowerCase();
 
+        //compare the suits of new variables
+        var suitComparison = Integer.compare(
+                suitsValues.get(card1),
+                suitsValues.get(otherCard));
+
+        if(suitComparison == 0){
+            return faceOrderComparison(this.getFaceValue(), other.getFaceValue());
         }
-
+        else{
+            return suitComparison;
+        }
     }
 }
