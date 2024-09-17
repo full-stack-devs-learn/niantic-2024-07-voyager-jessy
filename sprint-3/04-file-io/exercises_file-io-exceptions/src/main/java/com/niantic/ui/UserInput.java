@@ -35,21 +35,18 @@ public class UserInput
         return Integer.parseInt(in.nextLine());
     }
 
-    public static void displayMessage(String message)
-    {
+    public static void displayMessage(String message) {
         System.out.println();
         System.out.println(message);
     }
 
-    public static void continueMessage()
-    {
+    public static void continueMessage() {
         System.out.println();
         System.out.println("Press ENTER to continue");
         in.nextLine();
     }
 
-    public static int chooseFile()
-    {
+    public static int chooseFile() {
         System.out.println();
         System.out.println("Please choose the number of the file you want to work with: ");
         var choice = Integer.parseInt(in.nextLine());
@@ -57,7 +54,7 @@ public class UserInput
         return choice;
     }
 
-    public static String returnToDirectory(){
+    public static String returnToDirectory() {
         System.out.println();
         System.out.println("Press 'y' to return to files menu");
         System.out.println("Press 'n' to return to home");
@@ -65,10 +62,10 @@ public class UserInput
         return in.nextLine();
     }
 
-    public static void displayAllFiles(String[] files, AtomicInteger counter){
-        System.out.println();
+    public static void displayAllFiles(String[] files, AtomicInteger counter) {
+        System.out.println("-".repeat(45));
         System.out.println("File Names: ");
-        System.out.println("-".repeat(30));
+        System.out.println("-".repeat(45));
         Arrays.stream(files)
                 .sorted()
                 .forEach(file -> {
@@ -76,7 +73,7 @@ public class UserInput
                 });
     }
 
-    public static void displayChoice(String fileName, List<Assignment> fileAssignments){
+    public static void displayChoice(String fileName, List<Assignment> fileAssignments) {
         System.out.println("-".repeat(45));
         System.out.println();
         System.out.println("You Selected: " + fileName);
@@ -84,6 +81,30 @@ public class UserInput
         System.out.println("Assignments for : " + fileAssignments.getFirst().getFirstName().toUpperCase() + " " + fileAssignments.getLast().getLastName().toUpperCase()); //debug
         System.out.println();
         System.out.println("-".repeat(45));
-
     }
+
+    public static void displayChoiceAssignments(List<Assignment> fileAssignments) {
+        fileAssignments.forEach(assignment -> {
+            System.out.println(assignment);
+        });
+        System.out.println("-".repeat(45));
+    }
+
+    public static void displayStudentMin(int minScore){
+        System.out.println("Lowest score: " + minScore);
+        System.out.println();
+    }
+
+    public static void displayStudentMax(int maxScore){
+        System.out.println("Highest score: " + maxScore);
+        System.out.println();
+        System.out.println("-".repeat(45));
+    }
+
+    public static void displayStudentAvg(int avgScore){
+        System.out.println();
+        System.out.println("Average score: " + avgScore);
+        System.out.println();
+    }
+
 }
