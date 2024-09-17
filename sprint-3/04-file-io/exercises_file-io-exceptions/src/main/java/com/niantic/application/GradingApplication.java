@@ -50,14 +50,16 @@ public class GradingApplication implements Runnable {
         String[] files = gradesService.getFileNames();
         AtomicInteger counter = new AtomicInteger(1);
 
-        System.out.println();
-        System.out.println("File Names: ");
-        System.out.println("-".repeat(30));
-        Arrays.stream(files)
-                .sorted()
-                .forEach(file -> {
-                    System.out.println(counter.getAndIncrement() + ". " + file);
-                });
+        UserInput.displayAllFiles(files, counter);
+
+//        System.out.println();
+//        System.out.println("File Names: ");
+//        System.out.println("-".repeat(30));
+//        Arrays.stream(files)
+//                .sorted()
+//                .forEach(file -> {
+//                    System.out.println(counter.getAndIncrement() + ". " + file);
+//                });
 
     }
 
@@ -76,10 +78,11 @@ public class GradingApplication implements Runnable {
 
             if (choice > 0 && choice <= files.length) {
                 var choiceFile = files[choice - 1];
-                System.out.println("User Selected: " + choiceFile);
-                System.out.println();
+//                System.out.println("User Selected: " + choiceFile);
+//                System.out.println();
                 var showFile = gradesService.getAssignments(choiceFile);
-                System.out.println("Assignments for : " + showFile.getFirst().getFirstName().toUpperCase() + " " + showFile.getLast().getLastName().toUpperCase()); //debug
+//                System.out.println("Assignments for : " + showFile.getFirst().getFirstName().toUpperCase() + " " + showFile.getLast().getLastName().toUpperCase()); //debug
+                UserInput.displayChoice(choiceFile, showFile);
                 showFile.forEach(assignment -> {
                     System.out.println(assignment);
                 });
@@ -112,7 +115,7 @@ public class GradingApplication implements Runnable {
 //                System.out.println();
                 var showFile = gradesService.getAssignments(choiceFile);
 //                System.out.println("Assignments for : " + showFile.getFirst().getFirstName().toUpperCase() + " " + showFile.getLast().getLastName().toUpperCase()); //debug
-                var display = UserInput.displayChoice(choiceFile, showFile);
+                UserInput.displayChoice(choiceFile, showFile);
                 File file = new File("files/" + choiceFile);
 
                 try (Scanner reader = new Scanner(file)) {

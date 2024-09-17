@@ -2,8 +2,10 @@ package com.niantic.ui;
 
 import com.niantic.models.Assignment;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class UserInput
 {
@@ -63,12 +65,25 @@ public class UserInput
         return in.nextLine();
     }
 
-    public static void displayChoice(String fileName, List<Assignment> fileAssignments){
-        System.out.println("-".repeat(30));
-        System.out.println("User Selected: " + fileName);
+    public static void displayAllFiles(String[] files, AtomicInteger counter){
         System.out.println();
+        System.out.println("File Names: ");
         System.out.println("-".repeat(30));
+        Arrays.stream(files)
+                .sorted()
+                .forEach(file -> {
+                    System.out.println(counter.getAndIncrement() + ". " + file);
+                });
+    }
+
+    public static void displayChoice(String fileName, List<Assignment> fileAssignments){
+        System.out.println("-".repeat(45));
+        System.out.println();
+        System.out.println("You Selected: " + fileName);
+        System.out.println();
         System.out.println("Assignments for : " + fileAssignments.getFirst().getFirstName().toUpperCase() + " " + fileAssignments.getLast().getLastName().toUpperCase()); //debug
-        System.out.println("-".repeat(30));
+        System.out.println();
+        System.out.println("-".repeat(45));
+
     }
 }
