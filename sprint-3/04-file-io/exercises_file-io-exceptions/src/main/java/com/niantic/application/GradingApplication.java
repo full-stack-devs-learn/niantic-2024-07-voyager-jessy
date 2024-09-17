@@ -35,6 +35,9 @@ public class GradingApplication implements Runnable {
                 case 5:
                     displayAssignmentStatistics();
                     break;
+                case 6:
+                    createStudentSummaryReport();
+                    break;
                 case 0:
                     UserInput.displayMessage("Goodbye");
                     System.exit(0);
@@ -153,6 +156,22 @@ public class GradingApplication implements Runnable {
         // todo: 5 - Optional / Challenge - load all scores from all student and all assignments
         // display the statistics for each assignment (assignment name, low score, high score, average score)
         // this one could take some time
+    }
+
+    private void createStudentSummaryReport(){
+        displayAllFiles();
+        int choice = UserInput.chooseFile() - 1;
+
+        var files = gradesServices.getAllFiles();
+
+
+        String fileName = files.get(choice);
+        var studentName = parseStudentName(fileName);
+        
+
+
+
+
     }
 
     private String parseStudentName(String fileName) {

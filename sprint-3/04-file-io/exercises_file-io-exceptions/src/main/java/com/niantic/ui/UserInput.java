@@ -2,17 +2,13 @@ package com.niantic.ui;
 
 import com.niantic.models.Assignment;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class UserInput
-{
+public class UserInput {
     protected static Scanner in = new Scanner(System.in);
 
-    public static int homeScreenSelection()
-    {
+    public static int homeScreenSelection() {
         System.out.println();
         System.out.println("What do you want to do?");
         System.out.println("-".repeat(30));
@@ -24,9 +20,13 @@ public class UserInput
         System.out.println("  3) Student: display average score");
         System.out.println();
         System.out.println("  ---------- Challenge All Files ----------");
-        System.out.println("  5) All Students: display average score");
-        System.out.println("  6) All Assignments: display average score");
+        System.out.println("  4) All Students: display average score");
+        System.out.println("  5) All Assignments: display average score");
         System.out.println();
+
+        System.out.println("  ------------ Reports ------------");
+        System.out.println("  6) Create Student Summary Report");
+//        System.out.println("  ");
         System.out.println("  0) Exit");
 
         System.out.println();
