@@ -26,8 +26,6 @@ public class GradingApplication implements Runnable
                     break;
                 case 2:
                     displayFileScores();
-
-                    displayFileScores();
                     break;
                 case 3:
                     displayStudentAverages();
@@ -87,11 +85,13 @@ public class GradingApplication implements Runnable
                 showFile.forEach(assignment -> {
                     System.out.println(assignment);
                 });
+                System.out.println("-".repeat(30));
 
                 String userResponse = UserInput.returnToDirectory();
 
                 if(userResponse.equalsIgnoreCase("n")){
                     viewing = false;
+
 
                 }
 
