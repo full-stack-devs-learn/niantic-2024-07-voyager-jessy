@@ -1,10 +1,12 @@
 package com.niantic.services;
 
 import com.niantic.models.Assignment;
+import com.niantic.ui.UserInput;
 
 import java.io.File;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -73,4 +75,5 @@ public class GradesFileService implements GradesService
 
         return allAssignments;
     }
-}
+
+    }
