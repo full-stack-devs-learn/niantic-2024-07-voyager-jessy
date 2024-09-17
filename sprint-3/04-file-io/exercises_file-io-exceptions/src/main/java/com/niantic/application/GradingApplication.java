@@ -101,18 +101,18 @@ public class GradingApplication implements Runnable {
         // load all student assignment scores from the file - display student statistics (low score, high score, average score)
 //        while (viewing) {
             displayAllFiles();
-            System.out.println("-".repeat(30));
+//            System.out.println("-".repeat(30));
 
             int choice = UserInput.chooseFile();
             String[] files = gradesService.getFileNames();
             Arrays.sort(files);
             if (choice > 0 && choice <= files.length) {
                 var choiceFile = files[choice - 1];
-                System.out.println("User Selected: " + choiceFile);
-                System.out.println();
+//                System.out.println("User Selected: " + choiceFile);
+//                System.out.println();
                 var showFile = gradesService.getAssignments(choiceFile);
-                System.out.println("Assignments for : " + showFile.getFirst().getFirstName().toUpperCase() + " " + showFile.getLast().getLastName().toUpperCase()); //debug
-
+//                System.out.println("Assignments for : " + showFile.getFirst().getFirstName().toUpperCase() + " " + showFile.getLast().getLastName().toUpperCase()); //debug
+                var display = UserInput.displayChoice(choiceFile, showFile);
                 File file = new File("files/" + choiceFile);
 
                 try (Scanner reader = new Scanner(file)) {

@@ -1,5 +1,8 @@
 package com.niantic.ui;
 
+import com.niantic.models.Assignment;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInput
@@ -58,5 +61,14 @@ public class UserInput
         System.out.println("Press 'n' to return to home");
 
         return in.nextLine();
+    }
+
+    public static void displayChoice(String fileName, List<Assignment> fileAssignments){
+        System.out.println("-".repeat(30));
+        System.out.println("User Selected: " + fileName);
+        System.out.println();
+        System.out.println("-".repeat(30));
+        System.out.println("Assignments for : " + fileAssignments.getFirst().getFirstName().toUpperCase() + " " + fileAssignments.getLast().getLastName().toUpperCase()); //debug
+        System.out.println("-".repeat(30));
     }
 }

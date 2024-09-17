@@ -69,11 +69,14 @@ public class GradesFileService implements GradesService
         File directory = new File("files");
         String [] files = directory.list();
 
+        assert files != null;
         for(String file : files){
             allAssignments.addAll(getAssignments(file));
         }
 
         return allAssignments;
     }
+
+
 
     }
