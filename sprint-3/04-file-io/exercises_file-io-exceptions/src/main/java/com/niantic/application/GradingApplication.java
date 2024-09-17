@@ -1,5 +1,6 @@
 package com.niantic.application;
 
+import com.niantic.models.Assignment;
 import com.niantic.models.AssignmentStatistics;
 import com.niantic.services.GradesFileService;
 import com.niantic.services.GradesService;
@@ -9,6 +10,7 @@ import com.niantic.ui.UserInput;
 import java.io.File;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class GradingApplication implements Runnable {
     private GradesService gradesServices = new GradesFileService();
@@ -87,7 +89,7 @@ public class GradingApplication implements Runnable {
     private void displayStudentAverages() {
         // todo: 3 - allow the user to select a file name
         // load all student assignment scores from the file - display student statistics (low score, high score, average score)
-//        while (viewing) {
+        while (viewing) {
             displayAllFiles();
 
             int choice = UserInput.chooseFile();
@@ -100,51 +102,53 @@ public class GradingApplication implements Runnable {
 
                 UserInput.displayChoice(choiceFile, showFile);
 
-                File file = new File("files/" + choiceFile);
-
-                try (Scanner reader = new Scanner(file)) {
-                    reader.nextLine();
-                    while (reader.hasNextLine()) {
-                        var line = reader.nextLine();
-                        var columns = line.split(",");
-                        if (columns.length == 5) {
-                            int assignmentNumber = Integer.parseInt(columns[0]);
-                            String firstName = columns[1];
-                            String lastName = columns[2];
-                            String assignmentName = columns[3];
-                            int score = Integer.parseInt(columns[4]);
-
-                            studentAllScores.add(score);
-                        } else {
-                            UserInput.displayMessage("Invalid Line Format: " + line); //debug
-                        }
-                    }
-                } catch (Exception e) {
-                    System.out.println("Error Reading file: " + e.getMessage());
-                }
+//                File file = new File("files/" + choiceFile);
+//
+//                try (Scanner reader = new Scanner(file)) {
+//                    reader.nextLine();
+//                    while (reader.hasNextLine()) {
+//                        var line = reader.nextLine();
+//                        var columns = line.split(",");
+//                        if (columns.length == 5) {
+//                            int assignmentNumber = Integer.parseInt(columns[0]);
+//                            String firstName = columns[1];
+//                            String lastName = columns[2];
+//                            String assignmentName = columns[3];
+//                            int score = Integer.parseInt(columns[4]);
+//
+//                            studentAllScores.add(score);
+//                        } else {
+//                            UserInput.displayMessage("Invalid Line Format: " + line); //debug
+//                        }
+//                    }
+//                } catch (Exception e) {
+//                    System.out.println("Error Reading file: " + e.getMessage());
+//                }
                 //math: min,max, avg score
-                if(!studentAllScores.isEmpty()) {
-                    String studentName = parseStudentName(choiceFile);
+//                if(!studentAllScores.isEmpty()) {
+                String studentName = parseStudentName(choiceFile);
 //                    System.out.println(studentName.toUpperCase()); // debugger is it working?
-                    AssignmentStatistics assignmentStatistics = new AssignmentStatistics(studentName, studentAllScores);
 
-                    int min = assignmentStatistics.getLowestScore();
-                    int max = assignmentStatistics.getHighestScore();
-                    int avg = assignmentStatistics.getAvgScore();
+                List<Assignment> assignments = gradesServices.getAssignments(choiceFile);
+                AssignmentStatistics assignmentStatistics = new AssignmentStatistics(studentName, assignments);
 
-                    UserInput.displayStudentAvg(avg);
-                    UserInput.displayStudentMin(min);
-                    UserInput.displayStudentMax(max);
+                int minimum = assignmentStatistics.getLowestScore();
+                int maximum = assignmentStatistics.getHighestScore();
+                int average = assignmentStatistics.getAvgScore();
 
-                    String userResponse = UserInput.returnToDirectory();
-                    if (userResponse.equalsIgnoreCase("n")) {
-                        viewing = false;
-                    }
+                UserInput.displayStudentAvg(average);
+                UserInput.displayStudentMin(minimum);
+                UserInput.displayStudentMax(maximum);
+
+                String userResponse = UserInput.returnToDirectory();
+                if (userResponse.equalsIgnoreCase("n")) {
+                    viewing = false;
                 }
-                else{
+                else {
                     UserInput.displayMessage("No valid scores were found");
                 }
             }
+        }
     }
 
     private void displayAllStudentStatistics() {
@@ -167,7 +171,17 @@ public class GradingApplication implements Runnable {
 
         String fileName = files.get(choice);
         var studentName = parseStudentName(fileName);
-        
+
+        List<Assignment> assignments = gradesServices.getAssignments(fileName);
+
+
+//        List<Assignment> scores = assignments.stream()
+//                .filter(assignment -> assignment.getScore() > 0)
+//                .collect(Collectors.toList());
+//
+
+//        AssignmentStatistics statistics = new AssignmentStatistics(studentName, )
+
 
 
 

@@ -4,33 +4,42 @@ import java.util.List;
 
 public class AssignmentStatistics {
 
-    private List<Integer> studentAllScores;
+    private List<Assignment> studentScores;
     private String studentName;
 
-    public AssignmentStatistics(String studentName, List<Integer> studentAllScores) {
+    public AssignmentStatistics(String studentName, List<Assignment> studentScores) {
         this.studentName = studentName;
-        this.studentAllScores = studentAllScores;
+        this.studentScores = studentScores;
     }
 
     public String getStudentName() {
         return studentName;
     }
 
-    public List<Integer> getStudentAllScores() {
-        return studentAllScores;
+    public List<Assignment> getStudentScores() {
+        return studentScores;
     }
 
     public int getLowestScore(){
-        return studentAllScores.stream().mapToInt(Integer::intValue).min().getAsInt();
+//        return studentScores.stream().mapToInt(Integer::intValue).min().getAsInt();
+        return studentScores.stream()
+                .mapToInt(Assignment::getScore)
+                .min()
+                .orElseThrow(() -> new IllegalArgumentException("No Scores Found"));
     }
 
+
     public int getHighestScore(){
-        return studentAllScores.stream().mapToInt(Integer::intValue).max().getAsInt();
+//        return studentAllScores.stream().mapToInt(Integer::intValue).max().getAsInt();
+        return studentScores.stream()
+                .mapToInt(Assignment::getScore)
+                .max()
+                .orElseThrow(() -> new IllegalArgumentException("No Scores Found"));
     }
 
     public int getAvgScore(){
-    var totalScore = studentAllScores.stream().mapToInt(Integer::intValue).reduce(0, Integer::sum);
+    var totalScore = studentScores.stream().mapToInt(Assignment::getScore).reduce(0, Integer::sum);
 
-        return totalScore/studentAllScores.size();
+        return totalScore/studentScores.size();
     }
 }
