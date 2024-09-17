@@ -143,7 +143,9 @@ public class GradingApplication implements Runnable {
 
                 System.out.println("-".repeat(30));
                 System.out.println("Assignment lowest score: " + min);
+                System.out.println("-".repeat(30));
                 System.out.println("Assignment highest score: " + max);
+                System.out.println("-".repeat(30));
                 System.out.println("Avg Assignment Score: " + avg);
                 System.out.println();
                 System.out.println("-".repeat(30));
