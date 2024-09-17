@@ -11,4 +11,6 @@ public interface GradesService
     List<Assignment> getAssignments(String fileName);
 
     List<Assignment> getAllAssignments(String[] fileNames);
+
+    List<String> getAllFiles();
 }

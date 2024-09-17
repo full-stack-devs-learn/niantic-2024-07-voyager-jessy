@@ -77,6 +77,13 @@ public class GradesFileService implements GradesService
         return allAssignments;
     }
 
+    @Override
+    public List<String> getAllFiles() {
+        File directory = new File("files");
+        String[] files = directory.list();
 
-
+        return Arrays.stream(files).sorted().toList();
     }
+
+
+}
