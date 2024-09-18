@@ -39,8 +39,11 @@ public class LoggingService {
 
         try(PrintWriter writer =  new PrintWriter(file))
         {
-            writer.printf("%s %s \n", day.format(formatter))
+            writer.printf("%s %s \n", day.format(formatter), message);
         }
+        catch(Exception e)
+        { //swallowed
+             }
 
     }
 }
