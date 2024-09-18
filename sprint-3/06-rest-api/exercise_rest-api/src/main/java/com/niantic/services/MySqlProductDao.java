@@ -65,4 +65,37 @@ public class MySqlProductDao implements ProductDao{
         }
         return products;
     }
+
+    @Override
+    public Product getProductById(int productId) {
+        String sql = """
+                SELECT product_id
+                	, product_name
+                    , supplier_id
+                    , category_id
+                    , quantity_per_unit
+                    , unit_price
+                    , units_in_stock
+                    , units_on_order
+                	, reorder_level
+                FROM products
+                WHERE product_id = ?;
+                """;
+
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, productId);
+        if(row.next())
+        {
+            String productName = row.getString("product_name");
+            int supplierId = row.getInt("supplier_id");
+            int categoryId = row.getInt("category_id");
+            String quantityPerUnit = row.getString("quantity_per_unit");
+            double unitPrice = row.getDouble("unit_price");
+            int unitsInStock = row.getInt("units_in_stock");
+            int unitsOnOrder = row.getInt("units_on_order");
+            int reorderLevel = row.getInt("reorder_level");
+
+            return new Product(productId, productName,supplierId,categoryId,quantityPerUnit,unitPrice,unitsInStock,unitsOnOrder,reorderLevel);
+        }
+        return null;
+    }
 }

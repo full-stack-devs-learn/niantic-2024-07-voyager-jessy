@@ -22,5 +22,11 @@ public class ProductsController {
     return productDao.getProductsByCategory(catId);
     }
 
+    @GetMapping("/api/products/{id}")
+    public Product getProductByProductId(@PathVariable int id){
+
+        return productDao.getProductById(id);
+    }
+
 
 }
