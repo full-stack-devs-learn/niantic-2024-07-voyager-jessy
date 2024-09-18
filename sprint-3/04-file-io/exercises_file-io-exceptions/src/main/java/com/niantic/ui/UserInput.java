@@ -26,7 +26,7 @@ public class UserInput {
 
         System.out.println("  ------------ Reports ------------");
         System.out.println("  6) Create Student Summary Report");
-//        System.out.println("  ");
+        System.out.println("  7) Create All Students Report");
         System.out.println("  0) Exit");
 
         System.out.println();
@@ -106,5 +106,7 @@ public class UserInput {
         System.out.println("Average score: " + avgScore);
         System.out.println();
     }
+
+
 
 }

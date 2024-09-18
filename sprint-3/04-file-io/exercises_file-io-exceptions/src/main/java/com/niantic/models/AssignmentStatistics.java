@@ -42,4 +42,5 @@ public class AssignmentStatistics {
 
         return totalScore/studentScores.size();
     }
+
 }

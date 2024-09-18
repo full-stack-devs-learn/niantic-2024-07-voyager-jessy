@@ -2,8 +2,10 @@ package com.niantic.application;
 
 import com.niantic.models.Assignment;
 import com.niantic.models.AssignmentStatistics;
+import com.niantic.models.ReportsStatistics;
 import com.niantic.services.GradesFileService;
 import com.niantic.services.GradesService;
+import com.niantic.services.ReportsService;
 import com.niantic.ui.UserInput;
 
 
@@ -40,6 +42,10 @@ public class GradingApplication implements Runnable {
                 case 6:
                     createStudentSummaryReport();
                     break;
+                case 7:
+                    createAllStudentsReport();
+                    break;
+
                 case 0:
                     UserInput.displayMessage("Goodbye");
                     System.exit(0);
@@ -102,30 +108,6 @@ public class GradingApplication implements Runnable {
 
                 UserInput.displayChoice(choiceFile, showFile);
 
-//                File file = new File("files/" + choiceFile);
-//
-//                try (Scanner reader = new Scanner(file)) {
-//                    reader.nextLine();
-//                    while (reader.hasNextLine()) {
-//                        var line = reader.nextLine();
-//                        var columns = line.split(",");
-//                        if (columns.length == 5) {
-//                            int assignmentNumber = Integer.parseInt(columns[0]);
-//                            String firstName = columns[1];
-//                            String lastName = columns[2];
-//                            String assignmentName = columns[3];
-//                            int score = Integer.parseInt(columns[4]);
-//
-//                            studentAllScores.add(score);
-//                        } else {
-//                            UserInput.displayMessage("Invalid Line Format: " + line); //debug
-//                        }
-//                    }
-//                } catch (Exception e) {
-//                    System.out.println("Error Reading file: " + e.getMessage());
-//                }
-                //math: min,max, avg score
-//                if(!studentAllScores.isEmpty()) {
                 String studentName = parseStudentName(choiceFile);
 //                    System.out.println(studentName.toUpperCase()); // debugger is it working?
 
@@ -141,15 +123,14 @@ public class GradingApplication implements Runnable {
                 UserInput.displayStudentMax(maximum);
 
                 String userResponse = UserInput.returnToDirectory();
-                if (userResponse.equalsIgnoreCase("n")) {
-                    viewing = false;
-                }
+                isViewing(userResponse);
+            }
                 else {
                     UserInput.displayMessage("No valid scores were found");
                 }
             }
         }
-    }
+
 
     private void displayAllStudentStatistics() {
         // todo: 4 - Optional / Challenge - load all scores from all student and all assignments
@@ -163,29 +144,54 @@ public class GradingApplication implements Runnable {
     }
 
     private void createStudentSummaryReport(){
-        displayAllFiles();
-        int choice = UserInput.chooseFile() - 1;
+        while(viewing) {
+            displayAllFiles();
+            int choice = UserInput.chooseFile() - 1;
 
-        var files = gradesServices.getAllFiles();
+            var files = gradesServices.getAllFiles();
 
+            String fileName = files.get(choice);
+            var studentName = parseStudentName(fileName);
 
-        String fileName = files.get(choice);
-        var studentName = parseStudentName(fileName);
+            List<Assignment> assignments = gradesServices.getAssignments(fileName);
+            AssignmentStatistics assignmentStatistics = new AssignmentStatistics(studentName, assignments);
 
-        List<Assignment> assignments = gradesServices.getAssignments(fileName);
+            ReportsService service = new ReportsService((GradesFileService) gradesServices);
 
-
-//        List<Assignment> scores = assignments.stream()
-//                .filter(assignment -> assignment.getScore() > 0)
-//                .collect(Collectors.toList());
+//testing for creation
+//            String[] files2 = gradesServices.getFileNames();
+//            List<Integer> scores = service.allScores(files2);
+//            ReportsStatistics reportsStatistics = new ReportsStatistics(scores);
+//            var min = reportsStatistics.getOverallLowest();
+//            System.out.println("test: " + scores);
+//            System.out.println("lowest "+ min);
 //
+            service.createStudentSummaryReport(assignmentStatistics);
+            UserInput.displayMessage("Report has been created for " + studentName);
 
-//        AssignmentStatistics statistics = new AssignmentStatistics(studentName, )
+            String userResponse = UserInput.returnToDirectory();
+            isViewing(userResponse);
+        }
+
+    }
+
+    private void createAllStudentsReport(){
+        while(viewing)
+        {
+            ReportsService service = new ReportsService((GradesFileService) gradesServices);
+
+            String[] files = gradesServices.getFileNames();
+            List<Integer> scores =service.allScores(files);
+
+            ReportsStatistics reportsStatistics = new ReportsStatistics(scores);
+            service.createAllStudentsReport((GradesFileService) gradesServices, reportsStatistics);
+            UserInput.displayMessage("Report has been made for all students");
+
+            UserInput.continueMessage();
 
 
 
-
-
+        }
     }
 
     private String parseStudentName(String fileName) {
@@ -193,4 +199,13 @@ public class GradingApplication implements Runnable {
                 .replace("_", " ")
                 .substring(10);
     }
+
+    private Boolean isViewing(String userResponse){
+
+        if (userResponse.equalsIgnoreCase("n")) {
+            viewing = false;
+        }
+        return viewing;
+    }
+
 }

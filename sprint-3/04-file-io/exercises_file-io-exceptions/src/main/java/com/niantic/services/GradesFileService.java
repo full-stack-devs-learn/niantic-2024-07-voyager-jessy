@@ -68,6 +68,7 @@ public class GradesFileService implements GradesService
 
         File directory = new File("files");
         String [] files = directory.list();
+//        List<String> files = List.of(directory.list());
 
         assert files != null;
         for(String file : files){
