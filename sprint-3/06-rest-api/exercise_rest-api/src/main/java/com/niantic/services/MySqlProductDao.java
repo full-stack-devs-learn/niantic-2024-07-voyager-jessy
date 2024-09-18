@@ -47,7 +47,7 @@ public class MySqlProductDao implements ProductDao{
                     , product_name;
                 """;
 
-        SqlRowSet row = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, categoryId);
 
         while(row.next())
         {
@@ -55,7 +55,7 @@ public class MySqlProductDao implements ProductDao{
             String productName = row.getString("product_name");
             int supplierId = row.getInt("supplier_id");
             String quantityPerUnit = row.getString("quantity_per_unit");
-            int unitPrice = row.getInt("unit_price");
+            double unitPrice = row.getDouble("unit_price");
             int unitsInStock = row.getInt("units_in_stock");
             int unitsOnOrder = row.getInt("units_on_order");
             int reorderLevel = row.getInt("reorder_level");
