@@ -59,7 +59,7 @@ public class Product {
         this.categoryId = categoryId;
     }
 
-    public String getQuanitityPerUnit() {
+    public String getQuantityPerUnit() {
         return quantityPerUnit;
     }
 

@@ -11,4 +11,7 @@ List<Product> getProductsByCategory(int categoryId);
 
 Product getProductById(int id);
 
+Product addProduct(Product product);
+
+
 }
