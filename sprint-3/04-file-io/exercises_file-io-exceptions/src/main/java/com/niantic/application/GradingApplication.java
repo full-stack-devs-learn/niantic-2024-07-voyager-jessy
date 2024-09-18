@@ -5,6 +5,7 @@ import com.niantic.models.AssignmentStatistics;
 import com.niantic.models.ReportsStatistics;
 import com.niantic.services.GradesFileService;
 import com.niantic.services.GradesService;
+import com.niantic.services.LoggingService;
 import com.niantic.services.ReportsService;
 import com.niantic.ui.UserInput;
 
@@ -17,6 +18,9 @@ import java.util.stream.Collectors;
 public class GradingApplication implements Runnable {
     private GradesService gradesServices = new GradesFileService();
     private List<Integer> studentAllScores = new ArrayList<>();
+
+    private final LoggingService appLog = new LoggingService("application");
+
     private boolean viewing = true;
 
     public void run() {
@@ -57,6 +61,7 @@ public class GradingApplication implements Runnable {
 
     private void displayAllFiles() {
         // todo: 1 - get and display all student file names
+
         String[] files = gradesServices.getFileNames();
 //        var files = gradesServices.getFileNames(); // would like to make this work for indexing
         AtomicInteger counter = new AtomicInteger(1);
