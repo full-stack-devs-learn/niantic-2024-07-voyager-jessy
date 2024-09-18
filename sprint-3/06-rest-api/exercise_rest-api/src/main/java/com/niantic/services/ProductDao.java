@@ -1,4 +1,11 @@
 package com.niantic.services;
 
-public interface ProductDao {
+import com.niantic.models.Product;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
+
+public interface ProductDao
+{
+List<Product> getProductsByCategory(int categoryId);
 }
