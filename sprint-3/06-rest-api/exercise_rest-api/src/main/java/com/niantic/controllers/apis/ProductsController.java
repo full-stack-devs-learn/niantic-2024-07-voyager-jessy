@@ -33,5 +33,12 @@ public class ProductsController {
         return productDao.addProduct(product);
     }
 
+    @PutMapping("/api/products/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateProduct(@PathVariable int id, @RequestBody Product product)
+    {
+        productDao.updateProduct(id, product);
+    }
+
 
 }

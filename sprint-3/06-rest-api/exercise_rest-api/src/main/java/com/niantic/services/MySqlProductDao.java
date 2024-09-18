@@ -13,14 +13,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySqlProductDao implements ProductDao{
+public class MySqlProductDao implements ProductDao {
     JdbcTemplate jdbcTemplate;
 
     public MySqlProductDao() {
         String databaseUrl = "jdbc:mysql://localhost:3306/northwind";
         String userName = "root";
         String password = "P@ssw0rd";
-        DataSource dataSource = new BasicDataSource(){{
+        DataSource dataSource = new BasicDataSource() {{
             setUrl(databaseUrl);
             setUsername(userName);
             setPassword(password);
@@ -51,8 +51,7 @@ public class MySqlProductDao implements ProductDao{
 
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, categoryId);
 
-        while(row.next())
-        {
+        while (row.next()) {
             int productId = row.getInt("product_id");
             String productName = row.getString("product_name");
             int supplierId = row.getInt("supplier_id");
@@ -62,7 +61,7 @@ public class MySqlProductDao implements ProductDao{
             int unitsOnOrder = row.getInt("units_on_order");
             int reorderLevel = row.getInt("reorder_level");
 
-            var product = new Product(productId,productName,supplierId,categoryId,quantityPerUnit,unitPrice,unitsInStock,unitsOnOrder,reorderLevel);
+            var product = new Product(productId, productName, supplierId, categoryId, quantityPerUnit, unitPrice, unitsInStock, unitsOnOrder, reorderLevel);
             products.add(product);
         }
         return products;
@@ -85,8 +84,7 @@ public class MySqlProductDao implements ProductDao{
                 """;
 
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, productId);
-        if(row.next())
-        {
+        if (row.next()) {
             String productName = row.getString("product_name");
             int supplierId = row.getInt("supplier_id");
             int categoryId = row.getInt("category_id");
@@ -96,7 +94,7 @@ public class MySqlProductDao implements ProductDao{
             int unitsOnOrder = row.getInt("units_on_order");
             int reorderLevel = row.getInt("reorder_level");
 
-            return new Product(productId, productName,supplierId,categoryId,quantityPerUnit,unitPrice,unitsInStock,unitsOnOrder,reorderLevel);
+            return new Product(productId, productName, supplierId, categoryId, quantityPerUnit, unitPrice, unitsInStock, unitsOnOrder, reorderLevel);
         }
         return null;
     }
@@ -134,4 +132,34 @@ public class MySqlProductDao implements ProductDao{
 
         return getProductById(newId);
     }
+
+    @Override
+    public void updateProduct(int id, Product product) {
+
+        String sql = """
+                 UPDATE products
+                 SET product_name = ?
+                  		, supplier_id = ?
+                  		, category_id = ?
+                  		, quantity_per_unit = ?
+                  		, unit_price = ?
+                  		, units_in_stock = ?
+                  		, units_on_order = ?
+                  		, reorder_level = ?
+                WHERE product_id = ?;
+                """;
+
+        jdbcTemplate.update(sql
+                , product.getProductName()
+                , product.getSupplierId()
+                , product.getCategoryId()
+                , product.getQuantityPerUnit()
+                , product.getUnitPrice()
+                , product.getUnitsInStock()
+                , product.getUnitsOnOrder()
+                , product.getReorderLevel()
+                , id);
+    }
+
+
 }

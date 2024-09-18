@@ -13,5 +13,7 @@ Product getProductById(int id);
 
 Product addProduct(Product product);
 
+void updateProduct(int id, Product product);
+
 
 }

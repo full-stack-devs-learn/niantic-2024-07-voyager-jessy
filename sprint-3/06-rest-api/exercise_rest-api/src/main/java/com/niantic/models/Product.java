@@ -63,7 +63,7 @@ public class Product {
         return quantityPerUnit;
     }
 
-    public void setQuanitityPerUnit(String quantityPerUnit) {
+    public void setQuantityPerUnit(String quantityPerUnit) {
         this.quantityPerUnit = quantityPerUnit;
     }
 
