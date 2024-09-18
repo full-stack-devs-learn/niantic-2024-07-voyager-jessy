@@ -161,5 +161,16 @@ public class MySqlProductDao implements ProductDao {
                 , id);
     }
 
+    @Override
+    public void deleteProduct(int id) {
+        String sql = """
+                    DELETE FROM products
+                    WHERE product_id = ?;
+                """;
+
+        jdbcTemplate.update(sql, id);
+
+    }
+
 
 }

@@ -7,13 +7,15 @@ import java.util.List;
 
 public interface ProductDao
 {
-List<Product> getProductsByCategory(int categoryId);
+    List<Product> getProductsByCategory(int categoryId);
 
-Product getProductById(int id);
+    Product getProductById(int id);
 
-Product addProduct(Product product);
+    Product addProduct(Product product);
 
-void updateProduct(int id, Product product);
+    void updateProduct(int id, Product product);
+
+    void deleteProduct(int id);
 
 
 }

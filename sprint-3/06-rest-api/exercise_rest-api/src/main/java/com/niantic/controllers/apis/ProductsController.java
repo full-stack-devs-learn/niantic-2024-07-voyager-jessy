@@ -15,29 +15,35 @@ public class ProductsController {
     private ProductDao productDao = new MySqlProductDao();
 
     @GetMapping("/api/products")
-    public List<Product> getProductsByCategory(@RequestParam int catId){
+    public List<Product> getProductsByCategory(@RequestParam int catId) {
 
-    return productDao.getProductsByCategory(catId);
+        return productDao.getProductsByCategory(catId);
     }
 
     @GetMapping("/api/products/{id}")
-    public Product getProductByProductId(@PathVariable int id){
+    public Product getProductByProductId(@PathVariable int id) {
 
         return productDao.getProductById(id);
     }
 
     @PostMapping("/api/products")
     @ResponseStatus(HttpStatus.CREATED)
-    public Product addProduct(@RequestBody Product product){
+    public Product addProduct(@RequestBody Product product) {
 
         return productDao.addProduct(product);
     }
 
     @PutMapping("/api/products/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateProduct(@PathVariable int id, @RequestBody Product product)
-    {
+    public void updateProduct(@PathVariable int id, @RequestBody Product product) {
         productDao.updateProduct(id, product);
+    }
+
+    @DeleteMapping("/api/products/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable int id) {
+        productDao.deleteProduct(id);
+
     }
 
 
