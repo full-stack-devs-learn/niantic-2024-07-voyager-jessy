@@ -4,7 +4,6 @@ import java.util.List;
 
 public class ReportsStatistics {
 
-
     private List<Integer> allScores;
     AssignmentStatistics statistics;
 
@@ -16,21 +15,23 @@ public class ReportsStatistics {
         return allScores;
     }
 
-    public int getOverallLowest(){
+    public int getOverallLowest() {
 
-         return allScores.stream()
+        return allScores.stream()
                 .mapToInt(Integer::intValue)
                 .min()
                 .orElseThrow(() -> new IllegalArgumentException("No files found"));
     }
-    public int getOverallHighest(){
+
+    public int getOverallHighest() {
 
         return allScores.stream()
                 .mapToInt(Integer::intValue)
                 .max()
                 .orElseThrow(() -> new IllegalArgumentException("No files found"));
     }
-    public double getOverallAverage(){
+
+    public double getOverallAverage() {
 
         return allScores.stream()
                 .mapToInt(Integer::intValue)

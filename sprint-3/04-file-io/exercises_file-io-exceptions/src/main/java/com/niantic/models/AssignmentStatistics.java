@@ -20,27 +20,23 @@ public class AssignmentStatistics {
         return studentScores;
     }
 
-    public int getLowestScore(){
-//        return studentScores.stream().mapToInt(Integer::intValue).min().getAsInt();
+    public int getLowestScore() {
         return studentScores.stream()
                 .mapToInt(Assignment::getScore)
                 .min()
                 .orElseThrow(() -> new IllegalArgumentException("No Scores Found"));
     }
 
-
-    public int getHighestScore(){
-//        return studentAllScores.stream().mapToInt(Integer::intValue).max().getAsInt();
+    public int getHighestScore() {
         return studentScores.stream()
                 .mapToInt(Assignment::getScore)
                 .max()
                 .orElseThrow(() -> new IllegalArgumentException("No Scores Found"));
     }
 
-    public int getAvgScore(){
-    var totalScore = studentScores.stream().mapToInt(Assignment::getScore).reduce(0, Integer::sum);
-
-        return totalScore/studentScores.size();
+    public int getAvgScore() {
+        var totalScore = studentScores.stream().mapToInt(Assignment::getScore).reduce(0, Integer::sum);
+        return totalScore / studentScores.size();
     }
 
 }

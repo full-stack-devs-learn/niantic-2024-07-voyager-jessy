@@ -20,16 +20,14 @@ public class ReportsService {
         this.gradesService = gradesService;
     }
 
-    public void ensureDirectoryExists(String pathName)
-    {
+    public void ensureDirectoryExists(String pathName) {
         File directory = new File(pathName);
-        if(!directory.exists())
-        {
+        if (!directory.exists()) {
             directory.mkdir();
         }
     }
 
-    public void createStudentSummaryReport(AssignmentStatistics statistics){
+    public void createStudentSummaryReport(AssignmentStatistics statistics) {
         LocalDate today = LocalDate.now(); //get today's date
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //format template. File name doesn't need timestamp
 
@@ -39,16 +37,13 @@ public class ReportsService {
 
         File file = new File(fileName);
 
-        try(PrintWriter write = new PrintWriter(file))
-        {
+        try (PrintWriter write = new PrintWriter(file)) {
             write.println(statistics.getStudentName().toUpperCase());
             write.println("-".repeat(45));
             write.printf("Low Score:             %d\n", statistics.getLowestScore());
             write.printf("High Score:            %d\n", statistics.getHighestScore());
             write.printf("Average Score:         %d\n", statistics.getAvgScore());
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -74,28 +69,23 @@ public class ReportsService {
             write.printf("Lowest Score                 %d\n", statistics.getOverallLowest());
             write.printf("Highest Score                %d\n", statistics.getOverallHighest());
             write.printf("Average Score                %.2f\n", statistics.getOverallAverage());
-
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-        public List<Integer> allScores(String[] files){
+    public List<Integer> allScores(String[] files) {
         List<Integer> allScores = new ArrayList<>();
 
-        for(String file: files)
-        {
+        for (String file : files) {
             List<Assignment> assignments = gradesService.getAllAssignments(files);
-            for(Assignment assignment: assignments)
-            {
+            for (Assignment assignment : assignments) {
                 allScores.add(assignment.getScore());
             }
 
         }
         return allScores;
     }
-
 
 
 }

@@ -124,12 +124,11 @@ public class GradingApplication implements Runnable {
 
                 String userResponse = UserInput.returnToDirectory();
                 isViewing(userResponse);
-            }
-                else {
-                    UserInput.displayMessage("No valid scores were found");
-                }
+            } else {
+                UserInput.displayMessage("No valid scores were found");
             }
         }
+    }
 
 
     private void displayAllStudentStatistics() {
@@ -143,8 +142,8 @@ public class GradingApplication implements Runnable {
         // this one could take some time
     }
 
-    private void createStudentSummaryReport(){
-        while(viewing) {
+    private void createStudentSummaryReport() {
+        while (viewing) {
             displayAllFiles();
             int choice = UserInput.chooseFile() - 1;
 
@@ -157,15 +156,6 @@ public class GradingApplication implements Runnable {
             AssignmentStatistics assignmentStatistics = new AssignmentStatistics(studentName, assignments);
 
             ReportsService service = new ReportsService((GradesFileService) gradesServices);
-
-//testing for creation
-//            String[] files2 = gradesServices.getFileNames();
-//            List<Integer> scores = service.allScores(files2);
-//            ReportsStatistics reportsStatistics = new ReportsStatistics(scores);
-//            var min = reportsStatistics.getOverallLowest();
-//            System.out.println("test: " + scores);
-//            System.out.println("lowest "+ min);
-//
             service.createStudentSummaryReport(assignmentStatistics);
             UserInput.displayMessage("Report has been created for " + studentName);
 
@@ -175,20 +165,18 @@ public class GradingApplication implements Runnable {
 
     }
 
-    private void createAllStudentsReport(){
-        while(viewing)
-        {
+    private void createAllStudentsReport() {
+        while (viewing) {
             ReportsService service = new ReportsService((GradesFileService) gradesServices);
 
             String[] files = gradesServices.getFileNames();
-            List<Integer> scores =service.allScores(files);
+            List<Integer> scores = service.allScores(files);
 
             ReportsStatistics reportsStatistics = new ReportsStatistics(scores);
             service.createAllStudentsReport((GradesFileService) gradesServices, reportsStatistics);
             UserInput.displayMessage("Report has been made for all students");
 
             UserInput.continueMessage();
-
 
 
         }
@@ -200,10 +188,12 @@ public class GradingApplication implements Runnable {
                 .substring(10);
     }
 
-    private Boolean isViewing(String userResponse){
+    private Boolean isViewing(String userResponse) {
 
         if (userResponse.equalsIgnoreCase("n")) {
             viewing = false;
+            UserInput.homeScreenSelection();
+
         }
         return viewing;
     }

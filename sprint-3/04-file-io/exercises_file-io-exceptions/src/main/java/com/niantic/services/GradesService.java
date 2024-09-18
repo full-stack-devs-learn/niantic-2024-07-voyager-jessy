@@ -4,8 +4,7 @@ import com.niantic.models.Assignment;
 
 import java.util.List;
 
-public interface GradesService
-{
+public interface GradesService {
     String[] getFileNames();
 
     List<Assignment> getAssignments(String fileName);
