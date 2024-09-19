@@ -75,12 +75,12 @@ public class MySqlEmployeesDao implements EmployeesDao{
             int reportsTo = row.getInt("reports_to");
             float salary = row.getFloat("salary");
 
-            var convertBirth = row.getDate("birth_date");
+            var convertBirth = row.getTimestamp("birth_date");
             if (convertBirth != null) {
-                birthDate = convertBirth.toLocalDate();
+                birthDate = convertBirth.toLocalDateTime();
             }
 
-            var convertHire = row.getDate("hire_date");
+            var convertHire = row.getTimestamp("hire_date");
             if (convertHire != null) {
                 hireDate = convertHire.toLocalDateTime();
             }
