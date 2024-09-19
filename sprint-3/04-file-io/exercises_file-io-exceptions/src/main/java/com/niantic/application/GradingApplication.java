@@ -20,6 +20,7 @@ public class GradingApplication implements Runnable {
     private List<Integer> studentAllScores = new ArrayList<>();
 
     private final LoggingService appLog = new LoggingService("application");
+    private final LoggingService errorLog = new LoggingService("error");
 
     private boolean viewing = true;
 
@@ -64,6 +65,7 @@ public class GradingApplication implements Runnable {
 
         String[] files = gradesServices.getFileNames();
 //        var files = gradesServices.getFileNames(); // would like to make this work for indexing
+        appLog.logMessage("Showing all files");
         AtomicInteger counter = new AtomicInteger(1);
 
         UserInput.displayAllFiles(files, counter);
@@ -72,6 +74,7 @@ public class GradingApplication implements Runnable {
     private void displayFileScores() {
         // todo: 2 - allow the user to select a file name
         // load all student assignment scores from the file - display all files
+        appLog.logMessage("Displaying all scores for selected student");
 
         while (viewing) {
             displayAllFiles();
@@ -100,6 +103,7 @@ public class GradingApplication implements Runnable {
     private void displayStudentAverages() {
         // todo: 3 - allow the user to select a file name
         // load all student assignment scores from the file - display student statistics (low score, high score, average score)
+        appLog.logMessage("Displaying Student Low, High and Avg Score");
         while (viewing) {
             displayAllFiles();
 
@@ -131,6 +135,7 @@ public class GradingApplication implements Runnable {
                 isViewing(userResponse);
             } else {
                 UserInput.displayMessage("No valid scores were found");
+
             }
         }
     }
@@ -148,6 +153,7 @@ public class GradingApplication implements Runnable {
     }
 
     private void createStudentSummaryReport() {
+
         while (viewing) {
             displayAllFiles();
             int choice = UserInput.chooseFile() - 1;

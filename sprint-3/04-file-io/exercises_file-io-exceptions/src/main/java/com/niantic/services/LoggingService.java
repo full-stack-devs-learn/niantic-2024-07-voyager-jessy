@@ -31,19 +31,21 @@ public class LoggingService {
         return new File(fileName);
     }
 
-    private void logMessage(String message){
+    public void logMessage(String message){
 
         var file = getLogFile();
         LocalDateTime day = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        try(PrintWriter writer =  new PrintWriter(file))
+        try(    FileOutputStream stream = new FileOutputStream(file, true);
+                PrintWriter writer =  new PrintWriter(file))
         {
             writer.printf("%s %s \n", day.format(formatter), message);
         }
         catch(Exception e)
-        { //swallowed
-             }
+        {
+            //swallowed
+        }
 
     }
 }
