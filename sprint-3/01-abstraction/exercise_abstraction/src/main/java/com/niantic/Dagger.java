@@ -43,7 +43,6 @@ public class Dagger extends Weapon
         if (getPercentCharged() == 100) {
             damageDealt = getDamage() * 3;
             daggerCount--;
-
         }
         return damageDealt;
     }

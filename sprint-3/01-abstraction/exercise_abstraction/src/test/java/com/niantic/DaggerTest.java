@@ -66,12 +66,13 @@ public class DaggerTest {
         int daggerCount = 1;
 
         //act
-        int actualtDaggers = dagger.getDaggerCount();
         dagger.attack();
         dagger.attack();
+        int actualDaggers = dagger.getDaggerCount();
+
 
         //assert
-        assertEquals(daggerCount, actualtDaggers, "Because we cannot lose our dagger through a simple attack" );
+        assertEquals(daggerCount, actualDaggers, "Because we cannot lose our dagger through a simple attack" );
     }
 
     @Test
@@ -99,7 +100,7 @@ public class DaggerTest {
     }
 
     @Test
-    public void dagger_shouldNot_damageIfLessThan100(){
+    public void daggerPowerAttack_shouldNot_damageIfLessThan100(){
         //arrange
         int expectedDamage = 0;
 
@@ -113,7 +114,7 @@ public class DaggerTest {
 
 
     @Test
-    public void dagger_shouldReturn_increasedDamageWhenCharge100(){
+    public void daggerPowerAttack_shouldReturn_increasedDamageWhenCharge100(){
         int expectedDamage = 30;
 
         //act
