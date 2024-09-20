@@ -31,17 +31,14 @@ public class ProductsController {
     @GetMapping("")
     public ResponseEntity<?> getProductsByCategory(@RequestParam int catId) {
 
-        try
-        {
+        try {
             var products = productDao.getProductsByCategory(catId);
             var categories = categoryDao.getCategory(catId);
-            if(categories == null) {
+            if (categories == null) {
                 return ResponseEntity.notFound().build();
             }
             return ResponseEntity.ok(products);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -49,18 +46,14 @@ public class ProductsController {
     @GetMapping("{id}")
     public ResponseEntity<?> getProductByProductId(@PathVariable int id) {
 
-        try
-        {
+        try {
             var product = productDao.getProductById(id);
-            if (product == null)
-            {
+            if (product == null) {
                 var error = new HttpError(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.toString(), "Product " + id + " is invalid");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
             }
             return ResponseEntity.ok(product);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error has occurred");
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
@@ -71,17 +64,16 @@ public class ProductsController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> addProduct(@RequestBody Product product) {
 
-        try{
+        try {
             var newProduct = productDao.addProduct(product);
-            if(newProduct == null){
+            if (newProduct == null) {
                 var error = new HttpError(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.toString(), "Sorry, There was an Error with creating product");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
             }
             return ResponseEntity.status(HttpStatus.CREATED).body(product);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
-            var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error has occurred");
+            var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error has occurred");
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
         }
@@ -91,30 +83,39 @@ public class ProductsController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<?> updateProduct(@PathVariable int id, @RequestBody Product product) {
 
-        try{
+        try {
             var currentProduct = productDao.getProductById(id);
-            if(currentProduct == null){
+            if (currentProduct == null) {
                 var error = new HttpError(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.toString(), "Product " + id + " not found");
 
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
             }
             productDao.updateProduct(id, product);
             return ResponseEntity.noContent().build();
-        }
-        catch(Exception e)
-        {
-            var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error has occured");
+        } catch (Exception e) {
+            var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error has occured");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
         }
-
-
-//        productDao.updateProduct(id, product);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteProduct(@PathVariable int id) {
-        productDao.deleteProduct(id);
+    public ResponseEntity<?> deleteProduct(@PathVariable int id) {
+//        productDao.deleteProduct(id);
+        try {
+            var currentProduct = productDao.getProductsByCategory(id);
+            if (currentProduct == null) {
+                var error = new HttpError(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.toString(), "Product " + id + " not found");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+            }
+            productDao.deleteProduct(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        catch (Exception e)
+        {
+            var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error has occurred");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+        }
 
     }
 
