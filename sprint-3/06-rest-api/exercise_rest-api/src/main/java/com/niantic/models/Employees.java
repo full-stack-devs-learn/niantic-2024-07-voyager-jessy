@@ -11,8 +11,8 @@ public class Employees {
     private String firstName;
     private String title;
     private String titleOfCourtesy;
-    private LocalDateTime birthDate;// not sure how to handle a type of datetime
-    private LocalDateTime hireDate;
+    private LocalDate birthDate;// not sure how to handle a type of datetime
+    private LocalDate hireDate;
     private String address;
     private String city;
     private String region;
@@ -24,7 +24,7 @@ public class Employees {
     private int reportsTo;
     private float salary;
 
-    public Employees(int employeeId, String lastName, String firstName, String title, String titleOfCourtesy, LocalDateTime birthDate, LocalDateTime hireDate, String address, String city, String region, String postalCode, String country, String homePhone, String extension, String notes, int reportsTo, float salary) {
+    public Employees(int employeeId, String lastName, String firstName, String title, String titleOfCourtesy, LocalDate birthDate, LocalDate hireDate, String address, String city, String region, String postalCode, String country, String homePhone, String extension, String notes, int reportsTo, float salary) {
         this.employeeId = employeeId;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -42,9 +42,6 @@ public class Employees {
         this.notes = notes;
         this.reportsTo = reportsTo;
         this.salary = salary;
-    }
-
-    public Employees() {
     }
 
     public int getEmployeeId() {
@@ -87,19 +84,19 @@ public class Employees {
         this.titleOfCourtesy = titleOfCourtesy;
     }
 
-    public LocalDateTime getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDateTime birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
-    public LocalDateTime getHireDate() {
+    public LocalDate getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(LocalDateTime hireDate) {
+    public void setHireDate(LocalDate hireDate) {
         this.hireDate = hireDate;
     }
 
@@ -182,4 +179,5 @@ public class Employees {
     public void setSalary(float salary) {
         this.salary = salary;
     }
+
 }

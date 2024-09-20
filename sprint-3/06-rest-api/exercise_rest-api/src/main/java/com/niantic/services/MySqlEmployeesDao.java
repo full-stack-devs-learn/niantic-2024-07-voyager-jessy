@@ -40,8 +40,8 @@ public class MySqlEmployeesDao implements EmployeesDao{
                     , first_name
                     , title
                     , title_of_courtesy
-                    , birth_date
-                    , hire_date
+                    , cast(birth_date as date) as birth_date
+                    , cast(hire_date as date) as hire_date
                     , address
                     , city
                     , region
@@ -56,40 +56,46 @@ public class MySqlEmployeesDao implements EmployeesDao{
                 """;
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql);
 
-        while (row.next()) {
-            int employeeId = row.getInt("employee_id");
-            String lastName = row.getString("last_name");
-            String firstName = row.getString("first_name");
-            String title = row.getString("title");
-            String titleOfCourtesy = row.getString("title_of_courtesy");
-            LocalDateTime birthDate = null;
-            LocalDateTime hireDate = null;
-            String address = row.getString("address");
-            String city = row.getString("city");
-            String region = row.getString("region");
-            String postalCode = row.getString("postal_code");
-            String country = row.getString("country");
-            String homePhone = row.getString("home_phone");
-            String extension = row.getString("extension");
-            String notes = row.getString("notes");
-            int reportsTo = row.getInt("reports_to");
-            float salary = row.getFloat("salary");
+        try {
+            while (row.next()) {
+                int employeeId = row.getInt("employee_id");
+                String lastName = row.getString("last_name");
+                String firstName = row.getString("first_name");
+                String title = row.getString("title");
+                String titleOfCourtesy = row.getString("title_of_courtesy");
+                LocalDate birthDate = null;
+                LocalDate hireDate = null;
+                String address = row.getString("address");
+                String city = row.getString("city");
+                String region = row.getString("region");
+                String postalCode = row.getString("postal_code");
+                String country = row.getString("country");
+                String homePhone = row.getString("home_phone");
+                String extension = row.getString("extension");
+                String notes = row.getString("notes");
+                int reportsTo = row.getInt("reports_to");
+                float salary = row.getFloat("salary");
 
-            var convertBirth = row.getTimestamp("birth_date");
-            if (convertBirth != null) {
-                birthDate = convertBirth.toLocalDateTime();
+                var convertBirth = row.getDate("birth_date");
+                if (convertBirth != null) {
+                    birthDate = convertBirth.toLocalDate();
+                }
+
+                var convertHire = row.getDate("hire_date");
+                if (convertHire != null) {
+                    hireDate = convertHire.toLocalDate();
+                }
+
+                var employee = new Employees(employeeId, lastName, firstName, title
+                        , titleOfCourtesy, birthDate, hireDate, address, city, region
+                        , postalCode, country, homePhone, extension, notes, reportsTo, salary);
+
+                employees.add(employee);
             }
-
-            var convertHire = row.getTimestamp("hire_date");
-            if (convertHire != null) {
-                hireDate = convertHire.toLocalDateTime();
-            }
-
-            var employee = new Employees(employeeId, lastName, firstName, title
-                    , titleOfCourtesy, birthDate, hireDate, address, city, region
-                    , postalCode, country, homePhone, extension, notes, reportsTo, salary);
-
-            employees.add(employee);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
         }
         return employees;
 
