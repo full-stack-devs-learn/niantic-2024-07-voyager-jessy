@@ -1,5 +1,6 @@
 package com.niantic.controllers.apis;
 
+import com.niantic.models.HttpError;
 import com.niantic.models.Product;
 import com.niantic.services.CategoryDao;
 import com.niantic.services.MySqlProductDao;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -45,9 +47,24 @@ public class ProductsController {
     }
 
     @GetMapping("{id}")
-    public Product getProductByProductId(@PathVariable int id) {
+    public ResponseEntity<?> getProductByProductId(@PathVariable int id) {
 
-        return productDao.getProductById(id);
+        try
+        {
+            var product = productDao.getProductById(id);
+            if (product == null)
+            {
+                var error = new HttpError(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.toString(), "Product " + id + " is invalid");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+            }
+            return ResponseEntity.ok(product);
+        }
+        catch(Exception e)
+        {
+            var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error has occurred");
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+        }
     }
 
     @PostMapping("")
