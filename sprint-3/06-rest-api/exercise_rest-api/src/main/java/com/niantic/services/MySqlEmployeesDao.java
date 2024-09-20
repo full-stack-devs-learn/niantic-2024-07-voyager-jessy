@@ -40,8 +40,8 @@ public class MySqlEmployeesDao implements EmployeesDao{
                     , first_name
                     , title
                     , title_of_courtesy
-                    , cast(birth_date as date) as birth_date
-                    , cast(hire_date as date) as hire_date
+                    , birth_date
+                    , hire_date
                     , address
                     , city
                     , region
@@ -56,6 +56,8 @@ public class MySqlEmployeesDao implements EmployeesDao{
                 """;
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql);
 
+//                    , cast(birth_date as date) as birth_date
+//                    , cast(hire_date as date) as hire_date
         try {
             while (row.next()) {
                 int employeeId = row.getInt("employee_id");
@@ -63,8 +65,8 @@ public class MySqlEmployeesDao implements EmployeesDao{
                 String firstName = row.getString("first_name");
                 String title = row.getString("title");
                 String titleOfCourtesy = row.getString("title_of_courtesy");
-                LocalDate birthDate = null;
-                LocalDate hireDate = null;
+                LocalDateTime birthDate = null;
+                LocalDateTime hireDate = null;
                 String address = row.getString("address");
                 String city = row.getString("city");
                 String region = row.getString("region");
@@ -76,14 +78,14 @@ public class MySqlEmployeesDao implements EmployeesDao{
                 int reportsTo = row.getInt("reports_to");
                 float salary = row.getFloat("salary");
 
-                var convertBirth = row.getDate("birth_date");
+                var convertBirth = row.getString("birth_date");
                 if (convertBirth != null) {
-                    birthDate = convertBirth.toLocalDate();
+                    birthDate = LocalDateTime.parse((convertBirth));
                 }
 
-                var convertHire = row.getDate("hire_date");
+                var convertHire = row.getString("hire_date");
                 if (convertHire != null) {
-                    hireDate = convertHire.toLocalDate();
+                    hireDate = LocalDateTime.parse(convertHire);
                 }
 
                 var employee = new Employees(employeeId, lastName, firstName, title
