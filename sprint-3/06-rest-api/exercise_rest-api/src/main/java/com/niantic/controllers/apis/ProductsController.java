@@ -69,9 +69,22 @@ public class ProductsController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Product addProduct(@RequestBody Product product) {
+    public ResponseEntity<?> addProduct(@RequestBody Product product) {
 
-        return productDao.addProduct(product);
+        try{
+            var newProduct = productDao.addProduct(product);
+            if(newProduct == null){
+                var error = new HttpError(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.toString(), "Sorry, There was an Error with creating product");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+            }
+            return ResponseEntity.status(HttpStatus.CREATED).body(product);
+        }
+        catch (Exception e){
+
+            var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error has occurred");
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+        }
     }
 
     @PutMapping("{id}")
