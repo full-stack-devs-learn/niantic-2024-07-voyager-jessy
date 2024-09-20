@@ -22,7 +22,7 @@ public class GradingApplication implements Runnable {
     private final LoggingService appLog = new LoggingService("application");
     private final LoggingService errorLog = new LoggingService("error");
 
-    private boolean viewing = true;
+
 
     public void run() {
         while (true) {
@@ -74,6 +74,7 @@ public class GradingApplication implements Runnable {
     private void displayFileScores() {
         // todo: 2 - allow the user to select a file name
         // load all student assignment scores from the file - display all files
+        boolean viewing = true;
         appLog.logMessage("Displaying all scores for selected student");
 
         while (viewing) {
@@ -103,6 +104,7 @@ public class GradingApplication implements Runnable {
     private void displayStudentAverages() {
         // todo: 3 - allow the user to select a file name
         // load all student assignment scores from the file - display student statistics (low score, high score, average score)
+        boolean viewing = true;
         appLog.logMessage("Displaying Student Low, High and Avg Score");
         while (viewing) {
             displayAllFiles();
@@ -132,7 +134,8 @@ public class GradingApplication implements Runnable {
                 UserInput.displayStudentMax(maximum);
 
                 String userResponse = UserInput.returnToDirectory();
-                isViewing(userResponse);
+                //isViewing(userResponse);
+                viewing = userResponse.equalsIgnoreCase("y");
             } else {
                 UserInput.displayMessage("No valid scores were found");
 
@@ -153,6 +156,7 @@ public class GradingApplication implements Runnable {
     }
 
     private void createStudentSummaryReport() {
+        boolean viewing = true;
 
         while (viewing) {
             displayAllFiles();
@@ -177,6 +181,7 @@ public class GradingApplication implements Runnable {
     }
 
     private void createAllStudentsReport() {
+        boolean viewing = true;
         while (viewing) {
             ReportsService service = new ReportsService((GradesFileService) gradesServices);
 
@@ -200,10 +205,11 @@ public class GradingApplication implements Runnable {
     }
 
     private Boolean isViewing(String userResponse) {
+        boolean viewing = true;
 
         if (userResponse.equalsIgnoreCase("n")) {
             viewing = false;
-            UserInput.homeScreenSelection();
+//            UserInput.homeScreenSelection();
 
         }
         return viewing;

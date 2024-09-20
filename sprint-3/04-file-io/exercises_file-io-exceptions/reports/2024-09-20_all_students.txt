@@ -1,0 +1,8 @@
+All Assignments
+---------------------------------------------
+Total Students               5
+Total Assignments            15
+---------------------------------------------
+Lowest Score                 80
+Highest Score                100
+Average Score                89.65
