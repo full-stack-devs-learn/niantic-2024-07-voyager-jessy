@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 public class CategoriesController
 {
+
     private CategoryDao categoryDao = new MySqlCategoryDao();
 
     @GetMapping("/api/categories")
