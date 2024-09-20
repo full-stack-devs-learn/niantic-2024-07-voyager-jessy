@@ -89,8 +89,26 @@ public class ProductsController {
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateProduct(@PathVariable int id, @RequestBody Product product) {
-        productDao.updateProduct(id, product);
+    public ResponseEntity<?> updateProduct(@PathVariable int id, @RequestBody Product product) {
+
+        try{
+            var currentProduct = productDao.getProductById(id);
+            if(currentProduct == null){
+                var error = new HttpError(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.toString(), "Product " + id + " not found");
+
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+            }
+            productDao.updateProduct(id, product);
+            return ResponseEntity.noContent().build();
+        }
+        catch(Exception e)
+        {
+            var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error has occured");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+        }
+
+
+//        productDao.updateProduct(id, product);
     }
 
     @DeleteMapping("{id}")
