@@ -4,6 +4,8 @@ import com.niantic.models.Employees;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
 import java.time.LocalDate;
@@ -13,7 +15,7 @@ import java.util.List;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-
+@Repository
 public class MySqlEmployeesDao implements EmployeesDao{
     JdbcTemplate jdbcTemplate;
 
