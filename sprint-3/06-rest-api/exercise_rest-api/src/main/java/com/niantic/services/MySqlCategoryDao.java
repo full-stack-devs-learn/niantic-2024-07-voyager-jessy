@@ -23,15 +23,6 @@ public class MySqlCategoryDao implements CategoryDao
     @Autowired
     public MySqlCategoryDao(DataSource dataSource)
     {
-//        String databaseUrl = "jdbc:mysql://localhost:3306/northwind";
-//        String userName = "root";
-//        String password = "P@ssw0rd";
-//        DataSource dataSource = new BasicDataSource(){{
-//            setUrl(databaseUrl);
-//            setUsername(userName);
-//            setPassword(password);
-//        }};
-
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 

@@ -15,6 +15,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
+@CrossOrigin
+
 public class ProductsController {
 
     private CategoryDao categoryDao;
@@ -25,8 +27,6 @@ public class ProductsController {
         this.categoryDao = categoryDao;
         this.productDao = productDao;
     }
-
-//    private ProductDao productDao = new MySqlProductDao();
 
     @GetMapping("")
     public ResponseEntity<?> getProductsByCategory(@RequestParam int catId) {
@@ -70,7 +70,7 @@ public class ProductsController {
                 var error = new HttpError(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.toString(), "Sorry, There was an Error with creating product");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
             }
-            return ResponseEntity.status(HttpStatus.CREATED).body(product);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newProduct);
         } catch (Exception e) {
 
             var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error has occurred");

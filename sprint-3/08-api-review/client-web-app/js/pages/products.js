@@ -20,6 +20,21 @@ document.addEventListener("DOMContentLoaded", function() {
 function loadProducts()
 {
     // load all products
+    productService.getProductsByCategory(categoryId)
+        .then(products => {
+            const productsContainer = document.getElementById('categories-container');
+            productsContainer.innerHTML = '';
+
+            products.forEach(product => {
+                const template = document.getElementById("category-template").contentEditable.cloneNode(true);
+                template.getElementById("category-header").innerText = product.productName;
+                template.getElementById("category-body")
+                
+            });
+
+            
+            
+        })
 }
 
 function showForm()
