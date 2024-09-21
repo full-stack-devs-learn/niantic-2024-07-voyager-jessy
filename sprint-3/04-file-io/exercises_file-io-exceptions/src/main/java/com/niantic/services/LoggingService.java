@@ -38,7 +38,7 @@ public class LoggingService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         try(    FileOutputStream stream = new FileOutputStream(file, true);
-                PrintWriter writer =  new PrintWriter(file))
+                PrintWriter writer =  new PrintWriter(stream))
         {
             writer.printf("%s %s \n", day.format(formatter), message);
         }
