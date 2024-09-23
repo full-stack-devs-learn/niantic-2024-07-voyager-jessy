@@ -26,10 +26,12 @@ function loadProducts()
             productsContainer.innerHTML = '';
 
             products.forEach(product => {
-                const template = document.getElementById("category-template").contentEditable.cloneNode(true);
+                const template = document.getElementById("category-template").content.cloneNode(true);
                 template.getElementById("category-header").innerText = product.productName;
                 template.getElementById("category-body")
                 
+
+                productsContainer.appendChild(template);
             });
 
             

@@ -13,9 +13,7 @@ class CategoryService
     getCategoryById(categoryId)
     {
         return axios.get(`${this.baseUrl}/${categoryId}`)
-            .then(response => {
-                return response.data;
-            });
+            .then(response => response.data);
     }
 
     addCategory(category)
