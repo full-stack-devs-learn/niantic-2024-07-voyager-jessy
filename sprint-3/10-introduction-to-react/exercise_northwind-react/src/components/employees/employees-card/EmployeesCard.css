@@ -1,0 +1,7 @@
+.employee-row {
+    cursor: pointer;
+}
+
+.employee-row:hover {
+    background-color: rgb(196, 217, 218);
+}
