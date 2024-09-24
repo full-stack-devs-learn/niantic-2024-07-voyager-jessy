@@ -2,10 +2,12 @@ class ProductsService {
 
     baseUrl = `${config.baseUrl}/products`;
 
-    getProductsByCategory(catId)
+    async getProductsByCategory(catId)
     {
-    return axios.get(this.baseUrl)
-        .then(response => { return response.data;});
+        const response = await axios.get(this.baseUrl)
+        return response.data;
+
+        // .then(response => { return response.data;});
 
     }
 
