@@ -13,7 +13,7 @@ export default function EmployeesContainer()
                 {
                     employees.map((employee) => (
                         <EmployeesCard key={employee.employeeId}
-                            employee={employee.firstName}
+                            employee={employee.firstName + " " + employee.lastName}
                             id={employee.employeeId}
                             title={employee.title}
                         ></EmployeesCard>
