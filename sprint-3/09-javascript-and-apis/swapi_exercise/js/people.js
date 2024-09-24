@@ -141,23 +141,38 @@ function loadPeople(pageNumber) {
     function loadDetails(uid) {
 
         const peoplesContainer = document.getElementById("peoples-container");
-        peopleService.classList.add("d-none");
-
+        peoplesContainer.classList.add("d-none");
 
         peopleService.getDetailsByPeopleUid(uid)
             .then(person => {
                 console.log("Name: ", person.name);
+                console.log(person);
 
                 const detailsContainer = document.getElementById("details-container");
                 detailsContainer.innerHTML = "";
 
                
                     const characterName = document.createElement("h2");
-                    characterName.classList.add("text-center", "text-info", "card")
+                    characterName.classList.add("text-center", "card")
                     characterName.innerText = person.name;
+
+                    const characterDob = document.createElement("li");
+                    characterDob.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+                    characterDob.innerText = "Birth Date: " + person.birth_year;
+
+                    const eyeColor = document.createElement("li")
+                    eyeColor.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+                    eyeColor.innerText = "Eye Color: " + person.eye_color
+
+                    const mass = document.createElement("li")
+                    mass.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+                    mass.innerText = "Eye Color: " + person.mass
+
                 
 
-                detailsContainer.appendChild(characterName)
+                detailsContainer.appendChild(characterName);
+                detailsContainer.appendChild(characterDob);
+                detailsContainer.appendChild(eyeColor);
 
             })
             .catch(error => {
