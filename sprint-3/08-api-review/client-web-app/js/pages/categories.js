@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function() {
     addFormScreen = document.getElementById("add-form-screen");
     addForm = document.getElementById("add-form");
 
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    categoryId = +urlParams.get('catId');
+
     document.getElementById("add-button").addEventListener("click", showForm);
     document.getElementById("cancel-button").addEventListener("click", cancelAdd);
     document.getElementById("save-button").addEventListener("click", addCategory);
@@ -25,6 +29,7 @@ function loadCategories()
                 const template = document.getElementById('category-template').content.cloneNode(true);
                 template.getElementById('category-header').innerText = category.categoryName;
                 template.getElementById('category-image').src = `images/${category.categoryId}.webp`;
+                template.getElementById('products-link').href = "products.html?catId=${category.catergoryId}"
 
                 const deleteButton = template.querySelector('.card-footer #delete-button');
                 deleteButton.addEventListener('click', () => {
