@@ -10,4 +10,12 @@ class PeopleService
         return axios.get(url).then(response => response.data);
 
     }
+
+    getDetailsByPeopleUid(uid)
+    {
+
+        const url = `${this.baseUrl}/${uid}`
+
+        return axios.get(url).then(response => response.data);
+    }
 }
