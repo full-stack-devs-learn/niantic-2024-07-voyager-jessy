@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function loadPeople(pageNumber) {
+    
+    try{
+
+   
     peopleService.getAllPeopleByPage(pageNumber)
         .then(response => {
             const people = response.results;
@@ -45,11 +49,6 @@ function loadPeople(pageNumber) {
                     loadDetails(person.uid);
                 })
 
-
-
-
-
-
                 li.appendChild(link);
                 //end possible add
                 peopleNames.appendChild(li);
@@ -59,7 +58,15 @@ function loadPeople(pageNumber) {
 
             console.log(nextLink);
             console.log(people);
+      
         })
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+        
 
     function setupPagination(totalPages, currentPage) {
         const pageNumberContainer = document.getElementById("pagination-container");
@@ -133,29 +140,22 @@ function loadPeople(pageNumber) {
 
     function loadDetails(uid) {
 
+        const peoplesContainer = document.getElementById("peoples-container");
+        peopleService.classList.add("d-none");
+
 
         peopleService.getDetailsByPeopleUid(uid)
-            .then(response => {
-                const details = response.results
-                // const name = response.name;
-                // const height = response.height;
-                // const mass = response.mass;
-                // const hairColor = response.hair_color;
-
+            .then(person => {
+                console.log("Name: ", person.name);
 
                 const detailsContainer = document.getElementById("details-container");
                 detailsContainer.innerHTML = "";
 
-                details.forEach(detail => {
+               
                     const characterName = document.createElement("h2");
-                    name.classList.add("text-center", "text-info")
-                })
-
-                // const characterName = document.createElement("h2");
-                // characterName.textContent = `Name: ${response.name}`;
-
-                // const characterHeight = document.createElement("li");
-                // characterHeight.textContent = "Height: " + height;
+                    characterName.classList.add("text-center", "text-info", "card")
+                    characterName.innerText = person.name;
+                
 
                 detailsContainer.appendChild(characterName)
 
@@ -172,5 +172,5 @@ function loadPeople(pageNumber) {
 
 
 
-}
+
 
