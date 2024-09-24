@@ -16,6 +16,7 @@ class PeopleService
 
         const url = `${this.baseUrl}/${uid}`
 
-        return axios.get(url).then(response => response.data);
+        return axios.get(url)
+        .then(response => response.data);
     }
 }

@@ -3,7 +3,7 @@ let currentPage = 1;
 const totalPages = 5; //per swapi api while displaying 20 characters, there will be a total of 5 pages
 
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
     peopleService = new PeopleService();
 
     loadPeople(currentPage);
@@ -12,78 +12,81 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 
-function loadPeople(pageNumber)
-{
+function loadPeople(pageNumber) {
     peopleService.getAllPeopleByPage(pageNumber)
-    .then(response => {
-        const people = response.results;
-        const nextLink = response.next;
-        const url = response.url;
+        .then(response => {
+            const people = response.results;
+            const nextLink = response.next;
+            const url = response.url;
 
-        const header = document.getElementById("title");
-        header.textContent = "Star Wars Characters";
-        header.classList.add("text-center", "text-info")
-
-        
-        const peopleNames = document.getElementById("peoples-container");
-        peopleNames.innerHTML = "";
-
-        people.forEach(person => {
-            const li = document.createElement("li")
-            li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center")
-            li.textContent = person.name;
-            
-            //possible add
-            const link = document.createElement("a");
-            link.className = "page-link";
-            link.href = "#"
-            link.href = person.url;
-            link.innerHTML = "details";
+            const header = document.getElementById("title");
+            header.textContent = "Star Wars Characters";
+            header.classList.add("text-center", "text-info")
 
 
+            const peopleNames = document.getElementById("peoples-container");
+            peopleNames.innerHTML = "";
 
-            link.addEventListener("click", function(event){
-                preventDefault();
-                loadDetails(uid);
-            })
+            people.forEach(person => {
+                const li = document.createElement("li")
+                li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center")
+                li.textContent = person.name;
 
-            li.appendChild(link);
-            //end possible add
-            peopleNames.appendChild(li);
-        });
+                //possible add
+                const link = document.createElement("a");
+                link.className = "page-link";
+                link.href = "#"
+                const uid = person.uid;
+                // link.href = person.url;
+                link.innerHTML = "details";
 
-        setupPagination(totalPages, pageNumber);
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    loadDetails(person.uid);
+                })
 
-        console.log(nextLink);
-        console.log(people);
-    })
 
-    function setupPagination(totalPages, currentPage){
+
+
+
+
+                li.appendChild(link);
+                //end possible add
+                peopleNames.appendChild(li);
+            });
+
+            setupPagination(totalPages, pageNumber);
+
+            console.log(nextLink);
+            console.log(people);
+        })
+
+    function setupPagination(totalPages, currentPage) {
         const pageNumberContainer = document.getElementById("pagination-container");
         const pageList = pageNumberContainer.querySelector(".pagination")
         pageList.classList.add("mx-auto");
         pageList.innerHTML = "";
 
-         //previous button
-         const previousPage = document.createElement("li");
-         previousPage.className = "page-item";
-         const previousLink = document.createElement("a");
-         previousLink.className = "page-link";
-         previousLink.href = "#";
-         previousLink.innerHTML = "&laquo;";
- 
-         previousLink.addEventListener("click", function(event){
-             event.preventDefault();
-             if(currentPage > 1){
-                 loadPeople(currentPage - 1);
-             }
-         });
-         previousPage.appendChild(previousLink);
-         pageList.appendChild(previousPage);
+        //previous button
+        const previousPage = document.createElement("li");
+        previousPage.className = "page-item";
+        const previousLink = document.createElement("a");
+        previousLink.className = "page-link";
+        previousLink.href = "#";
+        previousLink.innerHTML = "&laquo;";
+
+        previousLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            if (currentPage > 1) {
+                loadPeople(currentPage - 1);
+            }
+        });
+        previousPage.appendChild(previousLink);
+        pageList.appendChild(previousPage);
 
 
         //page numbers 
-        for(let i=1; i<=totalPages; i++){
+        for (let i = 1; i <= totalPages; i++) {
             const pageItem = document.createElement("li");
             pageItem.className = "page-item" + (i === currentPage ? " active" : "");
             const pageLink = document.createElement("a");
@@ -91,7 +94,7 @@ function loadPeople(pageNumber)
             pageLink.href = "#";
             pageLink.textContent = i;
 
-            pageLink.addEventListener("click", function(event) {
+            pageLink.addEventListener("click", function (event) {
                 event.preventDefault();
                 currentPage = i;
                 loadPeople(currentPage);
@@ -110,9 +113,9 @@ function loadPeople(pageNumber)
         nextLink.href = "#";
         nextLink.innerHTML = "&raquo;";
 
-        nextLink.addEventListener("click", function(event){
+        nextLink.addEventListener("click", function (event) {
             event.preventDefault();
-            if(currentPage < totalPages){
+            if (currentPage < totalPages) {
                 loadPeople(currentPage + 1)
             }
 
@@ -120,19 +123,51 @@ function loadPeople(pageNumber)
         nextPage.appendChild(nextLink);
         pageList.appendChild(nextPage);
 
+    }
 
-        }
+    function getUidFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('uid')
 
-        function loadDetails(uid){
-            const params = new URLSearchParams(window.location.search);
-            return params.get('uid')   
-            
-            peopleService.getDetailsByPeopleUid(uid);
+    }
 
-        
-        }
+    function loadDetails(uid) {
 
-    
+
+        peopleService.getDetailsByPeopleUid(uid)
+            .then(response => {
+                const details = response.results
+                // const name = response.name;
+                // const height = response.height;
+                // const mass = response.mass;
+                // const hairColor = response.hair_color;
+
+
+                const detailsContainer = document.getElementById("details-container");
+                detailsContainer.innerHTML = "";
+
+                details.forEach(detail => {
+                    const characterName = document.createElement("h2");
+                    name.classList.add("text-center", "text-info")
+                })
+
+                // const characterName = document.createElement("h2");
+                // characterName.textContent = `Name: ${response.name}`;
+
+                // const characterHeight = document.createElement("li");
+                // characterHeight.textContent = "Height: " + height;
+
+                detailsContainer.appendChild(characterName)
+
+            })
+            .catch(error => {
+                console.error("Error fetching details:", error)
+            })
+
+
+    }
+
+
 
 
 
