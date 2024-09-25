@@ -41,7 +41,6 @@ function loadPeople(pageNumber) {
                     link.className = "page-link";
                     link.href = "#"
                     const uid = person.uid;
-                    // link.href = person.url;
                     link.innerHTML = "details";
 
                     link.addEventListener("click", function (event) {
