@@ -7,7 +7,4 @@ export default function Navigation() {
             <h1>Northwind Traders</h1>
         </div>
     )
-
-
-
 }
