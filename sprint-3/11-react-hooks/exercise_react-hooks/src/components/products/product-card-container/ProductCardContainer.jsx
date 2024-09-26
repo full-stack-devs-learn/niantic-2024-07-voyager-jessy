@@ -14,6 +14,7 @@ export default function ProductCardContainer(){
 
             console.log("data being returned:");
             console.log(data);
+            setProducts(data);
             
         })
         },
@@ -24,16 +25,17 @@ export default function ProductCardContainer(){
 
     return(
         <>
-        <h5 className="container"> Products:</h5>
+        {/* <h5 className="container"> Products:</h5> */}
         <main className="container mt-4 products-container" id="products-container">
-        {/* {
+        {
             products.map((product) => (
-                <ProductCard key={product.categoryId} 
-                    product={product.productName} 
-                    id={product.productId}
+                <ProductCard key={product.productId} 
+                    product={product.name} 
+                    id={product.id}
+                    price={product.unitPrice}
                     ></ProductCard>
             ))
-        } */}
+        }
         </main>
         
         </>

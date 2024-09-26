@@ -6,10 +6,18 @@ class ProductService
 
     async getAllProducts()
     {
-        const response = await axios.get(this.baseUrl)
+        const response = await axios.get(this.baseUrl, {
+            params: {
+                per_page: 20
+            }
+        })
         return response.data;
+    }
 
-
+    async addProduct(product)
+    {
+        const response = await axios.post(this.baseUrl, product);
+        return response.data;
     }
 
 
