@@ -1,7 +1,6 @@
-{
-
-        body {
-            background-image: url("twinkling2.jpg")
-        }
+body {
+        background-image: url("/css/twinkling2.jpg")
+        background-color: blue
 
     }
+
