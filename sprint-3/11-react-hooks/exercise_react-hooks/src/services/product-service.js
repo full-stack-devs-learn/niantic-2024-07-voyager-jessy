@@ -20,12 +20,18 @@ class ProductService
         return response.data;
     }
 
+    async deleteProduct(productId)
+    {
+        await axios.delete(`${this.baseUrl}/${productId}`)
 
-    // async getProductsByCategory(categoryId)
-    // {
-    //     const response = await axios.get(this.baseUrl)
-    //     return response.data;
-    // }
+    }
+
+
+    async getProductsByCategory(categoryId)
+    {
+        const response = await axios.get(this.baseUrl)
+        return response.data;
+    }
 
     
 

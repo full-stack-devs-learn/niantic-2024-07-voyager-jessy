@@ -39,9 +39,10 @@ public class MySqlProductDao implements ProductDao
                     , quantity_per_unit
                     , unit_price
                 FROM products;
+                WHERE category_id = ?;
                 """;
 
-        var row = jdbcTemplate.queryForRowSet(sql);
+        var row = jdbcTemplate.queryForRowSet(sql, categoryId);
 
         while (row.next())
         {
