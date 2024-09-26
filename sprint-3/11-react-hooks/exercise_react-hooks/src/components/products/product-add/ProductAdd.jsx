@@ -41,7 +41,6 @@ export default function ProductAdd({ onProductAdded }) {
                         onChange={(e) => setProductName(e.target.value)}
                     />
                 </div>
-
                 <div className="row">
                     <label htmlFor="product-price">Unit Price:</label>
                     <input className="form-control" name="product-price" id="product-price"

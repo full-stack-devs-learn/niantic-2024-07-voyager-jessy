@@ -16,7 +16,7 @@ class ProductService
 
     async addProduct(product)
     {
-        const response = await axios.post(this.baseUrl, product);
+        const response = await axios.post(this.baseUrl, product)
         return response.data;
     }
 
