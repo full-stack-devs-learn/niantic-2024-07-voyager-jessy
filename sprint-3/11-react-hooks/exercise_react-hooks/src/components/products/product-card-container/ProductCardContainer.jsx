@@ -1,11 +1,12 @@
+import { useEffect, useState } from 'react'
 import ProductCard from '../product-card/ProductCard'
 import './ProductCardContainer.css'
 import productService from '../../../services/product-service'
-import { useEffect, useState } from 'react'
 
 
 
-export default function ProductCardContainer(){
+export default function ProductCardContainer()
+{
 
     const [products, setProducts] = useState([])
 
@@ -21,22 +22,31 @@ export default function ProductCardContainer(){
     
     [])
 
+    const productDeleted = (id) => { //acknowledges product up for deletion
+        console.log(products);
+        const updatedList = products.filter(product => product.id !== id); //created a newly updated product list of all current products that do NOT match the id of product up for deletion
+        setProducts(updatedList); //creates this newly updated list of current products
+        console.log(updatedList);
+    }
+
    
 
     return(
         <>
-        {/* <h5 className="container"> Products:</h5> */}
+        <div className='container'>
         <main className="container mt-4 products-container" id="products-container">
         {
             products.map((product) => (
-                <ProductCard key={product.productId} 
+                <ProductCard key={product.id} 
                     product={product.name} 
                     id={product.id}
                     price={product.unitPrice}
+                    onProductDeleted={productDeleted}
                     ></ProductCard>
             ))
         }
         </main>
+        </div>
         
         </>
 
