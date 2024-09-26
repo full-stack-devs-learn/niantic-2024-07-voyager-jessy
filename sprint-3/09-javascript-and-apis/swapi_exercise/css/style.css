@@ -1,6 +1,18 @@
 body {
-        background-image: url("/css/twinkling2.jpg")
-        background-color: blue
+        /* background-image: no-repeat url("/css/twinkling2.jpg"); */
+        /* background: no-repeat; */
+        background-position: center;
+        background: linear-gradient(90deg, 
+        black, 
+        rgb(80, 79, 79),
+        rgb(157, 157, 157),
+        white
+        )
+        /* background-image: repeating-radial-gradient(black, rgba(255, 0, 0, 0.722), rgba(255, 255, 0, 0.7) 10%, purple 15%); */
+
 
     }
+h1{
+    text-shadow: 2px 4px 2px black;
+}
 

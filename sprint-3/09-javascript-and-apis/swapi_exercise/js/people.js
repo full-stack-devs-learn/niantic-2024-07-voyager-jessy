@@ -25,7 +25,7 @@ function loadPeople(pageNumber) {
 
                 const header = document.getElementById("title");
                 header.textContent = "Star Wars Characters";
-                header.classList.add("text-center", "text-info")
+                header.classList.add("text-center")
 
 
                 const peopleNames = document.getElementById("peoples-container");
