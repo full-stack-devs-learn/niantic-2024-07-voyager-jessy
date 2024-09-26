@@ -54,6 +54,7 @@ export default function ProductAdd({ onProductAdded }) {
                 <div>
                     <label htmlFor="product-category-id">Category select</label>
                     <select class="form-select mb-2" id="product-category-id-select" onChange={(e) => setProductCategoryId(e.target.value)} >
+                        <option className="diabled">Select Category</option>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
