@@ -14,7 +14,9 @@ export default function ProductsPage() {
             <button className='btn btn-dark' onClick={() => setAction("add")}>Add</button>
 
             {action === "list" && <ProductCardContainer></ProductCardContainer>}
-            {action === "add" && <ProductAdd onProductAdded={() => setAction("list")}></ProductAdd>}
+            {action === "add" && <ProductAdd onProductAdded={() => setAction("list")}
+                                            onCancel={()=>setAction("list")}
+                                            ></ProductAdd>}
 
         </div>
     )

@@ -64,7 +64,7 @@ export default function ProductAdd({ onProductAdded }) {
                         <option>8</option>
                     </select>
                 </div>
-                <button className="btn btn-danger mr-3" type="submit">Add Category</button>
+                <button className="btn btn-danger mr-3" type="submit">Add Product</button>
                 {/* <button className="btn btn-dark" type="cancel" onClick={onCancel}>Cancel</button> */}
             </form>
         </div>
