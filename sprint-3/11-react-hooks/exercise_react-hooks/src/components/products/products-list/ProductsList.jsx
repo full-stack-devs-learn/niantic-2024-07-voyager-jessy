@@ -5,12 +5,16 @@ import productService from '../../../services/product-service'
 export default function ProductsList({categoryId})
 {
     useEffect(() => {
-        productService.ge
+        productService.getProductsByCategory(categoryId).then(data => {
+            console.log("data being returned")
+            console.log(data);
+            
+        })
 
 
     })
 
-    productsByCategory()
+    // productsByCategory()
     // call the products api - getProductsByCategoryId
     return (
         <>

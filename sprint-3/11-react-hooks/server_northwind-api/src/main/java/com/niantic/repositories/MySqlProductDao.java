@@ -2,6 +2,7 @@ package com.niantic.repositories;
 
 import com.niantic.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -38,7 +39,7 @@ public class MySqlProductDao implements ProductDao
                     , category_id
                     , quantity_per_unit
                     , unit_price
-                FROM products;
+                FROM products
                 WHERE category_id = ?;
                 """;
 

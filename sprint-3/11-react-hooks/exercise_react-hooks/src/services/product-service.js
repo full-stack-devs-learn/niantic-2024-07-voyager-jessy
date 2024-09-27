@@ -29,13 +29,10 @@ class ProductService
 
     async getProductsByCategory(categoryId)
     {
-        const response = await axios.get(this.baseUrl)
+        const response = await axios.get(this.baseUrl, {
+            params: {catId: categoryId}})
         return response.data;
     }
-
-    
-
-
 }
 
 const productService = new ProductService();

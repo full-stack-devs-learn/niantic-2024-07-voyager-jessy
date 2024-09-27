@@ -41,6 +41,7 @@ export default function ProductCardContainer()
                     product={product.name} 
                     id={product.id}
                     price={product.unitPrice}
+                    categoryId={product.categoryId}
                     onProductDeleted={productDeleted}
                     ></ProductCard>
             ))
