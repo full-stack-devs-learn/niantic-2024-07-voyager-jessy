@@ -2,7 +2,7 @@ export default function CategoriesList()
 {
 return(
 
-    <h1>Categories:</h1>
+    <h1>Categories List</h1>
 )
 
 }
