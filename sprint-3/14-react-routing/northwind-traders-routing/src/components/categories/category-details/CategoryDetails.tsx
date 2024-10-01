@@ -1,6 +1,11 @@
+import { useParams } from "react-router-dom"
+
 export default function CategoryDetails()
 {
+const {categoryId } = useParams();
+console.log(categoryId)
+
     return(
-        <h4>Category Id: </h4>
+        <h4> Category Details - Category Id: {categoryId}</h4>
     )
 }

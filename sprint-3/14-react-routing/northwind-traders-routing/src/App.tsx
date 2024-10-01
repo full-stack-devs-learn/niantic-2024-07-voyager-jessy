@@ -22,14 +22,14 @@ function App() {
 
         <main className='container mt-5'>
           <Routes>
-            <Route path='/' element={<Home/>} /> 
-            <Route path='/categories' element={<CategoriesPage/>}/>
-              <Route path='' element={<CategoriesList/>}/>
-              <Route path=':categoryId' element={<CategoryDetails/>}/>
+            <Route path="/" element={<Home/>} /> 
+            {/* <Route path="/categories" element={<CategoriesPage/>}/> */}
+              <Route path="/categories" element={<CategoriesList/>}/>
+              <Route path=":categoryId" element={<CategoryDetails/>}/>
               <Route path='/add' element={<CategoryAdd/>}/>
               <Route path='/edit' element={<CategoryEdit/>}/>
-            <Route path='/products' element={<ProductPage/>}/>
-              <Route path='' element={<ProductSearch/>}/>
+            {/* <Route path='/products' element={<ProductPage/>}/> */}
+              <Route path='/products' element={<ProductSearch/>}/>
               <Route path=':productId' element={<ProductDetails/>}/>
               <Route path='/add' element={<ProductAdd/>}/>
               <Route path='/edit' element={<ProductEdit/>}/>
