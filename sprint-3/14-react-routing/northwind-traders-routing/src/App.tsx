@@ -23,16 +23,18 @@ function App() {
         <main className='container mt-5'>
           <Routes>
             <Route path="/" element={<Home/>} /> 
-            {/* <Route path="/categories" element={<CategoriesPage/>}/> */}
-            <Route path="/categories" element={<CategoriesList/>}/>
-            <Route path='/categories/:categoryId' element={<CategoryDetails />} />
-            <Route path='/categories/:categoryId/edit' element={<CategoryEdit/>}/>
-            <Route path='/categories/add' element={<CategoryAdd/>}/>
-          {/* <Route path='/products' element={<ProductPage/>}/> */}
-            <Route path='/products' element={<ProductSearch/>}/>
-            <Route path='/products/:productId' element={<ProductDetails/>}/>
-            <Route path='/products/add' element={<ProductAdd/>}/>
-            <Route path='/products/:productId/edit' element={<ProductEdit/>}/>
+            <Route path="/categories" element={<CategoriesPage/>}>
+              <Route path="" element={<CategoriesList/>}/>
+              <Route path=':categoryId' element={<CategoryDetails />} />
+              <Route path=':categoryId/edit' element={<CategoryEdit/>}/>
+              <Route path='add' element={<CategoryAdd/>}/>
+              </Route>
+            <Route path='/products' element={<ProductPage/>}>
+              <Route path='' element={<ProductSearch/>}/>
+              <Route path=':id' element={<ProductDetails/>}/>
+              <Route path=':id/edit' element={<ProductEdit/>}/>
+              <Route path='add' element={<ProductAdd/>}/>
+            </Route>
           </Routes>
           
 

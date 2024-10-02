@@ -1,0 +1,37 @@
+
+.product-container
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.product-card
+{
+    width: 200px;
+}
+.product-header {
+    color:rgb(61, 61, 61);
+    font-weight: 700;
+  }
+  
+
+.product-card a
+{
+    display: inline-block;
+    text-decoration: none;
+}
+
+.product-card 
+{
+    display: flex;
+    justify-content: end;
+}
+
+#product-body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+    /* height: 150px; */
+} 
+

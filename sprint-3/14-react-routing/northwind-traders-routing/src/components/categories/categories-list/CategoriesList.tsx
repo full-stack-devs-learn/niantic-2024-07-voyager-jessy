@@ -1,14 +1,25 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom";
+import categoryService from "../../../services/category-service";
+import { Category } from "../../../models/categories";
+import './CategoriesList.css'
 
 export default function CategoriesList() {
 
+    const [categories, setCategories] = useState<Category[]>([]);
 
     // const location = useLocation();
     // const params = new URLSearchParams(location.search)
 
+    useEffect(() => { loadCategories() }, [])
 
 
+    async function loadCategories() {
+        const categories = await categoryService.getAllCategories();
+        console.log(categories);
+
+        setCategories(categories)
+    }
 
 
     return (
@@ -16,25 +27,19 @@ export default function CategoriesList() {
 
             <h1>Categories List</h1>
             <Link className="btn btn-success" to={"/categories/add"}>Add</Link>
-            <ul>
-                <li className="card mt-3"><Link to={'/categories/1'}>Category 1</Link>
-                    <Link to={"/categories/:categoryId/edit"}>Edit</Link></li>
-                <li className="card mt-3"><Link to={'/categories/2'}> Category 2</Link>
-                    <Link to={"/categories/edit"}>Edit</Link></li>
-                <li className="card mt-3"><Link to={'/categories/3'}> Category 3</Link>
-                    <Link to={"/categories/:categoryId/edit"}>Edit</Link></li>
-                <li className="card mt-3"><Link to={'/categories/4'}> Category 4</Link>
-                    <Link to={"/categories/:categoryId/edit"}>Edit</Link></li>
-                <li className="card mt-3"><Link to={'/categories/5'}> Category 5</Link>
-                    <Link to={"/categories/:categoryId/edit"}>Edit</Link></li>
-                <li className="card mt-3"><Link to={'/categories/6'}> Category 6</Link>
-                    <Link to={"/categories/:categoryId/edit"}>Edit</Link></li>
-                <li className="card mt-3"><Link to={'/categories/7'}> Category 7</Link>
-                    <Link to={"/categories/:categoryId/edit"}>Edit</Link></li>
-                <li className="card mt-3"><Link to={'/categories/8'}> Category 8</Link>
-                    <Link to={"/categories/:categoryId/edit"}>Edit</Link></li>
-               
-            </ul>
+            <div className="categories-container">
+                {categories.map((category: Category) => (
+                    <div className="category-card card mt-3"key={category.categoryId}>
+                        <h5 className="category-header mt-3"><Link to={`/categories/${category.categoryId}`}><strong>{category.categoryName}</strong></Link></h5>
+                        <div id="category-body" className="card-body">
+                            <img id="category-image" src={`images/categories/${category.categoryId}.webp`} />
+
+                        </div>
+                        <Link className="btn btn-outline-warning" to={`/categories/${category.categoryId}/edit`}>Edit</Link>
+                    </div>
+                ))
+                }
+            </div>
 
         </>
     )
